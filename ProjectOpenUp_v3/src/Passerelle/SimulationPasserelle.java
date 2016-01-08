@@ -1,7 +1,7 @@
-package simulation;
+package Passerelle;
 
+import Compteur.SimulationCompteur;
 import LCD.ControleurLCD;
-import Passerelle.ControleurPasserelle;
 
 public class SimulationPasserelle implements Runnable {
 	
