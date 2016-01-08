@@ -1,8 +1,5 @@
-package simulation;
+package Compteur;
 
-import Compteur.ControleurCompteur;
-import Compteur.ModeleCompteur;
-import Compteur.VueCompteur;
 
 public class SimulationCompteur implements Runnable {
 	
