@@ -1,5 +1,8 @@
 package simulation;
 
+import java.util.Iterator;
+
+import Compteur.ModeleCompteur;
 import LCD.ControleurLCD;
 import Passerelle.ControleurPasserelle;
 
@@ -27,8 +30,24 @@ public class SimulationPasserelle implements Runnable {
 				.addListeCompteurs(tab[i].getControleur().getModeleCompteur());
 			
 			new Thread(tab[i]).start();
-		}	
-
+		}
+		
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		simulation.passerelle.getModelePasserelle().removeListeCompteurs(tab[1].getControleur().getModeleCompteur());
+		
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		simulation.passerelle.getModelePasserelle().addListeCompteurs(tab[1].getControleur().getModeleCompteur());
 	}
 
 	@Override
