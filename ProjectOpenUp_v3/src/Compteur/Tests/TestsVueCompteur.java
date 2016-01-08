@@ -6,34 +6,34 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import Compteur.VueCompteur;
+
 public class TestsVueCompteur {
+	private VueCompteur vc;
 
 	@Before
 	public void setUp() throws Exception {
+		vc = new VueCompteur();
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		vc = null;
 	}
 
 	@Test
 	public void testVueCompteur() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
 	public void testMajVue() {
-		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetDisplay() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetDisplay() {
-		fail("Not yet implemented");
+	public void testGetSetDisplay() {
+		vc.setDisplay("Test display");
+		assertEquals(vc.getDisplay(), "Test display");
 	}
 
 }

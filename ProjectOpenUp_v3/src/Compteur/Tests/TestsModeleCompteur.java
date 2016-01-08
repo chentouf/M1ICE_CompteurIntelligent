@@ -6,54 +6,51 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import Compteur.ModeleCompteur;
+import Passerelle.ModelePasserelle;
+
 public class TestsModeleCompteur {
 
+	ModeleCompteur mc;
 	@Before
 	public void setUp() throws Exception {
+		mc = new ModeleCompteur();
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		mc = null;
 	}
-
+	
 	@Test
 	public void testModeleCompteur() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSimulerConso() {
-		fail("Not yet implemented");
+		int initialHp = mc.getHc() ;
+		int initialHc = mc.getHc() ;
+		mc.simulerConso();
+		assertTrue(mc.getHp() > initialHp && mc.getHc() > initialHc );
 	}
 
 	@Test
-	public void testGetHc() {
-		fail("Not yet implemented");
+	public void testGetSetHc() {
+		mc.setHc(50);
+		assertEquals(mc.getHc() , 50);
 	}
 
 	@Test
-	public void testSetHc() {
-		fail("Not yet implemented");
+	public void testGetSetHp() {
+		mc.setHp(50);
+		assertEquals(mc.getHp() , 50);
 	}
 
 	@Test
-	public void testGetHp() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetHp() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetModelePasserelle() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetModelePasserelle() {
-		fail("Not yet implemented");
+	public void testGetSetModelePasserelle() {
+		ModelePasserelle mp = new ModelePasserelle();
+		mc.setModelePasserelle(mp);
+		assertEquals(mc.getModelePasserelle(), mp);
 	}
 
 }

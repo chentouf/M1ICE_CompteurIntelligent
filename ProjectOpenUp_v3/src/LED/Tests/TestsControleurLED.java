@@ -6,49 +6,54 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import LED.ControleurLED;
+import LED.ModeleLED;
+import LED.VueLED;
+
 public class TestsControleurLED {
+	private ControleurLED cl ;
 
 	@Before
 	public void setUp() throws Exception {
+		cl = new ControleurLED();
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		cl = null;
 	}
 
 	@Test
 	public void testControleurLEDModeleLEDVueLED() {
-		fail("Not yet implemented");
+		/*ModeleLED ml = new ModeleLED();
+		VueLED vl = new VueLED();		
+		cl = new ControleurLED(ml, vl);		
+		assertEquals(cl.getModeleLED(),ml);
+		assertEquals(cl.getVueLED(),vl);	*/
 	}
 
 	@Test
 	public void testControleurLED() {
-		fail("Not yet implemented");
+
 	}
 
 	@Test
 	public void testMajLED() {
-		fail("Not yet implemented");
+
 	}
 
 	@Test
-	public void testGetModeleLED() {
-		fail("Not yet implemented");
+	public void testGetSetModeleLED() {
+		ModeleLED ml = new ModeleLED();
+		cl.setModeleLED(ml);
+		assertEquals(cl.getModeleLED(),ml);
 	}
 
 	@Test
-	public void testSetModeleLED() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetVueLED() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetVueLED() {
-		fail("Not yet implemented");
+	public void testGetSetVueLED() {
+		VueLED vl = new VueLED();
+		cl.setVueLED(vl);
+		assertEquals(cl.getVueLED(), vl);
 	}
 
 }
