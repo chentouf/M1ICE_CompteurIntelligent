@@ -22,7 +22,6 @@ package Compteur;
 public class ControleurCompteur {
     
     protected ModeleCompteur modeleCompteur;		//## link modeleCompteur 
-    
     protected VueCompteur vueCompteur;		//## link vueCompteur 
     
     
@@ -33,18 +32,17 @@ public class ControleurCompteur {
      * @param vueCompteur
     */
     //## operation ControleurCompteur(ModeleCompteur,VueCompteur) 
-    public  ControleurCompteur(ModeleCompteur modeleCompteur, VueCompteur vueCompteur) {
-    	this.modeleCompteur = modeleCompteur ;
-    	this.vueCompteur = vueCompteur ;
-    }
-    //## auto_generated 
-    public  ControleurCompteur() {
+    public  ControleurCompteur(String id) {
+
+    	this.modeleCompteur = new ModeleCompteur();
+    	this.vueCompteur = new VueCompteur();
+    	
+    	modeleCompteur.setId(id);
+    	this.modeleCompteur.addObserver(this.vueCompteur);
     }
     
-    //## operation majCompteur() 
-    public void majCompteur() {
-        //#[ operation majCompteur() 
-        //#]
+    //## auto_generated 
+    public  ControleurCompteur() {
     }
     
     //## auto_generated 

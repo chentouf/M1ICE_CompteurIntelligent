@@ -10,6 +10,9 @@
 
 package Compteur;
 
+import java.util.Observable;
+import java.util.Observer;
+
 
 //----------------------------------------------------------------------------
 // Compteur/VueCompteur.java                                                                  
@@ -19,10 +22,10 @@ package Compteur;
 
 
 //## class VueCompteur 
-public class VueCompteur {
+public class VueCompteur implements Observer {
     
     protected String display;		//## attribute display 
-    
+    private String compteur; // 
     
     // Constructors
     
@@ -34,7 +37,8 @@ public class VueCompteur {
     
     //## operation majVue() 
     public void majVue() {
-        //#[ operation majVue() 
+        //#[ operation majVue()
+    	
         //#]
     }
     
@@ -47,6 +51,22 @@ public class VueCompteur {
     public void setDisplay(String p_display) {
         display = p_display;
     }
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		ModeleCompteur modele;
+		
+		if(arg0 == null){
+			System.out.println("erreur");
+			return;
+		}
+		
+		if(arg0 instanceof ModeleCompteur){
+			modele = (ModeleCompteur)arg0;
+			display = new String(modele.getId()+" : "+modele.getHc()+" / "+modele.getHp());
+		}
+	}
     
 }
 /*********************************************************************

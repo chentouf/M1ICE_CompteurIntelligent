@@ -10,6 +10,10 @@
 
 package LCD;
 
+import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
+
 
 //----------------------------------------------------------------------------
 // LCD/VueLCD.java                                                                  
@@ -19,7 +23,7 @@ package LCD;
 
 
 //## class VueLCD 
-public class VueLCD {
+public class VueLCD implements Observer{
     
     protected String display;		//## attribute display 
     
@@ -32,15 +36,6 @@ public class VueLCD {
         //#]
     }
     
-    /**
-     * @param d
-    */
-    //## operation majVue(String) 
-    public void majVue(final String d) {
-        //#[ operation majVue(String) 
-        //#]
-    }
-    
     //## auto_generated 
     public String getDisplay() {
         return display;
@@ -50,6 +45,17 @@ public class VueLCD {
     public void setDisplay(String p_display) {
         display = p_display;
     }
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		ModeleLCD modele;
+		if(o instanceof ModeleLCD){
+			modele = (ModeleLCD)o;
+			display = modele.getDonneesAAfficher();
+			System.out.println(display);
+		}
+	}
     
 }
 /*********************************************************************

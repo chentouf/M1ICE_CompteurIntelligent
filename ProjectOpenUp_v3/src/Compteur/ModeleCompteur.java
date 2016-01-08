@@ -10,6 +10,8 @@
 
 package Compteur;
 
+import java.util.Observable;
+
 //## link modelePasserelle 
 import Passerelle.ModelePasserelle;
 
@@ -21,11 +23,11 @@ import Passerelle.ModelePasserelle;
 
 
 //## class ModeleCompteur 
-public class ModeleCompteur {
+public class ModeleCompteur extends Observable{
     
     protected int hc;		//## attribute hc 
-    protected int hp;		//## attribute hp 
-    
+    protected int hp;		//## attribute hp
+    protected String id;    
     protected ModelePasserelle modelePasserelle;		//## link modelePasserelle 
     
     
@@ -33,9 +35,20 @@ public class ModeleCompteur {
     
     //## operation ModeleCompteur() 
     public  ModeleCompteur() {
+    	super();
         //#[ operation ModeleCompteur() 
         //#]
+    	hc = 0;
+    	hp = 0;
     }
+    
+    public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
     
     //## operation simulerConso() 
     public void simulerConso() {
@@ -49,6 +62,8 @@ public class ModeleCompteur {
     //## auto_generated 
     public void setHc(int p_hc) {
         hc = p_hc;
+        setChanged();
+        notifyObservers();
     }
     
     //## auto_generated 
@@ -59,6 +74,7 @@ public class ModeleCompteur {
     //## auto_generated 
     public void setHp(int p_hp) {
         hp = p_hp;
+        notifyObservers();
     }
     
     //## auto_generated 

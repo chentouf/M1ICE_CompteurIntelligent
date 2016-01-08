@@ -10,6 +10,8 @@
 
 package LCD;
 
+import java.util.Observable;
+
 
 //----------------------------------------------------------------------------
 // LCD/ModeleLCD.java                                                                  
@@ -19,7 +21,7 @@ package LCD;
 
 
 //## class ModeleLCD 
-public class ModeleLCD {
+public class ModeleLCD extends Observable {
     
     protected String donneesAAfficher;		//## attribute donneesAAfficher 
     
@@ -39,7 +41,11 @@ public class ModeleLCD {
     
     //## auto_generated 
     public void setDonneesAAfficher(String p_donneesAAfficher) {
+    	
         donneesAAfficher = p_donneesAAfficher;
+        
+        setChanged();
+        notifyObservers();
     }
     
 }

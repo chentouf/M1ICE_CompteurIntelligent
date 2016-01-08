@@ -12,6 +12,9 @@ package Passerelle;
 
 //## auto_generated
 import java.util.*;
+
+import Compteur.ModeleCompteur;
+import LCD.ControleurLCD;
 //## link modeleLCD 
 import LCD.ModeleLCD;
 //## link listeModeleLED 
@@ -47,19 +50,27 @@ public class ControleurPasserelle {
      * @param modeleLCD
      * @param modelePass
     */
-    //## operation ControleurPasserelle(ModeleLED,ModelePasserelle,ModeleLED,ModeleLCD,ModelePasserelle) 
-    public  ControleurPasserelle(ModeleLED modeleLED1, ModelePasserelle modelePasserelle, ModeleLED modeleLED2, ModeleLCD modeleLCD, ModelePasserelle modelePass) {
-        //#[ operation ControleurPasserelle(ModeleLED,ModelePasserelle,ModeleLED,ModeleLCD,ModelePasserelle) 
-        //#]
-    }
+
     //## auto_generated 
     public  ControleurPasserelle() {
+    	modelePasserelle = new ModelePasserelle();
+    	modeleLCD = new ModeleLCD();
     }
     
     //## operation majSysteme() 
     public void majSysteme() {
         //#[ operation majSysteme() 
-        //#]
+        //#]*
+    	String chaine = new String();
+    	Iterator<ModeleCompteur> iter = modelePasserelle.getListeCompteurs();
+    	ModeleCompteur modele;
+    	
+    	while(iter.hasNext()){
+    		modele = iter.next();
+    		chaine = chaine.concat("\nCompteur "+modele.getId()+" : "+modele.getHc()+" / "+modele.getHp());
+    	}
+    	
+    	modeleLCD.setDonneesAAfficher(chaine);
     }
     
     //## auto_generated 

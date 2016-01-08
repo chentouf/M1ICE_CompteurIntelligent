@@ -1,0 +1,47 @@
+package simulation;
+
+import LCD.ControleurLCD;
+import Passerelle.ControleurPasserelle;
+
+public class SimulationPasserelle implements Runnable {
+	
+	private ControleurPasserelle passerelle;
+	
+	public SimulationPasserelle(){
+		passerelle = new ControleurPasserelle();
+	}
+	
+	public static void main(String[] args){
+		SimulationPasserelle simulation = new SimulationPasserelle();
+		SimulationCompteur[] tab = new SimulationCompteur[3];
+		ControleurLCD lcd = new ControleurLCD();
+		
+		simulation.passerelle.setModeleLCD(lcd.getModeleLCD());
+		
+		new Thread(simulation).start();
+		
+		for(int i = 0;i<3;i++){
+			tab[i] = new SimulationCompteur(""+i);
+			
+			simulation.passerelle.getModelePasserelle()
+				.addListeCompteurs(tab[i].getControleur().getModeleCompteur());
+			
+			new Thread(tab[i]).start();
+		}	
+
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		while(true){
+			passerelle.majSysteme();
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+}

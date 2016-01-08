@@ -32,19 +32,12 @@ public class ControleurLCD {
      * @param modeleLCD
      * @param vueLCD
     */
-    //## operation ControleurLCD(ModeleLCD,VueLCD) 
-    public  ControleurLCD(ModeleLCD modeleLCD, VueLCD vueLCD) {
-        //#[ operation ControleurLCD(ModeleLCD,VueLCD) 
-        //#]
-    }
     //## auto_generated 
     public  ControleurLCD() {
-    }
-    
-    //## operation majLCD() 
-    public void majLCD() {
-        //#[ operation majLCD() 
-        //#]
+    	this.modeleLCD = new ModeleLCD();
+    	this.vueLCD = new VueLCD();
+    	
+    	modeleLCD.addObserver(vueLCD);
     }
     
     //## auto_generated 
