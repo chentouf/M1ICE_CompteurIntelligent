@@ -128,4 +128,3 @@ public class ControleurPasserelle {
 /*********************************************************************
 	File Path	: DefaultComponent/DefaultConfig/Passerelle/ControleurPasserelle.java
 *********************************************************************/
-

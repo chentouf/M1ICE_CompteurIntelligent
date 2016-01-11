@@ -30,7 +30,6 @@ public class TestsModeleCompteur {
 	public void testSimulerConso() {
 		int initialHp = mc.getHc() ;
 		int initialHc = mc.getHc() ;
-		mc.simulerConso();
 		assertTrue(mc.getHp() > initialHp && mc.getHc() > initialHc );
 	}
 

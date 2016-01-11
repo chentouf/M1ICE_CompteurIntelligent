@@ -29,7 +29,8 @@ public class SimulationPasserelle implements Runnable {
 			
 			simulation.passerelle.getModelePasserelle()
 				.addListeCompteurs(tab[i].getControleur().getModeleCompteur());
-			
+			// test connection false
+			tab[i].getControleur().getModeleCompteur().setConnection(false);
 			new Thread(tab[i]).start();
 		}
 		
@@ -63,9 +64,5 @@ public class SimulationPasserelle implements Runnable {
 				e.printStackTrace();
 			}
 		}
-	}
-	
-	public ControleurPasserelle getControleurPasserelle(){
-		return this.passerelle;
 	}
 }
