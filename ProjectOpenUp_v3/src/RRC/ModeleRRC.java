@@ -36,7 +36,7 @@ import Compteur.ModeleCompteur;
 //## class ModeleRRC 
 public class ModeleRRC {
     
-    protected int prixEnVigueurHc,prixEnVigeurHp;		//## attribute prixEnVigueur 
+    protected int prixEnVigueurHc,prixEnVigeurHp;		// à stocker prochainement
     protected List<ModeleCompteur> mesureHistorique;
 	protected List<ModeleCompteur> mesureCourante; 
     
