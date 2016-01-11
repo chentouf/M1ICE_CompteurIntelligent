@@ -18,17 +18,22 @@ public class TestsVueRRC {
 
 	@Test
 	public void testVueRRC() {
+		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testMajVue() {}
+	public void testMajVue() {
+		fail("Not yet implemented");
+	}
 
 	@Test
 	public void testGetDisplay() {
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetDisplay() {
+		fail("Not yet implemented");
 	}
 
 }

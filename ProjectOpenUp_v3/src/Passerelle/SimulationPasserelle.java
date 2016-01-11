@@ -9,7 +9,7 @@ import Passerelle.ControleurPasserelle;
 
 public class SimulationPasserelle implements Runnable {
 	
-	public ControleurPasserelle passerelle;
+	private ControleurPasserelle passerelle;
 	
 	public SimulationPasserelle(){
 		passerelle = new ControleurPasserelle();
@@ -29,7 +29,8 @@ public class SimulationPasserelle implements Runnable {
 			
 			simulation.passerelle.getModelePasserelle()
 				.addListeCompteurs(tab[i].getControleur().getModeleCompteur());
-			
+			// test connection false
+			tab[i].getControleur().getModeleCompteur().setConnection(false);
 			new Thread(tab[i]).start();
 		}
 		
