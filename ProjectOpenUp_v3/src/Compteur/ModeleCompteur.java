@@ -27,9 +27,7 @@ public class ModeleCompteur extends Observable{
     
     protected int hc;		//## attribute hc 
     protected int hp;		//## attribute hp
-    protected String id;    
-    protected ModelePasserelle modelePasserelle;		//## link modelePasserelle 
-    
+    protected String id;       
     
     // Constructors
     
@@ -75,16 +73,6 @@ public class ModeleCompteur extends Observable{
     public void setHp(int p_hp) {
         hp = p_hp;
         notifyObservers();
-    }
-    
-    //## auto_generated 
-    public ModelePasserelle getModelePasserelle() {
-        return modelePasserelle;
-    }
-    
-    //## auto_generated 
-    public void setModelePasserelle(ModelePasserelle p_ModelePasserelle) {
-        modelePasserelle = p_ModelePasserelle;
     }
     
 }

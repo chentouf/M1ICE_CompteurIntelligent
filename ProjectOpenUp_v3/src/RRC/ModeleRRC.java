@@ -11,7 +11,14 @@
 package RRC;
 
 //## link itsControleurPasserelle 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import Passerelle.ControleurPasserelle;
+import Compteur.ModeleCompteur;
 
 //----------------------------------------------------------------------------
 // RRC/ModeleRRC.java                                                                  
@@ -25,10 +32,7 @@ public class ModeleRRC {
     
     protected int prixEnVigueur;		//## attribute prixEnVigueur 
     
-    protected Object tabMesuresTraitees;		//## attribute tabMesuresTraitees 
-    
-    protected ControleurPasserelle itsControleurPasserelle;		//## link itsControleurPasserelle 
-    
+    protected List<ModeleCompteur[]> tabMesuresTraitees;		//## attribute tabMesuresTraitees    
     
     // Constructors
     
@@ -36,12 +40,7 @@ public class ModeleRRC {
     public  ModeleRRC() {
         //#[ operation ModeleRRC() 
         //#]
-    }
-    
-    //## operation produireFacture() 
-    public void produireFacture() {
-        //#[ operation produireFacture() 
-        //#]
+    	this.tabMesuresTraitees = new ArrayList<ModeleCompteur[]>();
     }
     
     //## auto_generated 
@@ -55,23 +54,13 @@ public class ModeleRRC {
     }
     
     //## auto_generated 
-    public Object getTabMesuresTraitees() {
+    public List<ModeleCompteur[]> getTabMesuresTraitees() {
         return tabMesuresTraitees;
     }
     
     //## auto_generated 
-    public void setTabMesuresTraitees(Object p_tabMesuresTraitees) {
+    public void setTabMesuresTraitees(List<ModeleCompteur[]> p_tabMesuresTraitees) {
         tabMesuresTraitees = p_tabMesuresTraitees;
-    }
-    
-    //## auto_generated 
-    public ControleurPasserelle getItsControleurPasserelle() {
-        return itsControleurPasserelle;
-    }
-    
-    //## auto_generated 
-    public void setItsControleurPasserelle(ControleurPasserelle p_ControleurPasserelle) {
-        itsControleurPasserelle = p_ControleurPasserelle;
     }
     
 }

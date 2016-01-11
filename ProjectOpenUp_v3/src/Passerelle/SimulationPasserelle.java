@@ -64,4 +64,8 @@ public class SimulationPasserelle implements Runnable {
 			}
 		}
 	}
+	
+	public ControleurPasserelle getControleurPasserelle(){
+		return this.passerelle;
+	}
 }

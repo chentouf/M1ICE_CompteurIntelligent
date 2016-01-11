@@ -33,14 +33,17 @@ public class ControleurRRC {
      * @param modeleRRC
     */
     //## operation ControleurRRC(VueRRC,ModeleRRC) 
-    public  ControleurRRC(final VueRRC vueRRC, final ModeleRRC modeleRRC) {
+    public  ControleurRRC() {
         //#[ operation ControleurRRC(VueRRC,ModeleRRC) 
         //#]
-    }
-    //## auto_generated 
-    public  ControleurRRC() {
+    	modeleRRC = new ModeleRRC();
+    	vueRRC = new VueRRC();
     }
     
+    public void produireFacture(){
+    	
+    }
+
     //## auto_generated 
     public ModeleRRC getModeleRRC() {
         return modeleRRC;
