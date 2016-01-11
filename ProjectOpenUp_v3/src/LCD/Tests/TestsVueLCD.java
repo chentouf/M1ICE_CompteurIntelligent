@@ -33,8 +33,8 @@ public class TestsVueLCD {
 
 	@Test
 	public void testGetSetDisplay() {
-		vl.setDisplay("test");
-		//assertEquals(vl.getDisplay(), "Test");
+		vl.setDisplay("Test");
+		assertEquals(vl.getDisplay(), "Test");
 	}
 
 }

@@ -26,19 +26,30 @@ public class TestsModelePasserelle {
 	public void testModelePasserelleControleurRRC() {}
 
 	@Test
-	public void testModelePasserelle() {}
+	public void testModelePasserelle() {
+		ModelePasserelle mp1 = new ModelePasserelle();
+	
+	}
 
 	@Test
-	public void testEnvoyerinfoRCCPush() {}
+	public void testEnvoyerinfoRCCPush() {
+		
+	}
 
 	@Test
-	public void testMajConsommation() {}
+	public void testMajConsommation() {
+		
+	}
 
 	@Test
-	public void testGetAdresseRCC() {}
+	public void testGetAdresseRCC() {
+		
+	}
 
 	@Test
-	public void testSetAdresseRCC() {}
+	public void testSetAdresseRCC() {
+		
+	}
 
 	@Test
 	public void testGetEtat() {}
