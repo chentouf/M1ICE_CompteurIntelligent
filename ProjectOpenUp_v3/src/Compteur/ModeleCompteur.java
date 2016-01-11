@@ -29,17 +29,18 @@ public class ModeleCompteur extends Observable{
     protected int hp;		//## attribute hp
     protected String id;    
     protected ModelePasserelle modelePasserelle;		//## link modelePasserelle 
+    protected boolean etatConnection ;
     
     
-    // Constructors
     
-    //## operation ModeleCompteur() 
+	//## operation ModeleCompteur() 
     public  ModeleCompteur() {
     	super();
         //#[ operation ModeleCompteur() 
         //#]
     	hc = 0;
     	hp = 0;
+    	etatConnection = true ;
     }
     
     public String getId() {
@@ -50,9 +51,6 @@ public class ModeleCompteur extends Observable{
 		this.id = id;
 	}
     
-    //## operation simulerConso() 
-    public void simulerConso() {
-    }
     
     //## auto_generated 
     public int getHc() {
@@ -86,6 +84,15 @@ public class ModeleCompteur extends Observable{
     public void setModelePasserelle(ModelePasserelle p_ModelePasserelle) {
         modelePasserelle = p_ModelePasserelle;
     }
+    
+    public boolean isConnected() {
+		return etatConnection;
+	}
+
+	public void setConnection(boolean etatConnection) {
+		this.etatConnection = etatConnection;
+	}
+
     
 }
 /*********************************************************************
