@@ -32,7 +32,9 @@ import RRC.ModeleRRC;
 //## class ControleurPasserelle 
 public class ControleurPasserelle {
     
-    protected ArrayList<ModeleLED> listeModeleLED = new ArrayList<ModeleLED>();		//## link listeModeleLED 
+	protected ModeleLED modeleLEDEtatConnectionCompteurs ;
+    
+    protected ModeleLED modeleLEDConnectionRRC ;
     
     protected ModeleLCD modeleLCD;		//## link modeleLCD 
     
@@ -66,34 +68,23 @@ public class ControleurPasserelle {
     	ModeleCompteur modele;
     	
     	while(iter.hasNext()){
-    		modele = iter.next();
-    		chaine = chaine.concat("\nCompteur "+modele.getId()+" : "+modele.getHc()+" / "+modele.getHp());
+			modele = iter.next();
+			chaine = chaine.concat("\nCompteur "+modele.getId()+" : ");
+			if(modele.getEtatConnection())
+			{
+				chaine=chaine.concat(modele.getHc()+" / "+modele.getHp());
+			}
+			else
+			{
+				chaine=chaine.concat("COMPTEUR OFFLINE");
+				modeleLEDEtatConnectionCompteurs.setEtatAAfficher(0);
+			}
     	}
     	
     	modeleLCD.setDonneesAAfficher(chaine);
     }
     
-    //## auto_generated 
-    public ListIterator<ModeleLED> getListeModeleLED() {
-        ListIterator<ModeleLED> iter = listeModeleLED.listIterator();
-        return iter;
-    }
-    
-    //## auto_generated 
-    public void addListeModeleLED(ModeleLED p_ModeleLED) {
-        listeModeleLED.add(0, p_ModeleLED);
-    }
-    
-    //## auto_generated 
-    public void removeListeModeleLED(ModeleLED p_ModeleLED) {
-        listeModeleLED.remove(p_ModeleLED);
-    }
-    
-    //## auto_generated 
-    public void clearListeModeleLED() {
-        listeModeleLED.clear();
-    }
-    
+
     //## auto_generated 
     public ModeleLCD getModeleLCD() {
         return modeleLCD;
@@ -123,6 +114,23 @@ public class ControleurPasserelle {
     public void setModeleRRC(ModeleRRC p_ModeleRRC) {
         modeleRRC = p_ModeleRRC;
     }
+    
+    public ModeleLED getModeleLEDEtatConnectionCompteurs() {
+		return modeleLEDEtatConnectionCompteurs;
+	}
+
+	public void setModeleLEDEtatConnectionCompteurs(ModeleLED modeleLEDEtatConnectionCompteurs) {
+		this.modeleLEDEtatConnectionCompteurs = modeleLEDEtatConnectionCompteurs;
+	}
+
+	public ModeleLED getModeleLEDConnectionRRC() {
+		return modeleLEDConnectionRRC;
+	}
+
+	public void setModeleLEDConnectionRRC(ModeleLED modeleLEDConnectionRRC) {
+		this.modeleLEDConnectionRRC = modeleLEDConnectionRRC;
+	}
+
     
 }
 /*********************************************************************
