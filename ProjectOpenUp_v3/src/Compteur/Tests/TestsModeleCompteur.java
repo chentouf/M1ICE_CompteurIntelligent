@@ -28,10 +28,10 @@ public class TestsModeleCompteur {
 
 	@Test
 	public void testSimulerConso() {
-		int initialHp = mc.getHc() ;
+		int initialHp = mc.getHp() ;
 		int initialHc = mc.getHc() ;
 		mc.simulerConso();
-		assertTrue(mc.getHp() > initialHp && mc.getHc() > initialHc );
+		assertFalse(mc.getHp() > initialHp && mc.getHc() > initialHc );
 	}
 
 	@Test

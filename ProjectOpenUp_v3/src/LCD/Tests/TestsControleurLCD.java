@@ -1,4 +1,4 @@
-package LCD.Tests;
+ package LCD.Tests;
 
 import static org.junit.Assert.*;
 

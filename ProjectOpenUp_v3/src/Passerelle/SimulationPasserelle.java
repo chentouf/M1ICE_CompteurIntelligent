@@ -9,7 +9,7 @@ import Passerelle.ControleurPasserelle;
 
 public class SimulationPasserelle implements Runnable {
 	
-	private ControleurPasserelle passerelle;
+	public ControleurPasserelle passerelle;
 	
 	public SimulationPasserelle(){
 		passerelle = new ControleurPasserelle();
