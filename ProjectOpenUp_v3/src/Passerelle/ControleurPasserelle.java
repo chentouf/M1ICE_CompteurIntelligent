@@ -32,7 +32,9 @@ import RRC.ModeleRRC;
 //## class ControleurPasserelle 
 public class ControleurPasserelle {
     
-    protected ArrayList<ModeleLED> listeModeleLED = new ArrayList<ModeleLED>();		//## link listeModeleLED 
+	protected ModeleLED modeleLEDEtatConnectionCompteur ;
+    
+    protected ModeleLED modeleLEDEtatConnectionRRC ;
     
     protected ModeleLCD modeleLCD;		//## link modeleLCD 
     
@@ -55,6 +57,8 @@ public class ControleurPasserelle {
     public  ControleurPasserelle() {
     	modelePasserelle = new ModelePasserelle();
     	modeleLCD = new ModeleLCD();
+    	modeleLEDEtatConnectionCompteur = new ModeleLED() ;
+    	modeleLEDEtatConnectionRRC = new ModeleLED();
     }
     
     //## operation majSysteme() 
@@ -66,32 +70,20 @@ public class ControleurPasserelle {
     	ModeleCompteur modele;
     	
     	while(iter.hasNext()){
-    		modele = iter.next();
-    		chaine = chaine.concat("\nCompteur "+modele.getId()+" : "+modele.getHc()+" / "+modele.getHp());
+			modele = iter.next();
+			chaine = chaine.concat("\nCompteur "+modele.getId()+" : ");
+			if(modele.isConnected())
+			{
+				chaine=chaine.concat(modele.getHc()+" / "+modele.getHp());
+			}
+			else
+			{
+				chaine=chaine.concat("COMPTEUR OFFLINE");
+				modeleLEDEtatConnectionCompteur.setEtatAAfficher(0);;
+			}
     	}
     	
     	modeleLCD.setDonneesAAfficher(chaine);
-    }
-    
-    //## auto_generated 
-    public ListIterator<ModeleLED> getListeModeleLED() {
-        ListIterator<ModeleLED> iter = listeModeleLED.listIterator();
-        return iter;
-    }
-    
-    //## auto_generated 
-    public void addListeModeleLED(ModeleLED p_ModeleLED) {
-        listeModeleLED.add(0, p_ModeleLED);
-    }
-    
-    //## auto_generated 
-    public void removeListeModeleLED(ModeleLED p_ModeleLED) {
-        listeModeleLED.remove(p_ModeleLED);
-    }
-    
-    //## auto_generated 
-    public void clearListeModeleLED() {
-        listeModeleLED.clear();
     }
     
     //## auto_generated 
@@ -123,6 +115,22 @@ public class ControleurPasserelle {
     public void setModeleRRC(ModeleRRC p_ModeleRRC) {
         modeleRRC = p_ModeleRRC;
     }
+    
+    public ModeleLED getModeleLEDEtatConnectionCompteur() {
+		return modeleLEDEtatConnectionCompteur;
+	}
+
+	public void setModeleLEDEtatConnectionCompteur(ModeleLED modeleLEDEtatConnectionCompteur) {
+		this.modeleLEDEtatConnectionCompteur = modeleLEDEtatConnectionCompteur;
+	}
+
+	public ModeleLED getModeleLEDEtatConnectionRRC() {
+		return modeleLEDEtatConnectionRRC;
+	}
+
+	public void setModeleLEDEtatConnectionRRC(ModeleLED modeleLEDEtatConnectionRRC) {
+		this.modeleLEDEtatConnectionRRC = modeleLEDEtatConnectionRRC;
+	}
     
 }
 /*********************************************************************
