@@ -10,6 +10,8 @@
 
 package Compteur;
 
+import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Observable;
 
 //## link modelePasserelle 
@@ -40,6 +42,14 @@ public class ModeleCompteur extends Observable{
     	hc = 0;
     	hp = 0;
     	etatConnection = true ;
+    }
+    
+    public ModeleCompteur(ModeleCompteur copy){
+    	super();
+    	
+    	hc = copy.getHc();
+    	hp = copy.getHp();
+    	etatConnection = copy.isConnected();
     }
     
     public String getId() {
@@ -83,7 +93,17 @@ public class ModeleCompteur extends Observable{
 		this.etatConnection = etatConnection;
 	}
 
-    
+    @Override
+    public boolean equals(Object o){
+    	if(o instanceof ModeleCompteur){
+    		ModeleCompteur modele = (ModeleCompteur)o;
+    		if(modele.getId() == id )
+    			return true;
+    		else
+    			return false;
+    	}
+    	return false;
+    }
 }
 /*********************************************************************
 	File Path	: DefaultComponent/DefaultConfig/Compteur/ModeleCompteur.java
