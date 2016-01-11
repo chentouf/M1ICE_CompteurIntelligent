@@ -14,6 +14,7 @@ package RRC;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -31,8 +32,8 @@ import Compteur.ModeleCompteur;
 public class ModeleRRC {
     
     protected int prixEnVigueur;		//## attribute prixEnVigueur 
-    
-    protected List<ModeleCompteur[]> tabMesuresTraitees;		//## attribute tabMesuresTraitees    
+    protected List<ModeleCompteur> mesureHistorique;
+	protected List<ModeleCompteur> mesureCourante; 
     
     // Constructors
     
@@ -40,7 +41,8 @@ public class ModeleRRC {
     public  ModeleRRC() {
         //#[ operation ModeleRRC() 
         //#]
-    	this.tabMesuresTraitees = new ArrayList<ModeleCompteur[]>();
+    	this.mesureHistorique = new ArrayList<ModeleCompteur>();
+    	this.mesureCourante = new ArrayList<ModeleCompteur>();
     }
     
     //## auto_generated 
@@ -53,14 +55,38 @@ public class ModeleRRC {
         prixEnVigueur = p_prixEnVigueur;
     }
     
-    //## auto_generated 
-    public List<ModeleCompteur[]> getTabMesuresTraitees() {
-        return tabMesuresTraitees;
-    }
-    
-    //## auto_generated 
-    public void setTabMesuresTraitees(List<ModeleCompteur[]> p_tabMesuresTraitees) {
-        tabMesuresTraitees = p_tabMesuresTraitees;
+    public List<ModeleCompteur> getMesureHistorique() {
+		return mesureHistorique;
+	}
+
+	public void setMesureHistorique(List<ModeleCompteur> mesureHistorique) {
+		this.mesureHistorique = mesureHistorique;
+	}
+
+    public List<ModeleCompteur> getMesureCourante() {
+		return mesureCourante;
+	}
+
+	public void setMesureCourante(List<ModeleCompteur> mesureCourante) {
+		this.mesureCourante = mesureCourante;
+	}
+	
+	public void initMesure(ListIterator<ModeleCompteur> l){
+		ModeleCompteur tmp;
+		while(l.hasNext()){
+			tmp = l.next();
+			mesureHistorique.remove(tmp);
+			mesureHistorique.add(tmp);			
+		}
+	}
+
+	public void majMesure(ListIterator<ModeleCompteur> l){
+    	ModeleCompteur tmp;
+		while(l.hasNext()){
+			tmp = l.next();
+			mesureCourante.remove(tmp);
+			mesureCourante.add(tmp);			
+		}
     }
     
 }

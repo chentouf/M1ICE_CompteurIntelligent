@@ -1,5 +1,6 @@
 package RRC;
 
+import Passerelle.ControleurPasserelle;
 import Passerelle.ModelePasserelle;
 import Passerelle.SimulationPasserelle;
 
@@ -7,10 +8,12 @@ import Passerelle.SimulationPasserelle;
 public class SimulationRRC implements Runnable {
 	
 	SimulationPasserelle simuPasserelle;
+	ControleurRRC controleurRRC;
 
 	public SimulationRRC(){
 		// TODO Auto-generated constructor stub
 		simuPasserelle = new SimulationPasserelle();
+		controleurRRC = new ControleurRRC();
 	}
 	
 	@Override
@@ -25,7 +28,9 @@ public class SimulationRRC implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			ModelePasserelle modeleP = simuPasserelle.getControleurPasserelle().getModelePasserelle();
+			ControleurPasserelle controleurP = simuPasserelle.getControleurPasserelle();
+			
+			controleurRRC.setInfo(controleurP);
 		}
 	}
 	

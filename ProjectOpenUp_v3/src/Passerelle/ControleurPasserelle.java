@@ -34,7 +34,7 @@ public class ControleurPasserelle {
     
 	protected ModeleLED modeleLEDEtatConnectionCompteur ;
     
-    protected ModeleLED modeleLEDEtatConnectionRRC ;
+    protected ModeleLED modeleLEDEtatConnectionRRC;
     
     protected ModeleLCD modeleLCD;		//## link modeleLCD 
     
@@ -130,6 +130,10 @@ public class ControleurPasserelle {
 
 	public void setModeleLEDEtatConnectionRRC(ModeleLED modeleLEDEtatConnectionRRC) {
 		this.modeleLEDEtatConnectionRRC = modeleLEDEtatConnectionRRC;
+	}
+	
+	public ListIterator<ModeleCompteur> getInfo(){
+		return modelePasserelle.getListeCompteurs();
 	}
     
 }

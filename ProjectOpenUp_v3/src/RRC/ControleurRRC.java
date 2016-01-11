@@ -10,6 +10,8 @@
 
 package RRC;
 
+import Passerelle.ControleurPasserelle;
+
 
 //----------------------------------------------------------------------------
 // RRC/ControleurRRC.java                                                                  
@@ -63,6 +65,11 @@ public class ControleurRRC {
     public void setVueRRC(VueRRC p_VueRRC) {
         vueRRC = p_VueRRC;
     }
+
+	public void setInfo(ControleurPasserelle controleurP) {
+		// TODO Auto-generated method stub
+		modeleRRC.majMesure(controleurP.getInfo());
+	}
     
 }
 /*********************************************************************
