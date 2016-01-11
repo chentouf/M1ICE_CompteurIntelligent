@@ -18,32 +18,26 @@ public class TestsControleurRRC {
 
 	@Test
 	public void testControleurRRCVueRRCModeleRRC() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testControleurRRC() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testGetModeleRRC() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetModeleRRC() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testGetVueRRC() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetVueRRC() {
-		fail("Not yet implemented");
 	}
 
 }

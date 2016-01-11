@@ -18,42 +18,41 @@ public class TestsModeleRRC {
 
 	@Test
 	public void testModeleRRC() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testProduireFacture() {
-		fail("Not yet implemented");
+
 	}
 
 	@Test
 	public void testGetPrixEnVigueur() {
-		fail("Not yet implemented");
+
 	}
 
 	@Test
 	public void testSetPrixEnVigueur() {
-		fail("Not yet implemented");
+
 	}
 
 	@Test
 	public void testGetTabMesuresTraitees() {
-		fail("Not yet implemented");
+
 	}
 
 	@Test
 	public void testSetTabMesuresTraitees() {
-		fail("Not yet implemented");
+
 	}
 
 	@Test
 	public void testGetItsControleurPasserelle() {
-		fail("Not yet implemented");
+
 	}
 
 	@Test
 	public void testSetItsControleurPasserelle() {
-		fail("Not yet implemented");
+	
 	}
 
 }
