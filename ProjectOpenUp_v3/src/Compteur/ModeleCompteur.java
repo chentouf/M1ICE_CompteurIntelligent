@@ -10,8 +10,10 @@
 
 package Compteur;
 
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Observable;
+
 
 
 //## link modelePasserelle 
@@ -25,9 +27,13 @@ import Passerelle.ModelePasserelle;
 
 
 //## class ModeleCompteur 
-public class ModeleCompteur extends Observable{
+public class ModeleCompteur extends Observable implements Serializable{
     
-    protected int hc;		//## attribute hc 
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected int hc;		//## attribute hc 
     protected int hp;		//## attribute hp
     protected String id;		
     protected boolean etatConnection ;    

@@ -13,7 +13,7 @@ public class SimulationRRC implements Runnable {
 	public SimulationRRC(){
 		// TODO Auto-generated constructor stub
 		simuPasserelle = new SimulationPasserelle();
-		controleurRRC = new ControleurRRC();
+		controleurRRC = new ControleurRRC(7,8);
 	}
 	
 	@Override

@@ -35,10 +35,10 @@ public class ControleurRRC {
      * @param modeleRRC
     */
     //## operation ControleurRRC(VueRRC,ModeleRRC) 
-    public  ControleurRRC() {
+    public  ControleurRRC(int prixEnVigeurHp, int prixEnVigeurHc) {
         //#[ operation ControleurRRC(VueRRC,ModeleRRC) 
         //#]
-    	modeleRRC = new ModeleRRC();
+    	modeleRRC = new ModeleRRC(prixEnVigeurHc,prixEnVigeurHp);
     	vueRRC = new VueRRC();
     }
     

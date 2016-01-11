@@ -11,6 +11,11 @@
 package RRC;
 
 //## link itsControleurPasserelle 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,31 +36,42 @@ import Compteur.ModeleCompteur;
 //## class ModeleRRC 
 public class ModeleRRC {
     
-    protected int prixEnVigueur;		//## attribute prixEnVigueur 
+    protected int prixEnVigueurHc,prixEnVigeurHp;		//## attribute prixEnVigueur 
     protected List<ModeleCompteur> mesureHistorique;
 	protected List<ModeleCompteur> mesureCourante; 
     
     // Constructors
     
     //## operation ModeleRRC() 
-    public  ModeleRRC() {
+    public  ModeleRRC(int prixEnVigueurHc, int prixEnVigeurHp) {
         //#[ operation ModeleRRC() 
         //#]
+    	this.prixEnVigeurHp = prixEnVigeurHp;
+    	this.prixEnVigueurHc = prixEnVigueurHc;
+    	
     	this.mesureHistorique = new ArrayList<ModeleCompteur>();
     	this.mesureCourante = new ArrayList<ModeleCompteur>();
     }
     
     //## auto_generated 
-    public int getPrixEnVigueur() {
-        return prixEnVigueur;
+    public int getPrixEnVigueurHc() {
+        return prixEnVigueurHc;
     }
     
     //## auto_generated 
-    public void setPrixEnVigueur(int p_prixEnVigueur) {
-        prixEnVigueur = p_prixEnVigueur;
+    public void setPrixEnVigueurHc(int p_prixEnVigueur) {
+        prixEnVigueurHc = p_prixEnVigueur;
     }
     
-    public List<ModeleCompteur> getMesureHistorique() {
+    public int getPrixEnVigeurHp() {
+		return prixEnVigeurHp;
+	}
+
+	public void setPrixEnVigeurHp(int prixEnVigeurHp) {
+		this.prixEnVigeurHp = prixEnVigeurHp;
+	}
+
+	public List<ModeleCompteur> getMesureHistorique() {
 		return mesureHistorique;
 	}
 
@@ -88,6 +104,33 @@ public class ModeleRRC {
 			mesureCourante.add(tmp);			
 		}
     }
+	
+	public void save() {
+		File hist = new File("listeCompteurHist");
+		File cour = new File("listeCompteurCour");
+		FileOutputStream fout;
+		ObjectOutputStream oos;
+		
+		try {
+			if(!hist.exists())
+				hist.createNewFile();
+			if(!cour.exists())
+				cour.createNewFile();	
+			
+			fout = new FileOutputStream (hist);
+			oos = new ObjectOutputStream(fout);
+			oos.writeObject(mesureHistorique);
+			fout.close();
+			
+			fout= new FileOutputStream ("listeCompteurHist");
+			oos = new ObjectOutputStream(fout);
+			oos.writeObject(mesureCourante);
+			fout.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
     
 }
 /*********************************************************************
