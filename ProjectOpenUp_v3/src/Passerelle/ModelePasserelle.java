@@ -26,11 +26,7 @@ import Compteur.ModeleCompteur;
 
 //## class ModelePasserelle 
 public class ModelePasserelle {
-    
-    protected String adresseRCC;		//## attribute adresseRCC 
-    
-    protected Boolean etat;		//## attribute etat 
-    
+
     protected int idPasserelle;		//## attribute idPasserelle 
     
     protected ControleurRRC controleurRRC;		//## link controleurRRC 
@@ -62,26 +58,6 @@ public class ModelePasserelle {
     public void majConsommation() {
         //#[ operation majConsommation() 
         //#]
-    }
-    
-    //## auto_generated 
-    public String getAdresseRCC() {
-        return adresseRCC;
-    }
-    
-    //## auto_generated 
-    public void setAdresseRCC(String p_adresseRCC) {
-        adresseRCC = p_adresseRCC;
-    }
-    
-    //## auto_generated 
-    public Boolean getEtat() {
-        return etat;
-    }
-    
-    //## auto_generated 
-    public void setEtat(Boolean p_etat) {
-        etat = p_etat;
     }
     
     //## auto_generated 

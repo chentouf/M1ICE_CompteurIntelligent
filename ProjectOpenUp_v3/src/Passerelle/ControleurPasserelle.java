@@ -45,13 +45,6 @@ public class ControleurPasserelle {
     
     // Constructors
     
-    /**
-     * @param modeleLED1
-     * @param modelePasserelle
-     * @param modeleLED2
-     * @param modeleLCD
-     * @param modelePass
-    */
 
     //## auto_generated 
     public  ControleurPasserelle() {

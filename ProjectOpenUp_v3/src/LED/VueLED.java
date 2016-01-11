@@ -31,16 +31,7 @@ public class VueLED {
         //#[ operation VueLED() 
         //#]
     }
-    
-    /**
-     * @param d
-    */
-    //## operation majVue(String) 
-    public void majVue(final String d) {
-        //#[ operation majVue(String) 
-        //#]
-    }
-    
+        
     //## auto_generated 
     public String getDisplay() {
         return display;

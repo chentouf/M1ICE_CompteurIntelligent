@@ -10,6 +10,12 @@
 
 package RRC;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.FilterOutputStream;
+import java.io.IOException;
 
 //----------------------------------------------------------------------------
 // RRC/ControleurRRC.java                                                                  
@@ -39,10 +45,7 @@ public class ControleurRRC {
     	modeleRRC = new ModeleRRC();
     	vueRRC = new VueRRC();
     }
-    
-    public void produireFacture(){
-    	
-    }
+   
 
     //## auto_generated 
     public ModeleRRC getModeleRRC() {

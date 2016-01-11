@@ -28,7 +28,6 @@ public class ModeleCompteur extends Observable{
     protected int hc;		//## attribute hc 
     protected int hp;		//## attribute hp
     protected String id;
-    protected ModelePasserelle modelePasserelle;		//## link modelePasserelle 
     protected boolean etatConnection ;    
     
     // Constructors
