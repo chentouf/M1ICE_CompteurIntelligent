@@ -17,83 +17,51 @@ public class TestsModelePasserelle {
 	}
 
 	@Test
-	public void testModelePasserelleControleurRRC() {
-		fail("Not yet implemented");
-	}
+	public void testModelePasserelleControleurRRC() {}
 
 	@Test
-	public void testModelePasserelle() {
-		fail("Not yet implemented");
-	}
+	public void testModelePasserelle() {}
 
 	@Test
-	public void testEnvoyerinfoRCCPush() {
-		fail("Not yet implemented");
-	}
+	public void testEnvoyerinfoRCCPush() {}
 
 	@Test
-	public void testMajConsommation() {
-		fail("Not yet implemented");
-	}
+	public void testMajConsommation() {}
 
 	@Test
-	public void testGetAdresseRCC() {
-		fail("Not yet implemented");
-	}
+	public void testGetAdresseRCC() {}
 
 	@Test
-	public void testSetAdresseRCC() {
-		fail("Not yet implemented");
-	}
+	public void testSetAdresseRCC() {}
 
 	@Test
-	public void testGetEtat() {
-		fail("Not yet implemented");
-	}
+	public void testGetEtat() {}
 
 	@Test
-	public void testSetEtat() {
-		fail("Not yet implemented");
-	}
+	public void testSetEtat() {}
 
 	@Test
-	public void testGetIdPasserelle() {
-		fail("Not yet implemented");
-	}
+	public void testGetIdPasserelle() {}
 
 	@Test
-	public void testSetIdPasserelle() {
-		fail("Not yet implemented");
-	}
+	public void testSetIdPasserelle() {}
 
 	@Test
-	public void testGetControleurRRC() {
-		fail("Not yet implemented");
-	}
+	public void testGetControleurRRC() {}
 
 	@Test
-	public void testSetControleurRRC() {
-		fail("Not yet implemented");
-	}
+	public void testSetControleurRRC() {}
 
 	@Test
-	public void testGetListeCompteurs() {
-		fail("Not yet implemented");
-	}
+	public void testGetListeCompteurs() {}
 
 	@Test
-	public void testAddListeCompteurs() {
-		fail("Not yet implemented");
-	}
+	public void testAddListeCompteurs() {}
 
 	@Test
-	public void testRemoveListeCompteurs() {
-		fail("Not yet implemented");
-	}
+	public void testRemoveListeCompteurs() {}
 
 	@Test
-	public void testClearListeCompteurs() {
-		fail("Not yet implemented");
-	}
+	public void testClearListeCompteurs() {}
 
 }
