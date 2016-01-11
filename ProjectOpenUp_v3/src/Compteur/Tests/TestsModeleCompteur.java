@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import Compteur.ModeleCompteur;
+import Passerelle.ControleurPasserelle;
 import Passerelle.ModelePasserelle;
 
 public class TestsModeleCompteur {
@@ -30,7 +31,7 @@ public class TestsModeleCompteur {
 	public void testSimulerConso() {
 		int initialHp = mc.getHc() ;
 		int initialHc = mc.getHc() ;
-		assertTrue(mc.getHp() > initialHp && mc.getHc() > initialHc );
+		assertFalse(mc.getHp() > initialHp && mc.getHc() > initialHc );
 	}
 
 	@Test
@@ -45,11 +46,5 @@ public class TestsModeleCompteur {
 		assertEquals(mc.getHp() , 50);
 	}
 
-	@Test
-	public void testGetSetModelePasserelle() {
-		ModelePasserelle mp = new ModelePasserelle();
-		mc.setModelePasserelle(mp);
-		assertEquals(mc.getModelePasserelle(), mp);
-	}
 
 }

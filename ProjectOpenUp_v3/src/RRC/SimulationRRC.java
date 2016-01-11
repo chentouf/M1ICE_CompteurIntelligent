@@ -25,7 +25,7 @@ public class SimulationRRC implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			ModelePasserelle modeleP = simuPasserelle.getControleurPasserelle().getModelePasserelle();
+			
 		}
 	}
 	
