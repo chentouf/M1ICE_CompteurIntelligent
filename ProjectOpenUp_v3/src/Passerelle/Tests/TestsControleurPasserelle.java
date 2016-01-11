@@ -6,14 +6,21 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import Passerelle.ControleurPasserelle;
+
 public class TestsControleurPasserelle {
+	
+	ControleurPasserelle cp;
 
 	@Before
 	public void setUp() throws Exception {
+		cp = new ControleurPasserelle();
+		
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		cp = null;
 	}
 
 	@Test

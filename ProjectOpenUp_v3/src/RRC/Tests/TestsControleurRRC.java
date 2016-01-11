@@ -6,44 +6,43 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import RRC.ControleurRRC;
+
 public class TestsControleurRRC {
 
+	ControleurRRC cr;
 	@Before
 	public void setUp() throws Exception {
+		cr = new ControleurRRC();
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		cr = null;
 	}
 
 	@Test
 	public void testControleurRRCVueRRCModeleRRC() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testControleurRRC() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testGetModeleRRC() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetModeleRRC() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testGetVueRRC() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetVueRRC() {
-		fail("Not yet implemented");
 	}
 
 }

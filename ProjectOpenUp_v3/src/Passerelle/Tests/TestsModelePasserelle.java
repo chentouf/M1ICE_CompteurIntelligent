@@ -6,14 +6,20 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import Passerelle.ModelePasserelle;
+
 public class TestsModelePasserelle {
+	
+	ModelePasserelle mp;
 
 	@Before
 	public void setUp() throws Exception {
+		mp = new ModelePasserelle();
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		mp = null;
 	}
 
 	@Test
