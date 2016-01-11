@@ -6,29 +6,29 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestsModeleLED {
+import LED.ModeleLED;
 
+public class TestsModeleLED {
+	private ModeleLED ml;
+	
 	@Before
 	public void setUp() throws Exception {
+		ml = new ModeleLED();
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		ml = null;
 	}
 
 	@Test
 	public void testModeleLED() {
-		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetEtatAAfficher() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetEtatAAfficher() {
-		fail("Not yet implemented");
+	public void testGetSetEtatAAfficher() {
+		ml.setEtatAAfficher(1);
+		assertEquals(ml.getEtatAAfficher(), 1);		
 	}
 
 }

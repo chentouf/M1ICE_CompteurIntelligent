@@ -1,4 +1,4 @@
-package RRC.Tests;
+package LCD.Tests;
 
 import static org.junit.Assert.*;
 
@@ -6,34 +6,35 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestsVueRRC {
+import LCD.VueLCD;
+
+public class TestsVueLCD {
+	private VueLCD vl;
 
 	@Before
 	public void setUp() throws Exception {
+		vl = new VueLCD();
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		vl = null;
 	}
 
 	@Test
-	public void testVueRRC() {
-		fail("Not yet implemented");
+	public void testVueLCD() {
+		
 	}
 
 	@Test
 	public void testMajVue() {
-		fail("Not yet implemented");
+
 	}
 
 	@Test
-	public void testGetDisplay() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetDisplay() {
-		fail("Not yet implemented");
+	public void testGetSetDisplay() {
+		vl.setDisplay("test");
+		assertEquals(vl.getDisplay(), "Test");
 	}
 
 }

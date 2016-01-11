@@ -6,34 +6,34 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import LED.VueLED;
+
 public class TestsVueLED {
+	private VueLED vl;
 
 	@Before
 	public void setUp() throws Exception {
+		vl = new VueLED();
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		vl = null;
 	}
 
 	@Test
 	public void testVueLED() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testMajVue() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
 	public void testGetDisplay() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetDisplay() {
-		fail("Not yet implemented");
+		vl.setDisplay("Test");
+		assertEquals(vl.getDisplay(), "Test");
 	}
 
 }

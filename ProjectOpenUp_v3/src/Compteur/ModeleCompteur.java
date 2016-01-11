@@ -28,8 +28,7 @@ public class ModeleCompteur extends Observable{
     protected int hc;		//## attribute hc 
     protected int hp;		//## attribute hp
     protected String id;    
-    protected Boolean etatConnection;
-	protected ModelePasserelle modelePasserelle;		//## link modelePasserelle 
+    protected ModelePasserelle modelePasserelle;		//## link modelePasserelle 
     
     
     // Constructors
@@ -41,7 +40,6 @@ public class ModeleCompteur extends Observable{
         //#]
     	hc = 0;
     	hp = 0;
-    	etatConnection = true;
     }
     
     public String getId() {
@@ -78,14 +76,6 @@ public class ModeleCompteur extends Observable{
         hp = p_hp;
         notifyObservers();
     }
-    
-    public Boolean getEtatConnection() {
-		return etatConnection;
-	}
-
-	public void setEtatConnection(Boolean etatConnection) {
-		this.etatConnection = etatConnection;
-	}
     
     //## auto_generated 
     public ModelePasserelle getModelePasserelle() {

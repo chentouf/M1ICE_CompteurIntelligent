@@ -6,29 +6,30 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestsModeleLCD {
+import LCD.ModeleLCD;
 
+public class TestsModeleLCD {
+	private ModeleLCD ml;
+	
 	@Before
 	public void setUp() throws Exception {
+		ml = new ModeleLCD();
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		ml = null;
 	}
 
 	@Test
 	public void testModeleLCD() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
-	public void testGetDonneesAAfficher() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetDonneesAAfficher() {
-		fail("Not yet implemented");
+	public void testGetSetDonneesAAfficher() {
+		ml.setDonneesAAfficher("Test");
+		assertEquals(ml.getDonneesAAfficher(),"Test");
 	}
 
 }
