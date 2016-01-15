@@ -17,6 +17,8 @@ import java.io.FileWriter;
 import java.io.FilterOutputStream;
 import java.io.IOException;
 
+import Passerelle.ControleurPasserelle;
+
 //----------------------------------------------------------------------------
 // RRC/ControleurRRC.java                                                                  
 //----------------------------------------------------------------------------
@@ -39,10 +41,10 @@ public class ControleurRRC {
      * @param modeleRRC
     */
     //## operation ControleurRRC(VueRRC,ModeleRRC) 
-    public  ControleurRRC() {
+    public  ControleurRRC(int prixEnVigeurHp, int prixEnVigeurHc) {
         //#[ operation ControleurRRC(VueRRC,ModeleRRC) 
         //#]
-    	modeleRRC = new ModeleRRC();
+    	modeleRRC = new ModeleRRC(prixEnVigeurHc,prixEnVigeurHp);
     	vueRRC = new VueRRC();
     }
    
@@ -66,6 +68,11 @@ public class ControleurRRC {
     public void setVueRRC(VueRRC p_VueRRC) {
         vueRRC = p_VueRRC;
     }
+
+	public void setInfo(ControleurPasserelle controleurP) {
+		// TODO Auto-generated method stub
+		modeleRRC.majMesure(controleurP.getInfo());
+	}
     
 }
 /*********************************************************************
