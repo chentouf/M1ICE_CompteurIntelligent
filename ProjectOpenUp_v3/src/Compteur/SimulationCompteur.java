@@ -22,6 +22,7 @@ public class SimulationCompteur implements Runnable {
 		// TODO Auto-generated method stub
 		while(true){
 			controleur.getModeleCompteur().setHc(controleur.getModeleCompteur().getHc()+1);
+			controleur.getModeleCompteur().setHc(controleur.getModeleCompteur().getHp()+2);
 			
 			//System.out.println(controleur.getVueCompteur().getDisplay());
 			

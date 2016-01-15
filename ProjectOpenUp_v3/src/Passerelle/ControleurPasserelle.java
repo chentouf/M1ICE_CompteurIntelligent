@@ -12,8 +12,10 @@ package Passerelle;
 
 //## auto_generated
 import java.util.*;
+import java.util.Map.Entry;
 
 import Compteur.ModeleCompteur;
+import Compteur.ModeleCompteurDate;
 import LCD.ControleurLCD;
 //## link modeleLCD 
 import LCD.ModeleLCD;
@@ -42,16 +44,19 @@ public class ControleurPasserelle {
     
     protected ModeleRRC modeleRRC;		//## link modeleRRC 
     
+    protected int duree; 			// intervale de temps entre deux mesures 
+    
     
     // Constructors
     
 
     //## auto_generated 
-    public  ControleurPasserelle() {
+    public  ControleurPasserelle(int duree) {
     	modelePasserelle = new ModelePasserelle();
     	modeleLCD = new ModeleLCD();
     	modeleLEDEtatConnectionCompteur = new ModeleLED() ;
     	modeleLEDEtatConnectionRRC = new ModeleLED();
+    	this.duree = duree;
     }
     
     //## operation majSysteme() 
@@ -59,12 +64,19 @@ public class ControleurPasserelle {
         //#[ operation majSysteme() 
         //#]*
     	String chaine = new String();
-    	Iterator<ModeleCompteur> iter = modelePasserelle.getListeCompteurs();
+    	Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> data = modelePasserelle.getListeCompteurs();
     	ModeleCompteur modele;
+    	ModeleCompteurDate modeleDate;
     	
-    	while(iter.hasNext()){
-			modele = iter.next();
+    	for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : data.entrySet()){
+    		
+    		modele = entry.getKey();
+    		modeleDate = entry.getValue().getFirst();
+    		
+    		entry.getValue().addFirst(modele.getCompteurDate());
+    		
 			chaine = chaine.concat("\nCompteur "+modele.getId()+" : ");
+			
 			if(modele.isConnected())
 			{
 				chaine=chaine.concat(modele.getHc()+" / "+modele.getHp());
@@ -79,7 +91,15 @@ public class ControleurPasserelle {
     	modeleLCD.setDonneesAAfficher(chaine);
     }
     
-    //## auto_generated 
+    public int getDuree() {
+		return duree;
+	}
+
+	public void setDuree(int duree) {
+		this.duree = duree;
+	}
+
+	//## auto_generated 
     public ModeleLCD getModeleLCD() {
         return modeleLCD;
     }
@@ -125,7 +145,8 @@ public class ControleurPasserelle {
 		this.modeleLEDEtatConnectionRRC = modeleLEDEtatConnectionRRC;
 	}
 	
-	public ListIterator<ModeleCompteur> getInfo(){
+	public Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> getInfo(){
+		// TODO: traitement pour correspondre au exigences du client
 		return modelePasserelle.getListeCompteurs();
 	}
     
@@ -133,3 +154,5 @@ public class ControleurPasserelle {
 /*********************************************************************
 	File Path	: DefaultComponent/DefaultConfig/Passerelle/ControleurPasserelle.java
 *********************************************************************/
+
+

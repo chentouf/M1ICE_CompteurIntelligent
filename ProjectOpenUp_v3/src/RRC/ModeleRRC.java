@@ -18,7 +18,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
@@ -26,6 +28,7 @@ import java.util.Map.Entry;
 
 import Passerelle.ControleurPasserelle;
 import Compteur.ModeleCompteur;
+import Compteur.ModeleCompteurDate;
 
 //----------------------------------------------------------------------------
 // RRC/ModeleRRC.java                                                                  
@@ -37,25 +40,31 @@ import Compteur.ModeleCompteur;
 //## class ModeleRRC 
 public class ModeleRRC {
 
-    protected int prixEnVigueurHc,prixEnVigueurHp;		// à stocker prochainement
-    protected List<ModeleCompteur> mesureHistorique;
-	protected List<ModeleCompteur> mesureCourante; 
-    
+    protected int prixEnVigueurHc,prixEnVigueurHp,duree;		// à stocker prochainement
+    protected Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> mesure;
     // Constructors
     
     //## operation ModeleRRC() 
-    public  ModeleRRC(int prixEnVigeurHp, int prixEnVigeurHc) {
+    public  ModeleRRC(int prixEnVigeurHp, int prixEnVigeurHc, int duree) {
 
         //#[ operation ModeleRRC() 
         //#]
     	this.prixEnVigueurHp = prixEnVigeurHp;
     	this.prixEnVigueurHc = prixEnVigueurHc;
     	
-    	this.mesureHistorique = new ArrayList<ModeleCompteur>();
-    	this.mesureCourante = new ArrayList<ModeleCompteur>();
+    	this.mesure = new HashMap<ModeleCompteur,LinkedList<ModeleCompteurDate>>();
+    	this.duree = duree;
     }
     
-    //## auto_generated 
+    public int getDuree() {
+		return duree;
+	}
+
+	public void setDuree(int duree) {
+		this.duree = duree;
+	}
+
+	//## auto_generated 
     public int getPrixEnVigueurHc() {
         return prixEnVigueurHc;
     }
@@ -73,62 +82,51 @@ public class ModeleRRC {
 	public void setPrixEnVigeurHp(int prixEnVigeurHp) {
 		this.prixEnVigueurHp = prixEnVigeurHp;
 	}
-
-	public List<ModeleCompteur> getMesureHistorique() {
-		return mesureHistorique;
-	}
-
-	public void setMesureHistorique(List<ModeleCompteur> mesureHistorique) {
-		this.mesureHistorique = mesureHistorique;
-	}
-
-    public List<ModeleCompteur> getMesureCourante() {
-		return mesureCourante;
-	}
-
-	public void setMesureCourante(List<ModeleCompteur> mesureCourante) {
-		this.mesureCourante = mesureCourante;
-	}
 	
-	public void initMesure(ListIterator<ModeleCompteur> l){
-		ModeleCompteur tmp;
-		while(l.hasNext()){
-			tmp = l.next();
-			mesureHistorique.remove(tmp);
-			mesureHistorique.add(tmp);			
-		}
+	public void initMesure(){
+		mesure = null;
+		
+		mesure = new HashMap<ModeleCompteur,LinkedList<ModeleCompteurDate>>();
 	}
 
-	public void majMesure(ListIterator<ModeleCompteur> l){
-    	ModeleCompteur tmp;
-		while(l.hasNext()){
-			tmp = l.next();
+	public void majMesure(Map<ModeleCompteur, LinkedList<ModeleCompteurDate>> map){
+    	//TODO :prendre en compte le fait que que la liste ne contiendra plus que les mesures autorisé
+		ModeleCompteur modele;
+		String chaine;
+		for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : map.entrySet()){
+    		modele = entry.getValue().getFirst();
+			
+			
+			
+    	}
+		
+		/*ModeleCompteur tmp;
+		while(map.hasNext()){
+			tmp = map.next();
 			mesureCourante.remove(tmp);
 			mesureCourante.add(tmp);			
-		}
+		}*/
     }
 	
-	public void save() {
-		File hist = new File("listeCompteurHist");
-		File cour = new File("listeCompteurCour");
+	public void charger(Date d){
+		
+	}
+	
+	public void enregistrer() {
+		File mesure = new File("listeCompteur"+new Date().toString());
 		FileOutputStream fout;
 		ObjectOutputStream oos;
 		
 		try {
-			if(!hist.exists())
-				hist.createNewFile();
-			if(!cour.exists())
-				cour.createNewFile();	
+			if(!mesure.exists())
+				mesure.createNewFile();
+
 			
-			fout = new FileOutputStream (hist);
+			fout = new FileOutputStream (mesure);
 			oos = new ObjectOutputStream(fout);
-			oos.writeObject(mesureHistorique);
+			oos.writeObject(mesure);
 			fout.close();
 			
-			fout= new FileOutputStream ("listeCompteurHist");
-			oos = new ObjectOutputStream(fout);
-			oos.writeObject(mesureCourante);
-			fout.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -137,14 +135,14 @@ public class ModeleRRC {
     
     public void produireFacture() throws IOException
     { 
-    	for(int i = 0; i < mesureCourante.size(); i++)
+    	for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : mesure.entrySet())
     	{
-    		File fichier = new File("facture"+mesureCourante.get(i).getId()+".txt"); 
+    		File fichier = new File("facture"+entry.getKey().getId()+".txt"); 
     		fichier.createNewFile();
     		FileWriter fw = new FileWriter (fichier);
-    		float consoHc = (mesureCourante.get(i).getHc() - mesureHistorique.get(i).getHc()) ;
-    		float consoHp = (mesureCourante.get(i).getHp() - mesureHistorique.get(i).getHp()) ;
-    		fw.write(" FACTURE COMPTEUR "+mesureCourante.get(i).getId() + "\n");
+    		float consoHc = (entry.getKey().getHc() - entry.getValue().getLast().getHc()) ;
+    		float consoHp = (entry.getKey().getHp() - entry.getValue().getLast().getHp()) ;
+    		fw.write(" FACTURE COMPTEUR "+entry.getKey().getId() + "\n");
     		fw.write(" Consomation hc : " + consoHc + " au tarif de" + prixEnVigueurHc + "pour un total de " + consoHc * prixEnVigueurHc +  "\n" );
     		fw.write(" Consomation hp : " + consoHp + " au tarif de" + prixEnVigueurHp + "pour un total de " + consoHp * prixEnVigueurHp +  "\n" );
     		fw.write(" TOTAL FACTURE : " + consoHc * prixEnVigueurHc + consoHp * prixEnVigueurHp );
