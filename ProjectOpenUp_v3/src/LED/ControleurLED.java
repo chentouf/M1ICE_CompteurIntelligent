@@ -34,8 +34,8 @@ public class ControleurLED {
     */
     //## operation ControleurLED(ModeleLED,VueLED) 
     public  ControleurLED() {
-        this.modeleLED = new ModeleLED();
-        this.vueLED = new VueLED();
+        //this.modeleLED = new ModeleLED();
+     //   this.vueLED = new VueLED();
     }
     
     //## auto_generated 

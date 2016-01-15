@@ -23,12 +23,13 @@ public class TestsVueLED {
 
 	@Test
 	public void testVueLED() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
 	public void testGetSetDisplay() {
-		fail("Not yet implemented");
+		vl.setDisplay("Test");
+		assertEquals(vl.getDisplay(), "Test");
 	}
 
 }

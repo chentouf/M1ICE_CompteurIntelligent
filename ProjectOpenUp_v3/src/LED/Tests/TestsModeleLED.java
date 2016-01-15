@@ -23,12 +23,13 @@ public class TestsModeleLED {
 
 	@Test
 	public void testModeleLED() {
-		fail("Not yet implemented");
+
 	}
 
 	@Test
 	public void testGetSetEtatAAfficher() {
-		fail("Not yet implemented");
+		ml.setEtatAAfficher(1);
+		assertEquals(ml.getEtatAAfficher(), 1);		
 	}
 
 }

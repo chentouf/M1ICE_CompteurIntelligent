@@ -6,6 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import LED.ModeleLED;
+import LED.VueLED;
 import LED.ControleurLED;
 
 public class TestsControleurLED {
@@ -23,17 +25,27 @@ public class TestsControleurLED {
 
 	@Test
 	public void testControleurLED() {
-		fail("Not yet implemented");
+		ModeleLED ml = new ModeleLED();
+		VueLED vl = new VueLED();
+		this.cl = new ControleurLED();
+		cl.setModeleLED(ml);
+		cl.setVueLED(vl);
+		assertNotNull(cl.getModeleLED());
+		assertNotNull(cl.getVueLED());
 	}
 
 	@Test
 	public void testGetSetModeleLED() {
-		fail("Not yet implemented");
+		ModeleLED ml = new ModeleLED();
+		cl.setModeleLED(ml);
+		assertEquals(cl.getModeleLED(),ml);
 	}
 
 	@Test
 	public void testGetSetVueLED() {
-		fail("Not yet implemented");
+		VueLED vl = new VueLED();
+		cl.setVueLED(vl);
+		assertEquals(cl.getVueLED(), vl);
 	}
 
 }
