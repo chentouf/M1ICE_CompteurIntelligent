@@ -9,8 +9,8 @@ import org.junit.Test;
 import LED.VueLED;
 
 public class TestsVueLED {
-	private VueLED vl;
-
+	VueLED vl;
+	
 	@Before
 	public void setUp() throws Exception {
 		vl = new VueLED();
@@ -23,15 +23,11 @@ public class TestsVueLED {
 
 	@Test
 	public void testVueLED() {
+		assertNotNull(vl);
 	}
 
 	@Test
-	public void testMajVue() {
-		
-	}
-
-	@Test
-	public void testGetDisplay() {
+	public void testGetSetDisplay() {
 		vl.setDisplay("Test");
 		assertEquals(vl.getDisplay(), "Test");
 	}
