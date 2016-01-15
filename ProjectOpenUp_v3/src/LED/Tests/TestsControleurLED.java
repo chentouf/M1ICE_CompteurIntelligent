@@ -25,11 +25,7 @@ public class TestsControleurLED {
 
 	@Test
 	public void testControleurLED() {
-		ModeleLED ml = new ModeleLED();
-		VueLED vl = new VueLED();
 		this.cl = new ControleurLED();
-		cl.setModeleLED(ml);
-		cl.setVueLED(vl);
 		assertNotNull(cl.getModeleLED());
 		assertNotNull(cl.getVueLED());
 	}
