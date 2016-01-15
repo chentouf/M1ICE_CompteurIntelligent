@@ -23,6 +23,7 @@ public class TestsModeleLCD {
 
 	@Test
 	public void testModeleLCD() {
+		assertNotNull(ml);
 		
 	}
 
