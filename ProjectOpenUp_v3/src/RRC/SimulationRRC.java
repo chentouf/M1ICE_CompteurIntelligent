@@ -1,5 +1,6 @@
 package RRC;
 
+import Passerelle.ControleurPasserelle;
 import Passerelle.ModelePasserelle;
 import Passerelle.SimulationPasserelle;
 
