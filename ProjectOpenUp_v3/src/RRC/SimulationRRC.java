@@ -8,12 +8,10 @@ import Passerelle.SimulationPasserelle;
 public class SimulationRRC implements Runnable {
 	
 	SimulationPasserelle simuPasserelle;
-	ControleurRRC controleurRRC;
 
 	public SimulationRRC(){
 		// TODO Auto-generated constructor stub
 		simuPasserelle = new SimulationPasserelle();
-		controleurRRC = new ControleurRRC(7,8);
 	}
 	
 	@Override
@@ -29,9 +27,6 @@ public class SimulationRRC implements Runnable {
 				e.printStackTrace();
 			}
 			
-			ControleurPasserelle controleurP = simuPasserelle.getControleurPasserelle();
-			
-			controleurRRC.setInfo(controleurP);
 		}
 	}
 	

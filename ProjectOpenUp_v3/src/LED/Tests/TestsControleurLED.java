@@ -6,12 +6,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import LED.ControleurLED;
 import LED.ModeleLED;
 import LED.VueLED;
+import LED.ControleurLED;
 
 public class TestsControleurLED {
-	private ControleurLED cl ;
+	ControleurLED cl;
 
 	@Before
 	public void setUp() throws Exception {
@@ -24,22 +24,10 @@ public class TestsControleurLED {
 	}
 
 	@Test
-	public void testControleurLEDModeleLEDVueLED() {
-		/*ModeleLED ml = new ModeleLED();
-		VueLED vl = new VueLED();		
-		cl = new ControleurLED(ml, vl);		
-		assertEquals(cl.getModeleLED(),ml);
-		assertEquals(cl.getVueLED(),vl);	*/
-	}
-
-	@Test
 	public void testControleurLED() {
-
-	}
-
-	@Test
-	public void testMajLED() {
-
+		this.cl = new ControleurLED();
+		assertNotNull(cl.getModeleLED());
+		assertNotNull(cl.getVueLED());
 	}
 
 	@Test

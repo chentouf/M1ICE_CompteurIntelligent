@@ -9,8 +9,8 @@ import org.junit.Test;
 import LED.ModeleLED;
 
 public class TestsModeleLED {
-	private ModeleLED ml;
-	
+	ModeleLED ml;
+
 	@Before
 	public void setUp() throws Exception {
 		ml = new ModeleLED();
@@ -18,11 +18,12 @@ public class TestsModeleLED {
 
 	@After
 	public void tearDown() throws Exception {
-		ml = null;
+		ml =null;
 	}
 
 	@Test
-	public void testModeleLED() {
+	public void testModeleLED() {		
+		assertNotNull(ml);
 	}
 
 	@Test

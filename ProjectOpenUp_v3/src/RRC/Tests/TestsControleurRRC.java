@@ -13,6 +13,8 @@ public class TestsControleurRRC {
 	ControleurRRC cr;
 	@Before
 	public void setUp() throws Exception {
+
+		cr = new ControleurRRC(1,2);
 	}
 
 	@After
