@@ -13,7 +13,6 @@ public class TestsModeleRRC {
 	ModeleRRC mr;
 	@Before
 	public void setUp() throws Exception {
-		mr = new ModeleRRC();
 	}
 
 	@After
