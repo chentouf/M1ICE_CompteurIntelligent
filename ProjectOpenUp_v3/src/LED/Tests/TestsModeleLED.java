@@ -22,8 +22,8 @@ public class TestsModeleLED {
 	}
 
 	@Test
-	public void testModeleLED() {
-
+	public void testModeleLED() {		
+		assertNotNull(ml);
 	}
 
 	@Test

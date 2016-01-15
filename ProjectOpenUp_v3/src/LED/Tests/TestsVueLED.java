@@ -23,7 +23,7 @@ public class TestsVueLED {
 
 	@Test
 	public void testVueLED() {
-		
+		assertNotNull(vl);
 	}
 
 	@Test
