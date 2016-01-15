@@ -14,7 +14,7 @@ public class TestsControleurRRC {
 	@Before
 	public void setUp() throws Exception {
 
-		cr = new ControleurRRC(1,2);
+		cr = new ControleurRRC(1,2,30);
 	}
 
 	@After

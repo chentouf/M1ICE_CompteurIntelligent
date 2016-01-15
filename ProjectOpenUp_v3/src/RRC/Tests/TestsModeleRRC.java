@@ -14,7 +14,7 @@ public class TestsModeleRRC {
 	@Before
 	public void setUp() throws Exception {
 
-		mr = new ModeleRRC(1,2);
+		mr = new ModeleRRC(1,2,30);
 	}
 
 	@After

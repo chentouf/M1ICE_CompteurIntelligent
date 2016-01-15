@@ -16,7 +16,12 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.FilterOutputStream;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
 
+import Compteur.ModeleCompteur;
 import Passerelle.ControleurPasserelle;
 
 //----------------------------------------------------------------------------
@@ -32,8 +37,6 @@ public class ControleurRRC {
     protected ModeleRRC modeleRRC;		//## link modeleRRC 
     
     protected VueRRC vueRRC;		//## link vueRRC 
-    
-    
     // Constructors
     
     /**
@@ -41,10 +44,10 @@ public class ControleurRRC {
      * @param modeleRRC
     */
     //## operation ControleurRRC(VueRRC,ModeleRRC) 
-    public  ControleurRRC(int prixEnVigeurHp, int prixEnVigeurHc) {
+    public  ControleurRRC(int prixEnVigeurHp, int prixEnVigeurHc, int duree) {
         //#[ operation ControleurRRC(VueRRC,ModeleRRC) 
         //#]
-    	modeleRRC = new ModeleRRC(prixEnVigeurHc,prixEnVigeurHp);
+    	modeleRRC = new ModeleRRC(prixEnVigeurHc,prixEnVigeurHp,duree);
     	vueRRC = new VueRRC();
     }
    
@@ -68,11 +71,6 @@ public class ControleurRRC {
     public void setVueRRC(VueRRC p_VueRRC) {
         vueRRC = p_VueRRC;
     }
-
-	public void setInfo(ControleurPasserelle controleurP) {
-		// TODO Auto-generated method stub
-		modeleRRC.majMesure(controleurP.getInfo());
-	}
     
 }
 /*********************************************************************
