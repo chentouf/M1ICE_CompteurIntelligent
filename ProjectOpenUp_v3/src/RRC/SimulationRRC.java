@@ -1,7 +1,6 @@
 package RRC;
 
 import Passerelle.ControleurPasserelle;
-import Passerelle.ModelePasserelle;
 import Passerelle.SimulationPasserelle;
 
 
@@ -13,7 +12,7 @@ public class SimulationRRC implements Runnable {
 	public SimulationRRC(){
 		// TODO Auto-generated constructor stub
 		simuPasserelle = new SimulationPasserelle();
-		controleurRRC = new ControleurRRC(7,8);
+		controleurRRC = new ControleurRRC(7,8,30);
 	}
 	
 	@Override
@@ -23,7 +22,7 @@ public class SimulationRRC implements Runnable {
 			new Thread(simuPasserelle);
 			
 			try {
-				Thread.sleep(10000);
+				Thread.sleep(controleurRRC.getModeleRRC().getDuree());
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -31,9 +30,9 @@ public class SimulationRRC implements Runnable {
 			
 			ControleurPasserelle controleurP = simuPasserelle.getControleurPasserelle();
 			
-			controleurRRC.setInfo(controleurP);
+			controleurRRC.getModeleRRC().majMesure(controleurP.getInfo());
 		}
-	}
+	}	
 	
 	public static void main(String[] args){
 		SimulationRRC simuRRC = new SimulationRRC();

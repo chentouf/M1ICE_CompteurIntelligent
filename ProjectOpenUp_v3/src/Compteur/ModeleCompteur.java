@@ -26,6 +26,8 @@ import Passerelle.ModelePasserelle;
 
 //## class ModeleCompteur 
 public class ModeleCompteur extends Observable{
+	
+	//ajout client plus durée défini par le client
     
     protected int hc;		//## attribute hc 
     protected int hp;		//## attribute hp
@@ -103,6 +105,15 @@ public class ModeleCompteur extends Observable{
     			return false;
     	}
     	return false;
+    }
+    
+    @Override
+    public int hashCode(){
+    	return id.hashCode();
+    }
+    
+    public ModeleCompteurDate getCompteurDate(){
+    	return new ModeleCompteurDate(this);
     }
 }
 /*********************************************************************
