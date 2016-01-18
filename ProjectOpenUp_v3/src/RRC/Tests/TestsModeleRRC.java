@@ -13,6 +13,7 @@ public class TestsModeleRRC {
 	ModeleRRC mr;
 	@Before
 	public void setUp() throws Exception {
+
 		mr = new ModeleRRC(1,2,30);
 	}
 

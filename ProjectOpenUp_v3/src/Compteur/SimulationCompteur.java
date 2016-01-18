@@ -11,7 +11,6 @@ import Passerelle.ModelePasserelle;
 public class SimulationCompteur implements Runnable {
 	
 	private ControleurCompteur controleur;
-	private Timer t;
 	private ModelePasserelle modeleP;
 
 	public SimulationCompteur(String id) {
@@ -26,14 +25,6 @@ public class SimulationCompteur implements Runnable {
 		controleur = new ControleurCompteur(id);
 		this.modeleP = modeleP; 
 		// timer qui notifie la passerelle qu'elle peut faire une relever
-		t = new Timer(controleur.getModeleCompteur().getClient().getIntervale(), new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				modeleP.majCompteur(controleur.getModeleCompteur());
-			}
-		});
 	}
 	
 	public ControleurCompteur getControleur() {
@@ -43,10 +34,6 @@ public class SimulationCompteur implements Runnable {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		
-		if(t != null){
-			t.start();
-		}
 		
 		while(true){
 			controleur.getModeleCompteur().setHc(controleur.getModeleCompteur().getHc()+1);

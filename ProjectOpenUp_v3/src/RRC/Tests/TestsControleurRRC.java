@@ -13,12 +13,12 @@ public class TestsControleurRRC {
 	ControleurRRC cr;
 	@Before
 	public void setUp() throws Exception {
+
 		cr = new ControleurRRC(1,2,30);
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		cr = null;
 	}
 
 	@Test

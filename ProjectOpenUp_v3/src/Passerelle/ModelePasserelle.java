@@ -22,9 +22,11 @@ import org.omg.CORBA._PolicyStub;
 
 
 
+
 //## link controleurRRC 
 import RRC.ControleurRRC;
 import RRC.ModeleRRC;
+import Compteur.Client;
 //## link listeCompteurs 
 import Compteur.ModeleCompteur;
 import Compteur.ModeleCompteurDate;
@@ -43,7 +45,7 @@ public class ModelePasserelle {
     
     protected ModeleRRC modeleRRC;		//## link controleurRRC 
     
-    protected Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> listeCompteurs = new HashMap<ModeleCompteur,LinkedList<ModeleCompteurDate>>();		//## link listeCompteurs 
+    protected Map<Client,LinkedList<ModeleCompteurDate>> listeCompteurs = new HashMap<Client,LinkedList<ModeleCompteurDate>>();		//## link listeCompteurs 
     
     // Constructors
     
@@ -67,7 +69,7 @@ public class ModelePasserelle {
     	ModeleCompteur modele;
     	ModeleCompteurDate modeleDate;
     	
-    	for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : listeCompteurs.entrySet()){
+    	for(Entry<Client, LinkedList<ModeleCompteurDate>> entry : listeCompteurs.entrySet()){
     		
     		modele = entry.getKey();
     		modeleDate = entry.getValue().getLast();
@@ -90,15 +92,21 @@ public class ModelePasserelle {
     	//modeleLCD.setDonneesAAfficher(chaine); notifier le lcd
     }
     
-	public Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> getInfo(){
+	public Map<Client,LinkedList<ModeleCompteurDate>> getInfo(){
 		// TODO: traitement pour correspondre au exigences du client
 		return listeCompteurs;
 	}
     
     //## operation envoyerinfoRCCPush() 
-    public void envoyerinfoRCCPush() {
+    public void envoyerinfoRCCPush(ModeleCompteur p_ModeleCompteur) {
         //#[ operation envoyerinfoRCCPush() 
         //#]
+    	LinkedList<ModeleCompteurDate> l = listeCompteurs.get(p_ModeleCompteur);
+    	
+    	if( l == null){
+    		System.out.println("erreur");
+    		return;
+    	}
     }
     
     //## operation majConsommation() 
@@ -130,7 +138,7 @@ public class ModelePasserelle {
     }
     
     //## auto_generated 
-    public void addListeCompteurs(ModeleCompteur p_ModeleCompteur) {
+    public void addListeCompteurs(ModeleCompteur p_ModeleCompteur,Client client) {
         //listeCompteurs.add(p_ModeleCompteur.getId(),p_ModeleCompteur);
     	LinkedList<ModeleCompteurDate> l = listeCompteurs.get(p_ModeleCompteur);
     	
@@ -143,17 +151,6 @@ public class ModelePasserelle {
 		l.addLast(p_ModeleCompteur.getCompteurDate());
 		listeCompteurs.put(p_ModeleCompteur, l);
     		
-    }
-    
-    public void majCompteur(ModeleCompteur p_ModeleCompteur){
-    	LinkedList<ModeleCompteurDate> l = listeCompteurs.get(p_ModeleCompteur);
-    	
-    	if( l == null){
-    		System.out.println("erreur");
-    		return;
-    	}
-    	
-    	
     }
     
     //## auto_generated 
