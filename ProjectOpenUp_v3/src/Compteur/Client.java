@@ -31,6 +31,17 @@ public class Client {
 		intervalleReleve = ir ;
 	}
 	
+	public Client(Client copy)
+	{
+		numClient = copy.getNumClient() ;
+		nom = copy.getNom() ;
+		prenom = copy.getPrenom() ;
+		adresse = copy.getAdresse() ;
+		codePostal = copy.getCodePostal() ;
+		ville = copy.ville ;
+		intervalleReleve = copy.intervalleReleve ;
+	}
+	
 	public int getNumClient() {
 		return numClient;
 	}
