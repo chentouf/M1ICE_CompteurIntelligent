@@ -19,4 +19,17 @@ public class ModeleCompteurDate extends ModeleCompteur{
 		this.date = date;
 	}
 	
+	@Override
+    public boolean equals(Object o){
+    	if(o instanceof ModeleCompteur){
+    		ModeleCompteurDate modele = (ModeleCompteurDate)o;
+    		
+    		if(modele.getId() == id && this.date == modele.date)
+    			return true;
+    		else
+    			return false;
+    	}
+    	return false;
+    }
+	
 }

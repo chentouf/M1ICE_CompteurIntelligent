@@ -42,8 +42,6 @@ public class ControleurPasserelle {
     
     protected ModelePasserelle modelePasserelle;		//## link modelePasserelle 
     
-    protected ModeleRRC modeleRRC;		//## link modeleRRC 
-    
     protected int duree; 			// intervale de temps entre deux mesures 
     
     
@@ -57,38 +55,6 @@ public class ControleurPasserelle {
     	modeleLEDEtatConnectionCompteur = new ModeleLED() ;
     	modeleLEDEtatConnectionRRC = new ModeleLED();
     	this.duree = duree;
-    }
-    
-    //## operation majSysteme() 
-    public void majSysteme() {
-        //#[ operation majSysteme() 
-        //#]*
-    	String chaine = new String();
-    	Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> data = modelePasserelle.getListeCompteurs();
-    	ModeleCompteur modele;
-    	ModeleCompteurDate modeleDate;
-    	
-    	for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : data.entrySet()){
-    		
-    		modele = entry.getKey();
-    		modeleDate = entry.getValue().getFirst();
-    		
-    		entry.getValue().addFirst(modele.getCompteurDate());
-    		
-			chaine = chaine.concat("\nCompteur "+modele.getId()+" : ");
-			
-			if(modele.isConnected())
-			{
-				chaine=chaine.concat(modele.getHc()+" / "+modele.getHp());
-			}
-			else
-			{
-				chaine=chaine.concat("COMPTEUR OFFLINE");
-				modeleLEDEtatConnectionCompteur.setEtatAAfficher(0);;
-			}
-    	}
-    	
-    	modeleLCD.setDonneesAAfficher(chaine);
     }
     
     public int getDuree() {
@@ -119,16 +85,6 @@ public class ControleurPasserelle {
         modelePasserelle = p_ModelePasserelle;
     }
     
-    //## auto_generated 
-    public ModeleRRC getModeleRRC() {
-        return modeleRRC;
-    }
-    
-    //## auto_generated 
-    public void setModeleRRC(ModeleRRC p_ModeleRRC) {
-        modeleRRC = p_ModeleRRC;
-    }
-    
     public ModeleLED getModeleLEDEtatConnectionCompteur() {
 		return modeleLEDEtatConnectionCompteur;
 	}
@@ -143,11 +99,6 @@ public class ControleurPasserelle {
 
 	public void setModeleLEDEtatConnectionRRC(ModeleLED modeleLEDEtatConnectionRRC) {
 		this.modeleLEDEtatConnectionRRC = modeleLEDEtatConnectionRRC;
-	}
-	
-	public Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> getInfo(){
-		// TODO: traitement pour correspondre au exigences du client
-		return modelePasserelle.getListeCompteurs();
 	}
     
 }

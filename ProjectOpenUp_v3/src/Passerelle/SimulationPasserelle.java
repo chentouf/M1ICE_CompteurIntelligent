@@ -56,7 +56,7 @@ public class SimulationPasserelle implements Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 		while(true){
-			passerelle.majSysteme();
+			passerelle.getModelePasserelle().majSysteme();
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
