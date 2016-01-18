@@ -39,6 +39,7 @@ public class ControleurCompteur {
     	
     	modeleCompteur.setId(id);
     	this.modeleCompteur.addObserver(this.vueCompteur);
+    	
     }
     
     //## auto_generated 

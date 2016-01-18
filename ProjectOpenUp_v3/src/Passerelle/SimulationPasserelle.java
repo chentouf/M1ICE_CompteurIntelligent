@@ -20,7 +20,7 @@ public class SimulationPasserelle implements Runnable {
 		SimulationCompteur[] tab = new SimulationCompteur[3];
 		ControleurLCD lcd = new ControleurLCD();
 		
-		simulation.passerelle.setModeleLCD(lcd.getModeleLCD());
+		simulation.passerelle.setControleurLCD(lcd);
 		
 		new Thread(simulation).start();
 		
