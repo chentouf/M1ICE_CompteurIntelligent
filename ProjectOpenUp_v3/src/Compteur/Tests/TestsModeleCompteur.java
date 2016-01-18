@@ -7,12 +7,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import Compteur.ModeleCompteur;
-import Passerelle.ControleurPasserelle;
-import Passerelle.ModelePasserelle;
 
 public class TestsModeleCompteur {
 
-	ModeleCompteur mc;
+	private ModeleCompteur mc;
 	@Before
 	public void setUp() throws Exception {
 		mc = new ModeleCompteur();
@@ -22,17 +20,12 @@ public class TestsModeleCompteur {
 	public void tearDown() throws Exception {
 		mc = null;
 	}
-	
-	@Test
-	public void testModeleCompteur() {
-	}
 
 	@Test
-	public void testSimulerConso() {
-		int initialHp = mc.getHc() ;
-		int initialHc = mc.getHc() ;
-		assertFalse(mc.getHp() > initialHp && mc.getHc() > initialHc );
+	public void testModeleCompteur() {
+		assertNotNull(mc);
 	}
+
 
 	@Test
 	public void testGetSetHc() {
@@ -44,6 +37,21 @@ public class TestsModeleCompteur {
 	public void testGetSetHp() {
 		mc.setHp(50);
 		assertEquals(mc.getHp() , 50);
+	}
+	
+	@Test
+	public void testGetSetId()
+	{
+		mc.setId("ID50");
+		assertEquals(mc.getId(), "ID50");
+	}
+	
+	@Test
+	public void testConnection() {
+		mc.setConnection(false);
+		assertFalse(mc.isConnected());
+		mc.setConnection(true);
+		assertTrue(mc.isConnected());
 	}
 
 

@@ -12,7 +12,7 @@ public class SimulationPasserelle implements Runnable {
 	private ControleurPasserelle passerelle;
 	
 	public SimulationPasserelle(){
-		passerelle = new ControleurPasserelle();
+		passerelle = new ControleurPasserelle(1);
 	}
 	
 	public static void main(String[] args){
@@ -30,7 +30,7 @@ public class SimulationPasserelle implements Runnable {
 			simulation.passerelle.getModelePasserelle()
 				.addListeCompteurs(tab[i].getControleur().getModeleCompteur());
 			// test connection false
-			tab[i].getControleur().getModeleCompteur().setConnection(false);
+			//tab[i].getControleur().getModeleCompteur().setConnection(false);
 			new Thread(tab[i]).start();
 		}
 		
@@ -64,5 +64,9 @@ public class SimulationPasserelle implements Runnable {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public ControleurPasserelle getControleurPasserelle(){
+		return passerelle;
 	}
 }

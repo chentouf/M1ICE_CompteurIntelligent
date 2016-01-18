@@ -9,8 +9,13 @@ import org.junit.Test;
 import LED.ModeleLED;
 
 public class TestsModeleLED {
+<<<<<<< HEAD
 	private ModeleLED ml;
 	 
+=======
+	ModeleLED ml;
+
+>>>>>>> branch 'V3' of https://github.com/chentouf/M1ICE_CompteurIntelligent.git
 	@Before
 	public void setUp() throws Exception {
 		ml = new ModeleLED();
@@ -18,11 +23,12 @@ public class TestsModeleLED {
 
 	@After
 	public void tearDown() throws Exception {
-		ml = null;
+		ml =null;
 	}
 
 	@Test
-	public void testModeleLED() {
+	public void testModeleLED() {		
+		assertNotNull(ml);
 	}
 
 	@Test

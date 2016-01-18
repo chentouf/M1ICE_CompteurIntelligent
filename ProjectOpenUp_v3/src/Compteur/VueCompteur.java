@@ -25,7 +25,6 @@ import java.util.Observer;
 public class VueCompteur implements Observer {
     
     protected String display;		//## attribute display 
-    private String compteur; // 
     
     // Constructors
     

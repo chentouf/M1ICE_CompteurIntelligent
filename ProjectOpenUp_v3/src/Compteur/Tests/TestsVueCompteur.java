@@ -2,10 +2,13 @@ package Compteur.Tests;
 
 import static org.junit.Assert.*;
 
+import java.util.Observable;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import Compteur.ModeleCompteur;
 import Compteur.VueCompteur;
 
 public class TestsVueCompteur {
@@ -23,17 +26,21 @@ public class TestsVueCompteur {
 
 	@Test
 	public void testVueCompteur() {
-		
+		assertNotNull(vc);
 	}
 
-	@Test
-	public void testMajVue() {
-	}
 
 	@Test
 	public void testGetSetDisplay() {
 		vc.setDisplay("Test display");
 		assertEquals(vc.getDisplay(), "Test display");
+	}
+	
+	@Test
+	public void testUpdate() {
+		ModeleCompteur modele = new ModeleCompteur();
+		vc.update(modele,null);
+		assertEquals(vc.getDisplay(),modele.getId()+" : "+modele.getHc()+" / "+modele.getHp() );
 	}
 
 }

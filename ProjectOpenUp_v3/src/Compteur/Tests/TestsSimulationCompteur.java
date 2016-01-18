@@ -2,8 +2,6 @@ package Compteur.Tests;
 
 import static org.junit.Assert.*;
 
-import java.util.concurrent.TimeUnit;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +10,11 @@ import Compteur.SimulationCompteur;
 import Passerelle.SimulationPasserelle;
 
 public class TestsSimulationCompteur {
-	SimulationCompteur sc;
+
+
+
+
+	private SimulationCompteur sc;
 
 	@Before
 	public void setUp() throws Exception {
@@ -26,13 +28,9 @@ public class TestsSimulationCompteur {
 	
 	@Test
 	public void testSimulationCompteur() {
-		sc = new SimulationCompteur("Compteur 1");
+		assertNotNull(sc);
 	}
 
-	@Test
-	public void testGetControleur() {
-		sc = null;
-	}
 
 	@Test
 	public void testRun() {
@@ -50,11 +48,6 @@ public class TestsSimulationCompteur {
 		int hc2 = sc.getControleur().getModeleCompteur().getHc();
 
 		assertFalse(hc1>hc2);
-		
-	}
-
-	@Test
-	public void testMain() {
 		
 	}
 

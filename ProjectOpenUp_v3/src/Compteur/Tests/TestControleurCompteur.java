@@ -12,30 +12,26 @@ import Compteur.VueCompteur;
 
 public class TestControleurCompteur {
 
-	ControleurCompteur cc;
+	
+	private ControleurCompteur cc;
 	@Before
 	public void setUp() throws Exception {
-		this.cc = new ControleurCompteur();
+		this.cc = new ControleurCompteur("45");
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		this.cc = null;
 	}
-	
+
 	@Test
-	public void testControleurCompteurModeleCompteurVueCompteur() {
-		
+	public void testControleurCompteurString() {
+		assertEquals(cc.getModeleCompteur().getId() , "45");
 	}
 
 	@Test
 	public void testControleurCompteur() {
-		
-	}
-
-	@Test
-	public void testMajCompteur() {
-		
+		assertNotNull(cc);
 	}
 
 	@Test
@@ -52,6 +48,6 @@ public class TestControleurCompteur {
 		cc.setVueCompteur(vc);
 		assertEquals(cc.getVueCompteur(), vc);
 	}
+	
 
 }
-

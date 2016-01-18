@@ -33,18 +33,9 @@ public class ControleurLED {
      * @param vueLED
     */
     //## operation ControleurLED(ModeleLED,VueLED) 
-    public  ControleurLED(ModeleLED modeleLED, VueLED vueLED) {
-        //#[ operation ControleurLED(ModeleLED,VueLED) 
-        //#]
-    }
-    //## auto_generated 
     public  ControleurLED() {
-    }
-    
-    //## operation majLED() 
-    public void majLED() {
-        //#[ operation majLED() 
-        //#]
+        this.modeleLED = new ModeleLED();
+        this.vueLED = new VueLED();
     }
     
     //## auto_generated 

@@ -12,10 +12,17 @@ package Passerelle;
 
 //## auto_generated
 import java.util.*;
+
+import org.omg.CORBA._PolicyStub;
+
+
+
+
 //## link controleurRRC 
 import RRC.ControleurRRC;
 //## link listeCompteurs 
 import Compteur.ModeleCompteur;
+import Compteur.ModeleCompteurDate;
 
 //----------------------------------------------------------------------------
 // Passerelle/ModelePasserelle.java                                                                  
@@ -26,17 +33,12 @@ import Compteur.ModeleCompteur;
 
 //## class ModelePasserelle 
 public class ModelePasserelle {
-    
-    protected String adresseRCC;		//## attribute adresseRCC 
-    
-    protected Boolean etat;		//## attribute etat 
-    
+
     protected int idPasserelle;		//## attribute idPasserelle 
     
     protected ControleurRRC controleurRRC;		//## link controleurRRC 
     
-    protected LinkedList<ModeleCompteur> listeCompteurs = new LinkedList<ModeleCompteur>();		//## link listeCompteurs 
-    
+    protected Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> listeCompteurs = new HashMap<ModeleCompteur,LinkedList<ModeleCompteurDate>>();		//## link listeCompteurs 
     
     // Constructors
     
@@ -65,26 +67,6 @@ public class ModelePasserelle {
     }
     
     //## auto_generated 
-    public String getAdresseRCC() {
-        return adresseRCC;
-    }
-    
-    //## auto_generated 
-    public void setAdresseRCC(String p_adresseRCC) {
-        adresseRCC = p_adresseRCC;
-    }
-    
-    //## auto_generated 
-    public Boolean getEtat() {
-        return etat;
-    }
-    
-    //## auto_generated 
-    public void setEtat(Boolean p_etat) {
-        etat = p_etat;
-    }
-    
-    //## auto_generated 
     public int getIdPasserelle() {
         return idPasserelle;
     }
@@ -105,19 +87,29 @@ public class ModelePasserelle {
     }
     
     //## auto_generated 
-    public ListIterator<ModeleCompteur> getListeCompteurs() {
-        ListIterator<ModeleCompteur> iter = listeCompteurs.listIterator();
-        return iter;
+    public Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> getListeCompteurs() {
+        
+        return listeCompteurs;
     }
     
     //## auto_generated 
     public void addListeCompteurs(ModeleCompteur p_ModeleCompteur) {
-        listeCompteurs.add(p_ModeleCompteur);
+        //listeCompteurs.add(p_ModeleCompteur.getId(),p_ModeleCompteur);
+    	LinkedList<ModeleCompteurDate> l = listeCompteurs.get(p_ModeleCompteur.getId());
+    	
+    	if( l != null)
+    		l.add(new ModeleCompteurDate(p_ModeleCompteur));
+    	else{
+    		l = new LinkedList<ModeleCompteurDate>();
+    		l.addFirst(new ModeleCompteurDate(p_ModeleCompteur));
+    		listeCompteurs.put(p_ModeleCompteur, l);
+    	}
+    		
     }
     
     //## auto_generated 
-    public void removeListeCompteurs(ModeleCompteur p_ModeleCompteur) {
-        listeCompteurs.remove(p_ModeleCompteur);
+    public boolean removeListeCompteurs(ModeleCompteur p_ModeleCompteur) {
+        return null == listeCompteurs.remove(p_ModeleCompteur.getId());
     }
     
     //## auto_generated 
@@ -129,4 +121,3 @@ public class ModelePasserelle {
 /*********************************************************************
 	File Path	: DefaultComponent/DefaultConfig/Passerelle/ModelePasserelle.java
 *********************************************************************/
-

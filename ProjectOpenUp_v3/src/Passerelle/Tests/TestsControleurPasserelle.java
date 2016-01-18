@@ -17,7 +17,7 @@ public class TestsControleurPasserelle {
 
 	@Before
 	public void setUp() throws Exception {
-		cp = new ControleurPasserelle();
+		cp = new ControleurPasserelle(1);
 		
 	}
 

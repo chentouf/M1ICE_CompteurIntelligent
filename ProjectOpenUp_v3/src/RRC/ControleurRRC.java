@@ -10,6 +10,19 @@
 
 package RRC;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.FilterOutputStream;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
+
+import Compteur.ModeleCompteur;
+import Passerelle.ControleurPasserelle;
 
 //----------------------------------------------------------------------------
 // RRC/ControleurRRC.java                                                                  
@@ -24,8 +37,6 @@ public class ControleurRRC {
     protected ModeleRRC modeleRRC;		//## link modeleRRC 
     
     protected VueRRC vueRRC;		//## link vueRRC 
-    
-    
     // Constructors
     
     /**
@@ -33,16 +44,13 @@ public class ControleurRRC {
      * @param modeleRRC
     */
     //## operation ControleurRRC(VueRRC,ModeleRRC) 
-    public  ControleurRRC() {
+    public  ControleurRRC(int prixEnVigeurHp, int prixEnVigeurHc, int duree) {
         //#[ operation ControleurRRC(VueRRC,ModeleRRC) 
         //#]
-    	modeleRRC = new ModeleRRC();
+    	modeleRRC = new ModeleRRC(prixEnVigeurHc,prixEnVigeurHp,duree);
     	vueRRC = new VueRRC();
     }
-    
-    public void produireFacture(){
-    	
-    }
+   
 
     //## auto_generated 
     public ModeleRRC getModeleRRC() {

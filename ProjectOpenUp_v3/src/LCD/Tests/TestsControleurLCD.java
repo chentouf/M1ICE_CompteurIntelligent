@@ -11,7 +11,8 @@ import LCD.ModeleLCD;
 import LCD.VueLCD;
 
 public class TestsControleurLCD {
-	private ControleurLCD cl;
+	
+	private ControleurLCD cl ;
 
 	@Before
 	public void setUp() throws Exception {
@@ -20,26 +21,13 @@ public class TestsControleurLCD {
 
 	@After
 	public void tearDown() throws Exception {
-		cl = null;
-	}
-
-	@Test
-	public void testControleurLCDModeleLCDVueLCD() {
-		cl = new ControleurLCD();
-		assertNotNull(cl.getVueLCD());
-		assertNotNull(cl.getModeleLCD());
 	}
 
 	@Test
 	public void testControleurLCD() {
-		
+		assertNotNull(cl);
 	}
-
-	@Test
-	public void testMajLCD() {
-		
-	}
-
+	
 	@Test
 	public void testGetSetModeleLCD() {
 		ModeleLCD ml = new ModeleLCD();
