@@ -21,6 +21,17 @@ public class Client extends ModeleCompteur{
 		intervalleReleve = ir ;
 	}
 	
+	public Client(Client copy)
+	{
+		numClient = copy.getNumClient() ;
+		nom = copy.getNom() ;
+		prenom = copy.getPrenom() ;
+		adresse = copy.getAdresse() ;
+		codePostal = copy.getCodePostal() ;
+		ville = copy.ville ;
+		intervalleReleve = copy.intervalleReleve ;
+	}
+	
 	public Client(int nc, int ir)
 	{
 		super();

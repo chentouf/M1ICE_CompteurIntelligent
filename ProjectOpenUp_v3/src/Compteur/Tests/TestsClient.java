@@ -44,6 +44,22 @@ public class TestsClient {
 		assertEquals(c.getVille(),"Toulouse" );
 		assertEquals(c.getIntervalleReleve(), 5);
 	}
+<<<<<<< HEAD
+=======
+	
+	@Test
+	public void testClientCopy()
+	{
+		Client cc = new Client(c);
+		assertEquals(cc.getNumClient(), c.getNumClient());
+		assertEquals(cc.getPrenom(), c.getPrenom());
+		assertEquals(cc.getNom(), c.getNom());
+		assertEquals(cc.getAdresse(), c.getAdresse());
+		assertEquals(cc.getCodePostal(), c.getCodePostal());
+		assertEquals(cc.getVille(), c.getVille());
+		assertEquals(cc.getIntervalleReleve(), c.getIntervalleReleve());
+	}
+>>>>>>> refs/remotes/origin/V4
 
 	@Test
 	public void testGetSetNumClient() {
