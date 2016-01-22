@@ -29,21 +29,12 @@ public class TestsModeleRRC {
 	public void testProduireFacture() {}
 
 	@Test
-	public void testGetPrixEnVigueur() {}
+	public void testGetSetPrixEnVigueur() {}
 
 	@Test
-	public void testSetPrixEnVigueur() {}
+	public void testGetSetTabMesuresTraitees() {}
 
 	@Test
-	public void testGetTabMesuresTraitees() {}
-
-	@Test
-	public void testSetTabMesuresTraitees() {}
-
-	@Test
-	public void testGetItsControleurPasserelle() {}
-
-	@Test
-	public void testSetItsControleurPasserelle() {}
+	public void testGetSetItsControleurPasserelle() {}
 
 }
