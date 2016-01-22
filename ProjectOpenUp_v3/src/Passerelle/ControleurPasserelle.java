@@ -52,8 +52,9 @@ public class ControleurPasserelle {
     public  ControleurPasserelle(int duree) {
     	modelePasserelle = new ModelePasserelle();
     	modeleLCD = new ModeleLCD();
+    	//TODO : attention
     	modeleLEDEtatConnectionCompteur = new ModeleLED() ;
-    	modeleLEDEtatConnectionRRC = new ModeleLED();
+    	modeleLEDEtatConnectionRRC = new ModeleLED();  
     	this.duree = duree;
     }
     

@@ -6,15 +6,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import RRC.ControleurRRC;
-
 public class TestsControleurRRC {
 
-	ControleurRRC cr;
 	@Before
 	public void setUp() throws Exception {
-
-		cr = new ControleurRRC(1,2,30);
 	}
 
 	@After
@@ -22,19 +17,18 @@ public class TestsControleurRRC {
 	}
 
 	@Test
-	public void testControleurRRCVueRRCModeleRRC() {
-	}
-
-	@Test
 	public void testControleurRRC() {
+		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetSetModeleRRC() {
+	public void testGetModeleRRC() {
+		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetSetVueRRC() {
+	public void testGetVueRRC() {
+		fail("Not yet implemented");
 	}
 
 }
