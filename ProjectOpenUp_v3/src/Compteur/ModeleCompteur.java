@@ -102,6 +102,10 @@ public class ModeleCompteur extends Observable{
 	public ModeleCompteur copie(){
 		return new ModeleCompteur(this);
 	}
+	
+	public int getIntervalleReleve(){
+		return 0;
+	}
 
     @Override
     public boolean equals(Object o){

@@ -137,16 +137,18 @@ public class ModeleRRC {
     	{
     		System.out.println("alo");
     		
-    		File fichier = new File("facture"+entry.getKey().getId()+".txt"); 
+    		/*File fichier = new File("facture"+entry.getKey().getId()+".txt"); 
     		fichier.createNewFile();
     		FileWriter fw = new FileWriter (fichier);
-    		float consoHc = (entry.getKey().getHc() - entry.getValue().getLast().getHc()) ;
-    		float consoHp = (entry.getKey().getHp() - entry.getValue().getLast().getHp()) ;
-    		fw.write(" FACTURE COMPTEUR "+entry.getKey().getId() + "\n");
-    		fw.write(" Consomation hc : " + consoHc + " au tarif de" + prixEnVigueurHc + "pour un total de " + consoHc * prixEnVigueurHc +  "\n" );
-    		fw.write(" Consomation hp : " + consoHp + " au tarif de" + prixEnVigueurHp + "pour un total de " + consoHp * prixEnVigueurHp +  "\n" );
+    		int consoHc = (entry.getKey().getHc() - entry.getValue().getLast().getHc()) ;
+    		int consoHp = (entry.getKey().getHp() - entry.getValue().getLast().getHp()) ;*/
+    		
+    		System.out.println(entry.getKey().getHc()+" "+entry.getValue().getLast().getHc());
+    		/*fw.write(" FACTURE COMPTEUR "+entry.getKey().getId() + "\n");
+    		fw.write(" Consomation hc : " + consoHc + " au tarif de " + prixEnVigueurHc + " pour un total de " + consoHc * prixEnVigueurHc +  "\n" );
+    		fw.write(" Consomation hp : " + consoHp + " au tarif de " + prixEnVigueurHp + " pour un total de " + consoHp * prixEnVigueurHp +  "\n" );
     		fw.write(" TOTAL FACTURE : " + consoHc * prixEnVigueurHc + consoHp * prixEnVigueurHp );
-    		fw.close();
+    		fw.close();*/
     	}
     	
     }

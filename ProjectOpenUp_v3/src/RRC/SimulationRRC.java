@@ -25,7 +25,7 @@ public class SimulationRRC implements Runnable {
 		while(true){
 			
 			try {
-				Thread.sleep(controleurRRC.getModeleRRC().getDuree()*1000); // intervalle de temps entre deux relevé côté RRC
+				Thread.sleep(controleurRRC.getModeleRRC().getDuree()*10000); // intervalle de temps entre deux relevé côté RRC
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -33,7 +33,7 @@ public class SimulationRRC implements Runnable {
 			
 			ControleurPasserelle controleurP = simuPasserelle.getControleurPasserelle();
 			
-			controleurRRC.getModeleRRC().majMesure(controleurP.getModelePasserelle().getListeCompteurs());
+			controleurRRC.getModeleRRC().majMesure(controleurP.getModelePasserelle().getReleve()); // simulation de l'accès à la passerelle par le RRC
 		}
 	}	
 	

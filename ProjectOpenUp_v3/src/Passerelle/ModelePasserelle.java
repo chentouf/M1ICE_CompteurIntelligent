@@ -146,15 +146,19 @@ public class ModelePasserelle {
     		l = new LinkedList<ModeleCompteurDate>();
     		i = 0;
     		for(ModeleCompteur m : elem.getValue()){
-    			if(i%)
-    			l.add(new ModeleCompteurDate(m));
-    			
+    			if((i % m.getIntervalleReleve()) == 0)
+    				l.add(new ModeleCompteurDate(m));
+    			i++;    			
     		}
     		
     		releve.put(elem.getKey().copie(),l);
     	}
     		
     	return releve;
+    }
+    
+    public LinkedList<ModeleCompteurDate> getReleveModeleCompteur(ModeleCompteur modeleCompteur){
+    	return listeCompteurs.get(modeleCompteur);
     }
     
     //## auto_generated 

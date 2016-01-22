@@ -104,6 +104,7 @@ public class Client extends ModeleCompteur{
 		this.ville = ville;
 	}
 	
+	@Override
 	public int getIntervalleReleve() {
 		return intervalleReleve;
 	}
