@@ -2,8 +2,8 @@ package Compteur;
 
 public class Client extends ModeleCompteur{
 	private int numClient;
-	private String nom ;
-	private String prenom ;
+	private String nom;
+	private String prenom;
 	private String adresse;
 	private int codePostal; 
 	private String ville ;
@@ -23,6 +23,18 @@ public class Client extends ModeleCompteur{
 	
 	public Client(Client copy)
 	{
+		super();
+		numClient = copy.getNumClient() ;
+		nom = copy.getNom() ;
+		prenom = copy.getPrenom() ;
+		adresse = copy.getAdresse() ;
+		codePostal = copy.getCodePostal() ;
+		ville = copy.ville ;
+		intervalleReleve = copy.intervalleReleve ;
+	}
+	
+	public Client(Client copy,ModeleCompteur modele){
+		super(modele);
 		numClient = copy.getNumClient() ;
 		nom = copy.getNom() ;
 		prenom = copy.getPrenom() ;
@@ -98,6 +110,34 @@ public class Client extends ModeleCompteur{
 	
 	public void setIntervalleReleve(int intervalleReleve) {
 		this.intervalleReleve = intervalleReleve;
+	}
+	
+	@Override
+	public boolean equals(Object o){
+		
+		if(!(o instanceof Client)){
+			return false;
+		}
+		
+		Client tmp = (Client)o;
+		
+		if(numClient != tmp.numClient)
+			return false;
+		
+		if(adresse != tmp.adresse)
+			return false;
+		
+		return super.equals((ModeleCompteur)tmp);
+	}
+	
+	@Override
+	public int hashCode(){
+		return numClient*13+adresse.hashCode()*17;
+	}
+	
+	@Override
+	public String toString(){
+		return "Client "+numClient+" - adresse : "+adresse;
 	}
 
 }

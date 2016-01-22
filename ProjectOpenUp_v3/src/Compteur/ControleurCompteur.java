@@ -41,6 +41,12 @@ public class ControleurCompteur {
     	this.modeleCompteur.addObserver(this.vueCompteur);
     }
     
+    public ControleurCompteur(ModeleCompteur modele){
+    	this.modeleCompteur = modele;
+    	this.vueCompteur = new VueCompteur();
+    	this.modeleCompteur.addObserver(this.vueCompteur);
+    }
+    
     //## auto_generated 
     public  ControleurCompteur() {
     }

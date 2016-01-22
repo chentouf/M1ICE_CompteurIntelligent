@@ -23,6 +23,7 @@ import org.omg.CORBA._PolicyStub;
 
 
 
+
 //## link controleurRRC 
 import RRC.ControleurRRC;
 import RRC.ModeleRRC;
@@ -45,7 +46,7 @@ public class ModelePasserelle {
     
     protected ModeleRRC modeleRRC;		//## link controleurRRC 
     
-    protected Map<Client,LinkedList<ModeleCompteurDate>> listeCompteurs = new HashMap<Client,LinkedList<ModeleCompteurDate>>();		//## link listeCompteurs 
+    protected Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> listeCompteurs = new HashMap<ModeleCompteur,LinkedList<ModeleCompteurDate>>();		//## link listeCompteurs 
     
     // Constructors
     
@@ -69,7 +70,7 @@ public class ModelePasserelle {
     	ModeleCompteur modele;
     	ModeleCompteurDate modeleDate;
     	
-    	for(Entry<Client, LinkedList<ModeleCompteurDate>> entry : listeCompteurs.entrySet()){
+    	for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : listeCompteurs.entrySet()){
     		
     		modele = entry.getKey();
     		modeleDate = entry.getValue().getLast();
@@ -92,7 +93,7 @@ public class ModelePasserelle {
     	//modeleLCD.setDonneesAAfficher(chaine); notifier le lcd
     }
     
-	public Map<Client,LinkedList<ModeleCompteurDate>> getInfo(){
+	public Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> getInfo(){
 		// TODO: traitement pour correspondre au exigences du client
 		return listeCompteurs;
 	}
@@ -133,23 +134,23 @@ public class ModelePasserelle {
     
     //## auto_generated 
     public Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> getListeCompteurs() {
-        
         return listeCompteurs;
     }
     
     //## auto_generated 
-    public void addListeCompteurs(ModeleCompteur p_ModeleCompteur,Client client) {
+    public void addListeCompteurs(ModeleCompteur modeleCompteur) {
         //listeCompteurs.add(p_ModeleCompteur.getId(),p_ModeleCompteur);
-    	LinkedList<ModeleCompteurDate> l = listeCompteurs.get(p_ModeleCompteur);
+    	LinkedList<ModeleCompteurDate> l = listeCompteurs.get(modeleCompteur);
+ 
     	
     	if( l != null){
-    		System.out.println("erreur");
+    		System.out.println(modeleCompteur.toString()+"déjà existant");
     		return;
     	}
     	
     	l = new LinkedList<ModeleCompteurDate>();
-		l.addLast(p_ModeleCompteur.getCompteurDate());
-		listeCompteurs.put(p_ModeleCompteur, l);
+		l.addLast(modeleCompteur.getCompteurDate());
+		listeCompteurs.put(modeleCompteur, l);
     		
     }
     
