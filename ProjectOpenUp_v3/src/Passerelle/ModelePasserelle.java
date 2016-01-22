@@ -137,6 +137,26 @@ public class ModelePasserelle {
         return listeCompteurs;
     }
     
+    public Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> getReleve(){
+    	Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> releve = new HashMap<>();
+    	LinkedList<ModeleCompteurDate> l;
+    	int i;
+    	
+    	for(Entry<ModeleCompteur,LinkedList<ModeleCompteurDate>> elem : listeCompteurs.entrySet()){
+    		l = new LinkedList<ModeleCompteurDate>();
+    		i = 0;
+    		for(ModeleCompteur m : elem.getValue()){
+    			if(i%)
+    			l.add(new ModeleCompteurDate(m));
+    			
+    		}
+    		
+    		releve.put(elem.getKey().copie(),l);
+    	}
+    		
+    	return releve;
+    }
+    
     //## auto_generated 
     public void addListeCompteurs(ModeleCompteur modeleCompteur) {
         //listeCompteurs.add(p_ModeleCompteur.getId(),p_ModeleCompteur);

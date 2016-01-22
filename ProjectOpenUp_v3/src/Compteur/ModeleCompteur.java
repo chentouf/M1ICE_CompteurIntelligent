@@ -98,6 +98,10 @@ public class ModeleCompteur extends Observable{
 	public void setConnection(boolean etatConnection) {
 		this.etatConnection = etatConnection;
 	}
+	
+	public ModeleCompteur copie(){
+		return new ModeleCompteur(this);
+	}
 
     @Override
     public boolean equals(Object o){

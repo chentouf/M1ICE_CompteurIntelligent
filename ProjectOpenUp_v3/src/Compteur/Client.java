@@ -113,6 +113,11 @@ public class Client extends ModeleCompteur{
 	}
 	
 	@Override
+	public ModeleCompteur copie(){
+		return new Client(this);
+	}
+	
+	@Override
 	public boolean equals(Object o){
 		
 		if(!(o instanceof Client)){
