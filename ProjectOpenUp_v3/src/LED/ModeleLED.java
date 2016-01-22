@@ -10,6 +10,9 @@
 
 package LED;
 
+import java.awt.Color;
+import java.util.Observable;
+
 
 //----------------------------------------------------------------------------
 // LED/ModeleLED.java                                                                  
@@ -19,27 +22,30 @@ package LED;
 
 
 //## class ModeleLED 
-public class ModeleLED {
+public class ModeleLED extends Observable {
     
-    protected int etatAAfficher;		//## attribute etatAAfficher 
+    protected Color etatAAfficher;		//## attribute etatAAfficher 
     
     
     // Constructors
     
     //## operation ModeleLED() 
     public  ModeleLED() {
+    	super();
         //#[ operation ModeleLED() 
         //#]
     }
     
     //## auto_generated 
-    public int getEtatAAfficher() {
+    public Color getEtatAAfficher() {
         return etatAAfficher;
     }
     
     //## auto_generated 
-    public void setEtatAAfficher(int p_etatAAfficher) {
+    public void setEtatAAfficher(Color p_etatAAfficher) {
         etatAAfficher = p_etatAAfficher;
+        setChanged();
+        notifyObservers(etatAAfficher);
     }
     
 }

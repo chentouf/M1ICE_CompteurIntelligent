@@ -13,6 +13,8 @@ package LED;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JPanel;
 
@@ -25,7 +27,7 @@ import javax.swing.JPanel;
 
 
 //## class VueLED 
-public class VueLED extends JPanel {
+public class VueLED extends JPanel implements Observer {
     
     /**
      * 
@@ -77,6 +79,13 @@ public class VueLED extends JPanel {
             .addGap(0, 300, Short.MAX_VALUE)
         );
     }
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		
+		
+	}
 }
 /*********************************************************************
     File Path    : DefaultComponent/DefaultConfig/LED/VueLED.java

@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JPanel;
+
 
 //----------------------------------------------------------------------------
 // LCD/VueLCD.java                                                                  
@@ -23,7 +25,7 @@ import java.util.Observer;
 
 
 //## class VueLCD 
-public class VueLCD implements Observer{
+public class VueLCD extends JPanel implements Observer{
     
     protected String display;		//## attribute display 
     

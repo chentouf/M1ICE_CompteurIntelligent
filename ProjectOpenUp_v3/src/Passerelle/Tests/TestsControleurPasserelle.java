@@ -22,7 +22,7 @@ public class TestsControleurPasserelle {
 	}
 
 	@Test
-	public void testGetSetDuree() {
+	public void testGetSetSetDuree() {
 		fail("Not yet implemented");
 	}
 

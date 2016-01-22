@@ -24,6 +24,7 @@ import org.omg.CORBA._PolicyStub;
 
 
 
+
 //## link controleurRRC 
 import RRC.ControleurRRC;
 import RRC.ModeleRRC;
@@ -40,7 +41,7 @@ import Compteur.ModeleCompteurDate;
 
 
 //## class ModelePasserelle 
-public class ModelePasserelle {
+public class ModelePasserelle extends Observable {
 
     protected int idPasserelle;		//## attribute idPasserelle 
     

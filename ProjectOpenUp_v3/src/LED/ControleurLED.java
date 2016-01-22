@@ -36,6 +36,7 @@ public class ControleurLED {
     public  ControleurLED() {
         this.modeleLED = new ModeleLED();
         this.vueLED = new VueLED();
+        this.modeleLED.addObserver(vueLED);
     }
     
     //## auto_generated 

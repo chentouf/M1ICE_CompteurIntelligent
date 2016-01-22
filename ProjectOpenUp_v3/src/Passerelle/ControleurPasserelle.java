@@ -32,7 +32,7 @@ import RRC.ModeleRRC;
 
 
 //## class ControleurPasserelle 
-public class ControleurPasserelle {
+public class ControleurPasserelle implements Observer{
     
 	protected ModeleLED modeleLEDEtatConnectionCompteur ;
     
@@ -41,6 +41,8 @@ public class ControleurPasserelle {
     protected ModeleLCD modeleLCD;		//## link modeleLCD 
     
     protected ModelePasserelle modelePasserelle;		//## link modelePasserelle 
+    
+    protected VuePasserelle vuePasserelle;
     
     protected int duree; 			// intervale de temps entre deux mesures 
     
@@ -51,10 +53,11 @@ public class ControleurPasserelle {
     //## auto_generated 
     public  ControleurPasserelle(int duree) {
     	modelePasserelle = new ModelePasserelle();
+    	modelePasserelle.addObserver(this);
     	modeleLCD = new ModeleLCD();
     	//TODO : attention
     	modeleLEDEtatConnectionCompteur = new ModeleLED() ;
-    	modeleLEDEtatConnectionRRC = new ModeleLED();  
+    	modeleLEDEtatConnectionRRC = new ModeleLED();
     	this.duree = duree;
     }
     
@@ -100,6 +103,12 @@ public class ControleurPasserelle {
 
 	public void setModeleLEDEtatConnectionRRC(ModeleLED modeleLEDEtatConnectionRRC) {
 		this.modeleLEDEtatConnectionRRC = modeleLEDEtatConnectionRRC;
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
     
 }

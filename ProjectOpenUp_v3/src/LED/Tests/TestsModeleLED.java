@@ -2,6 +2,8 @@ package LED.Tests;
 
 import static org.junit.Assert.*;
 
+import java.awt.Color;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,8 +30,8 @@ public class TestsModeleLED {
 
 	@Test
 	public void testGetSetEtatAAfficher() {
-		ml.setEtatAAfficher(1);
-		assertEquals(ml.getEtatAAfficher(), 1);		
+		ml.setEtatAAfficher(Color.green);
+		assertEquals(ml.getEtatAAfficher(), Color.green);		
 	}
 
 }
