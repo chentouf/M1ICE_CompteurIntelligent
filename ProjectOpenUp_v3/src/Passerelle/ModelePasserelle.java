@@ -142,18 +142,36 @@ public class ModelePasserelle {
     	LinkedList<ModeleCompteurDate> l;
     	int i;
     	
-    	System.out.println("relevé");
+    	//System.out.println("relevé");
+    	
+    	listeCompteurs.
     	
     	for(Entry<ModeleCompteur,LinkedList<ModeleCompteurDate>> elem : listeCompteurs.entrySet()){
     		l = new LinkedList<ModeleCompteurDate>();
     		i = 0;
+    		
     		for(ModeleCompteur m : elem.getValue()){
-    			if((i % elem.getKey().getIntervalleReleve()) == 0)
+    			
+    			
+    			if((i % elem.getKey().getIntervalleReleve()) == 0){
     				l.add(new ModeleCompteurDate(m));
+    				//System.out.println("P - Compteur : "+ ts+" : "+elem.getKey().getHp()+" "+elem.getValue().getLast().getHp());
+    			}
     			i++;    			
     		}
-    		System.out.println("P - Compteur : "+elem.getKey().getId()+" :: "+elem.getKey().getHp()+" "+elem.getValue().getLast().getHp());
+    		//System.out.println("P - Compteur : "+elem.getKey().getId()+" :: "+elem.getKey().getHp()+" "+elem.getValue().getLast().getHp());
     		releve.put(elem.getKey().copie(),l);
+    	}
+    	
+    	for(Entry<ModeleCompteur,LinkedList<ModeleCompteurDate>> elem : releve.entrySet()){
+    		l = new LinkedList<ModeleCompteurDate>();
+    		i = 0;
+    		
+    		for(ModeleCompteur m : elem.getValue()){
+    			
+    			System.out.println("P - Compteur : "+elem.getKey().getId()+" :: "+elem.getKey().getHp()+" "+elem.getValue().getLast().getHp());
+   			
+    		}
     	}
     		
     	return releve;

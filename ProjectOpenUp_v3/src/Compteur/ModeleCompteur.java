@@ -130,7 +130,7 @@ public class ModeleCompteur extends Observable{
     
     @Override
     public String toString(){
-    	return "Compteur : "+id;
+    	return "Compteur : "+this.id;
     }
 }
 /*********************************************************************

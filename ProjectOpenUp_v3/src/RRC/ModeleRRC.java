@@ -103,7 +103,7 @@ public class ModeleRRC {
 			}else{
 				mesure.get(entry.getKey()).addAll(entry.getValue());
 			}
-			System.out.println("R - Compteur : "+entry.getKey().getId()+" :: "+entry.getKey().getHp()+" "+entry.getValue().getLast().getHp());
+			//System.out.println("R - Compteur : "+entry.getKey().getId()+" :: "+entry.getKey().getHp()+" "+entry.getValue().getLast().getHp());
     	}
     }
 	
