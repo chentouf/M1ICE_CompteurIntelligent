@@ -1,0 +1,4 @@
+ FACTURE COMPTEUR 0
+ Consomation hc : 0.0 au tarif de0pour un total de 0.0
+ Consomation hp : 2.0 au tarif de8pour un total de 16.0
+ TOTAL FACTURE : 0.016.0

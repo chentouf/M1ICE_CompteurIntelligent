@@ -21,6 +21,7 @@ public class TestsControleurLCD {
 
 	@After
 	public void tearDown() throws Exception {
+		cl = null;
 	}
 
 	@Test

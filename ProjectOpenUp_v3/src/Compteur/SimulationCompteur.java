@@ -1,5 +1,9 @@
 package Compteur;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
 
 public class SimulationCompteur implements Runnable {
 	
@@ -11,6 +15,10 @@ public class SimulationCompteur implements Runnable {
 		controleur = new ControleurCompteur(id);
 	}
 	
+	public SimulationCompteur(ModeleCompteur modele){
+		controleur = new ControleurCompteur(modele);
+	}
+
 	public ControleurCompteur getControleur() {
 		return controleur;
 	}
@@ -22,8 +30,6 @@ public class SimulationCompteur implements Runnable {
 			controleur.getModeleCompteur().setHc(controleur.getModeleCompteur().getHc()+1);
 			controleur.getModeleCompteur().setHp(controleur.getModeleCompteur().getHp()+2);
 			
-			//System.out.println(controleur.getVueCompteur().getDisplay());
-			
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -33,6 +39,12 @@ public class SimulationCompteur implements Runnable {
 		}
 	}
 	
+	public String getDisplay(){
+
+		
+		return controleur.getVueCompteur().getDisplay();
+	}
+	
 	public static void main(String[] args){
 		SimulationCompteur[] tab = new SimulationCompteur[3];
 		for(int i=0;i<3;i++){
@@ -40,5 +52,17 @@ public class SimulationCompteur implements Runnable {
 			tab[i] = new SimulationCompteur(""+i);
 			new Thread(tab[i]).start();
 		}
+		
+		Timer t = new Timer(1000, new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				for(SimulationCompteur s : tab)
+					System.out.println(s.getDisplay());
+			}
+		});
+		
+		t.start();
 	}
 }

@@ -1,4 +1,8 @@
 /*********************************************************************
+	File Path	: DefaultComponent/DefaultConfig/Compteur/ModeleCompteur.java
+*********************************************************************/
+
+/*********************************************************************
 	Rhapsody	: 8.1.3
 	Login		: S219
 	Component	: DefaultComponent
@@ -28,19 +32,17 @@ import Passerelle.ModelePasserelle;
 public class ModeleCompteur extends Observable{
 	
 	//ajout client plus durée défini par le client
-    
+    private static int ID = 0;
     protected int hc;		//## attribute hc 
     protected int hp;		//## attribute hp
     protected String id;
-    protected boolean etatConnection ;    
-    
+    protected boolean etatConnection ; 
     // Constructors
     
     //## operation ModeleCompteur() 
     public  ModeleCompteur() {
     	super();
-        //#[ operation ModeleCompteur() 
-        //#]
+    	id = new String(""+ModeleCompteur.incID());
     	hc = 0;
     	hp = 0;
     	etatConnection = true ;
@@ -52,6 +54,12 @@ public class ModeleCompteur extends Observable{
     	hc = copy.getHc();
     	hp = copy.getHp();
     	etatConnection = copy.isConnected();
+    }
+    
+    public static synchronized int incID(){
+    	
+    	ModeleCompteur.ID++;
+    	return ModeleCompteur.ID;
     }
     
     public String getId() {
@@ -78,14 +86,12 @@ public class ModeleCompteur extends Observable{
     
     //## auto_generated 
     public int getHp() {
-    	
         return hp;
     }
     
     //## auto_generated 
     public void setHp(int p_hp) {
         hp = p_hp;
-        setChanged();
         notifyObservers();
     }
     
@@ -95,6 +101,10 @@ public class ModeleCompteur extends Observable{
 
 	public void setConnection(boolean etatConnection) {
 		this.etatConnection = etatConnection;
+	}
+	
+	public ModeleCompteur copie(){
+		return new ModeleCompteur(this);
 	}
 
     @Override
@@ -116,6 +126,11 @@ public class ModeleCompteur extends Observable{
     
     public ModeleCompteurDate getCompteurDate(){
     	return new ModeleCompteurDate(this);
+    }
+    
+    @Override
+    public String toString(){
+    	return "Compteur : "+id;
     }
 }
 /*********************************************************************

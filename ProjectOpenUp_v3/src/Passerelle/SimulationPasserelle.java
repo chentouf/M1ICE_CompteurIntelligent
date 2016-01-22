@@ -2,6 +2,7 @@ package Passerelle;
 
 import java.util.Iterator;
 
+import Compteur.Client;
 import Compteur.ModeleCompteur;
 import Compteur.SimulationCompteur;
 import LCD.ControleurLCD;
@@ -25,7 +26,7 @@ public class SimulationPasserelle implements Runnable {
 		new Thread(simulation).start();
 		
 		for(int i = 0;i<3;i++){
-			tab[i] = new SimulationCompteur(""+i);
+			tab[i] = new SimulationCompteur(new Client(i,10));
 			
 			simulation.passerelle.getModelePasserelle()
 				.addListeCompteurs(tab[i].getControleur().getModeleCompteur());
@@ -56,7 +57,7 @@ public class SimulationPasserelle implements Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 		while(true){
-			passerelle.majSysteme();
+			passerelle.getModelePasserelle().majSysteme();
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {

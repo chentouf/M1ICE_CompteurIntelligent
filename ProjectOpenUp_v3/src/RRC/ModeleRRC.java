@@ -91,25 +91,22 @@ public class ModeleRRC {
 
 	public void majMesure(Map<ModeleCompteur, LinkedList<ModeleCompteurDate>> map){
     	//TODO :prendre en compte le fait que que la liste ne contiendra plus que les mesures autorisé
-		ModeleCompteur modele;
-		String chaine;
-		for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : map.entrySet()){
-    		modele = entry.getValue().getFirst();
-			
-			
-			
-    	}
+		LinkedList<ModeleCompteurDate> l;
 		
-		/*ModeleCompteur tmp;
-		while(map.hasNext()){
-			tmp = map.next();
-			mesureCourante.remove(tmp);
-			mesureCourante.add(tmp);			
-		}*/
+		for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : map.entrySet()){			
+			if( mesure.get(entry.getKey()) == null){
+				l = new LinkedList<>();
+				l.addAll(entry.getValue());
+				mesure.put(entry.getKey(),l);
+				
+			}else{
+				mesure.get(entry.getKey()).addAll(entry.getValue());
+			}
+    	}
     }
 	
 	public void charger(Date d){
-		
+		// TODO : Tester le chargement d'un fichier dans la prochaine itération
 	}
 	
 	public void enregistrer() {
@@ -135,8 +132,11 @@ public class ModeleRRC {
     
     public void produireFacture() throws IOException
     { 
+    	System.out.println("alo2");
     	for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : mesure.entrySet())
     	{
+    		System.out.println("alo");
+    		
     		File fichier = new File("facture"+entry.getKey().getId()+".txt"); 
     		fichier.createNewFile();
     		FileWriter fw = new FileWriter (fichier);

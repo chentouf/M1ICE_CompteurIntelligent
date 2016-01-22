@@ -12,14 +12,22 @@ package Passerelle;
 
 //## auto_generated
 import java.util.*;
+import java.util.Map.Entry;
 
 import org.omg.CORBA._PolicyStub;
 
 
 
 
+
+
+
+
+
 //## link controleurRRC 
 import RRC.ControleurRRC;
+import RRC.ModeleRRC;
+import Compteur.Client;
 //## link listeCompteurs 
 import Compteur.ModeleCompteur;
 import Compteur.ModeleCompteurDate;
@@ -36,7 +44,7 @@ public class ModelePasserelle {
 
     protected int idPasserelle;		//## attribute idPasserelle 
     
-    protected ControleurRRC controleurRRC;		//## link controleurRRC 
+    protected ModeleRRC modeleRRC;		//## link controleurRRC 
     
     protected Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> listeCompteurs = new HashMap<ModeleCompteur,LinkedList<ModeleCompteurDate>>();		//## link listeCompteurs 
     
@@ -54,10 +62,52 @@ public class ModelePasserelle {
     public  ModelePasserelle() {
     }
     
+  //## operation majSysteme() 
+    public void majSysteme() {
+        //#[ operation majSysteme() 
+        //#]*
+    	String chaine = new String();
+    	ModeleCompteur modele;
+    	ModeleCompteurDate modeleDate;
+    	
+    	for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : listeCompteurs.entrySet()){
+    		
+    		modele = entry.getKey();
+    		modeleDate = entry.getValue().getLast();
+    		
+    		entry.getValue().addLast(modele.getCompteurDate());
+    		
+			chaine = chaine.concat("\nCompteur "+modele.getId()+" : ");
+			
+			if(modele.isConnected())
+			{
+				chaine=chaine.concat(modele.getHc()+" / "+modele.getHp());
+			}
+			else
+			{
+				chaine=chaine.concat("COMPTEUR OFFLINE");
+				//modeleLEDEtatConnectionCompteur.setEtatAAfficher(0);; notifie les led
+			}
+    	}
+    	//notification des observer
+    	//modeleLCD.setDonneesAAfficher(chaine); notifier le lcd
+    }
+    
+	public Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> getInfo(){
+		// TODO: traitement pour correspondre au exigences du client
+		return listeCompteurs;
+	}
+    
     //## operation envoyerinfoRCCPush() 
-    public void envoyerinfoRCCPush() {
+    public void envoyerinfoRCCPush(ModeleCompteur p_ModeleCompteur) {
         //#[ operation envoyerinfoRCCPush() 
         //#]
+    	LinkedList<ModeleCompteurDate> l = listeCompteurs.get(p_ModeleCompteur);
+    	
+    	if( l == null){
+    		System.out.println("erreur");
+    		return;
+    	}
     }
     
     //## operation majConsommation() 
@@ -66,7 +116,13 @@ public class ModelePasserelle {
         //#]
     }
     
-    //## auto_generated 
+    public ModeleRRC getModeleRRC() {
+		return modeleRRC;
+	}
+	public void setModeleRRC(ModeleRRC modeleRRC) {
+		this.modeleRRC = modeleRRC;
+	}
+	//## auto_generated 
     public int getIdPasserelle() {
         return idPasserelle;
     }
@@ -77,33 +133,44 @@ public class ModelePasserelle {
     }
     
     //## auto_generated 
-    public ControleurRRC getControleurRRC() {
-        return controleurRRC;
-    }
-    
-    //## auto_generated 
-    public void setControleurRRC(ControleurRRC p_ControleurRRC) {
-        controleurRRC = p_ControleurRRC;
-    }
-    
-    //## auto_generated 
     public Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> getListeCompteurs() {
-        
         return listeCompteurs;
     }
     
-    //## auto_generated 
-    public void addListeCompteurs(ModeleCompteur p_ModeleCompteur) {
-        //listeCompteurs.add(p_ModeleCompteur.getId(),p_ModeleCompteur);
-    	LinkedList<ModeleCompteurDate> l = listeCompteurs.get(p_ModeleCompteur.getId());
+    public Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> getReleve(){
+    	Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> releve = new HashMap<>();
+    	LinkedList<ModeleCompteurDate> l;
+    	int i;
     	
-    	if( l != null)
-    		l.add(new ModeleCompteurDate(p_ModeleCompteur));
-    	else{
+    	for(Entry<ModeleCompteur,LinkedList<ModeleCompteurDate>> elem : listeCompteurs.entrySet()){
     		l = new LinkedList<ModeleCompteurDate>();
-    		l.addFirst(new ModeleCompteurDate(p_ModeleCompteur));
-    		listeCompteurs.put(p_ModeleCompteur, l);
+    		i = 0;
+    		for(ModeleCompteur m : elem.getValue()){
+    			if(i%)
+    			l.add(new ModeleCompteurDate(m));
+    			
+    		}
+    		
+    		releve.put(elem.getKey().copie(),l);
     	}
+    		
+    	return releve;
+    }
+    
+    //## auto_generated 
+    public void addListeCompteurs(ModeleCompteur modeleCompteur) {
+        //listeCompteurs.add(p_ModeleCompteur.getId(),p_ModeleCompteur);
+    	LinkedList<ModeleCompteurDate> l = listeCompteurs.get(modeleCompteur);
+ 
+    	
+    	if( l != null){
+    		System.out.println(modeleCompteur.toString()+"déjà existant");
+    		return;
+    	}
+    	
+    	l = new LinkedList<ModeleCompteurDate>();
+		l.addLast(modeleCompteur.getCompteurDate());
+		listeCompteurs.put(modeleCompteur, l);
     		
     }
     
