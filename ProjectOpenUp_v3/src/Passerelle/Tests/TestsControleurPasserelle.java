@@ -14,8 +14,7 @@ public class TestsControleurPasserelle {
 
 	@Before
 	public void setUp() throws Exception {
-		cp = new ControleurPasserelle(1);
-		
+		cp = new ControleurPasserelle(1);		
 	}
 
 	@After
@@ -25,6 +24,7 @@ public class TestsControleurPasserelle {
 
 	@Test
 	public void testControleurPasserelleModeleLEDModelePasserelleModeleLEDModeleLCDModelePasserelle() {
+		assertNotNull(cp);
 	}
 
 	@Test
@@ -51,22 +51,13 @@ public class TestsControleurPasserelle {
 	}
 
 	@Test
-	public void testGetModeleLCD() {
+	public void testGetSetModeleLCD() {
 	}
 
 	@Test
-	public void testSetModeleLCD() {}
+	public void testGetSetModelePasserelle() {}
 
 	@Test
-	public void testGetModelePasserelle() {}
-
-	@Test
-	public void testSetModelePasserelle() {}
-
-	@Test
-	public void testGetModeleRRC() {}
-
-	@Test
-	public void testSetModeleRRC() {}
+	public void testGetSetModeleRRC() {}
 
 }

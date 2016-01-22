@@ -30,19 +30,11 @@ public class TestsControleurRRC {
 	}
 
 	@Test
-	public void testGetModeleRRC() {
+	public void testGetSetModeleRRC() {
 	}
 
 	@Test
-	public void testSetModeleRRC() {
-	}
-
-	@Test
-	public void testGetVueRRC() {
-	}
-
-	@Test
-	public void testSetVueRRC() {
+	public void testGetSetVueRRC() {
 	}
 
 }
