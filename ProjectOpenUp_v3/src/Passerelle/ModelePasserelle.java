@@ -70,6 +70,7 @@ public class ModelePasserelle extends Observable {
     	String chaine = new String();
     	ModeleCompteur modele;
     	ModeleCompteurDate modeleDate;
+    	boolean compte = true;
     	
     	for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : listeCompteurs.entrySet()){
     		
@@ -86,10 +87,15 @@ public class ModelePasserelle extends Observable {
 			}
 			else
 			{
+				compte=false;
 				chaine=chaine.concat("COMPTEUR OFFLINE");
 				//modeleLEDEtatConnectionCompteur.setEtatAAfficher(0);; notifie les led
 			}
     	}
+    	setChanged();
+    	
+    	Object[] tab = {chaine,compte}; 
+    	notifyObservers(tab);
     	//notification des observer
     	//modeleLCD.setDonneesAAfficher(chaine); notifier le lcd
     }

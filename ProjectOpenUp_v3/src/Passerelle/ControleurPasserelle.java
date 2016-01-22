@@ -108,7 +108,8 @@ public class ControleurPasserelle implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
-		
+		Object[] tab = (Object[]) arg;
+		modeleLCD.setDonneesAAfficher((String)tab[0]);
 	}
     
 }
