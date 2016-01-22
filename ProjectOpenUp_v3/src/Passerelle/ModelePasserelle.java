@@ -148,8 +148,6 @@ public class ModelePasserelle extends Observable {
     public void addListeCompteurs(ModeleCompteur modeleCompteur) {
         //listeCompteurs.add(p_ModeleCompteur.getId(),p_ModeleCompteur);
     	LinkedList<ModeleCompteurDate> l = listeCompteurs.get(modeleCompteur);
- 
-    	
     	if( l != null){
     		System.out.println(modeleCompteur.toString()+"déjà existant");
     		return;
@@ -158,7 +156,6 @@ public class ModelePasserelle extends Observable {
     	l = new LinkedList<ModeleCompteurDate>();
 		l.addLast(modeleCompteur.getCompteurDate());
 		listeCompteurs.put(modeleCompteur, l);
-    		
     }
     
     //## auto_generated 
