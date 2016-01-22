@@ -46,7 +46,7 @@ public class ModeleCompteur extends Observable{
     
     public ModeleCompteur(ModeleCompteur copy){
     	super();
-    	
+    	id = copy.getId();
     	hc = copy.getHc();
     	hp = copy.getHp();
     	etatConnection = copy.isConnected();

@@ -92,16 +92,18 @@ public class ModeleRRC {
 	public void majMesure(Map<ModeleCompteur, LinkedList<ModeleCompteurDate>> map){
     	//TODO :prendre en compte le fait que que la liste ne contiendra plus que les mesures autorisé
 		LinkedList<ModeleCompteurDate> l;
-		
+
 		for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : map.entrySet()){			
 			if( mesure.get(entry.getKey()) == null){
 				l = new LinkedList<>();
 				l.addAll(entry.getValue());
 				mesure.put(entry.getKey(),l);
 				
+				
 			}else{
 				mesure.get(entry.getKey()).addAll(entry.getValue());
 			}
+			System.out.println("R - Compteur : "+entry.getKey().getId()+" :: "+entry.getKey().getHp()+" "+entry.getValue().getLast().getHp());
     	}
     }
 	
@@ -132,10 +134,8 @@ public class ModeleRRC {
     
     public void produireFacture() throws IOException
     { 
-    	System.out.println("alo2");
     	for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : mesure.entrySet())
     	{
-    		System.out.println("alo");
     		
     		/*File fichier = new File("facture"+entry.getKey().getId()+".txt"); 
     		fichier.createNewFile();
@@ -143,7 +143,7 @@ public class ModeleRRC {
     		int consoHc = (entry.getKey().getHc() - entry.getValue().getLast().getHc()) ;
     		int consoHp = (entry.getKey().getHp() - entry.getValue().getLast().getHp()) ;*/
     		
-    		System.out.println(entry.getKey().getHc()+" "+entry.getValue().getLast().getHc());
+    		//System.out.println("Compteur : "+entry.getKey().getId()+" :: "+entry.getKey().getHp()+" "+entry.getValue().getLast().getHp());
     		/*fw.write(" FACTURE COMPTEUR "+entry.getKey().getId() + "\n");
     		fw.write(" Consomation hc : " + consoHc + " au tarif de " + prixEnVigueurHc + " pour un total de " + consoHc * prixEnVigueurHc +  "\n" );
     		fw.write(" Consomation hp : " + consoHp + " au tarif de " + prixEnVigueurHp + " pour un total de " + consoHp * prixEnVigueurHp +  "\n" );

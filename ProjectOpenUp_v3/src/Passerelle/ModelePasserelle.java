@@ -142,6 +142,8 @@ public class ModelePasserelle {
     	LinkedList<ModeleCompteurDate> l;
     	int i;
     	
+    	System.out.println("relevé");
+    	
     	for(Entry<ModeleCompteur,LinkedList<ModeleCompteurDate>> elem : listeCompteurs.entrySet()){
     		l = new LinkedList<ModeleCompteurDate>();
     		i = 0;
@@ -150,7 +152,7 @@ public class ModelePasserelle {
     				l.add(new ModeleCompteurDate(m));
     			i++;    			
     		}
-    		
+    		System.out.println("P - Compteur : "+elem.getKey().getId()+" :: "+elem.getKey().getHp()+" "+elem.getValue().getLast().getHp());
     		releve.put(elem.getKey().copie(),l);
     	}
     		

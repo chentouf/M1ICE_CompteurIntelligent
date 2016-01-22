@@ -17,7 +17,7 @@ public class SimulationRRC implements Runnable {
 	public SimulationRRC(){
 		// TODO Auto-generated constructor stub
 		simuPasserelle = new SimulationPasserelle();
-		controleurRRC = new ControleurRRC(7,8,10);
+		controleurRRC = new ControleurRRC(7,8,3);
 	}
 	
 	@Override
@@ -26,7 +26,7 @@ public class SimulationRRC implements Runnable {
 		while(true){
 			
 			try {
-				Thread.sleep(controleurRRC.getModeleRRC().getDuree()*10000); // intervalle de temps entre deux relevé côté RRC
+				Thread.sleep(controleurRRC.getModeleRRC().getDuree()*1000); // intervalle de temps entre deux relevé côté RRC
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -68,7 +68,7 @@ public class SimulationRRC implements Runnable {
 		}
 		
 		try {
-			Thread.sleep(simuRRC.getControleurRRC().getModeleRRC().getDuree()*1000);
+			Thread.sleep(4000);
 			
 			simuRRC.getControleurRRC().getModeleRRC().produireFacture();
 		} catch (InterruptedException e) {
