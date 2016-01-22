@@ -2,6 +2,8 @@ package LED.Tests;
 
 import static org.junit.Assert.*;
 
+import java.awt.Color;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,8 +30,9 @@ public class TestsVueLED {
 
 	@Test
 	public void testGetSetDisplay() {
-		vl.setDisplay("Test");
-		assertEquals(vl.getDisplay(), "Test");
+		Color couleur = Color.green;
+		vl.setDisplay(couleur);
+		assertEquals(vl.getDisplay(), Color.green);
 	}
 
 }
