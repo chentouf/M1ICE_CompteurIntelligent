@@ -50,7 +50,7 @@ public class ModeleRRC {
         //#[ operation ModeleRRC() 
         //#]
     	this.prixEnVigueurHp = prixEnVigeurHp;
-    	this.prixEnVigueurHc = prixEnVigueurHc;
+    	this.prixEnVigueurHc = prixEnVigeurHc;
     	
     	this.mesure = new HashMap<ModeleCompteur,LinkedList<ModeleCompteurDate>>();
     	this.duree = duree;

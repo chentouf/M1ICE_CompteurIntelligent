@@ -54,47 +54,18 @@ public class TestsControleurPasserelle {
 	}
 
 	@Test
-	public void testGetModeleLCD() {
-		ModeleLCD ml = new ModeleLCD();
-		cp.setModeleLCD(ml);
-		assertEquals(cp.getModeleLCD(),ml);
+	public void testGetSetModeleLCD() {
 	}
 
 	@Test
-	public void testSetModeleLCD() {
-		ModeleLCD ml = new ModeleLCD();
-		cp.setModeleLCD(ml);
-		assertEquals(cp.getModeleLCD(),ml);
-		
-	}
-
-	@Test
-	public void testGetModelePasserelle() {
+	public void testGetSetModelePasserelle() {
 		ModelePasserelle mp = new ModelePasserelle();
 		cp.setModelePasserelle(mp);
 		assertEquals(cp.getModelePasserelle(),mp);
 	}
 
 	@Test
-	public void testSetModelePasserelle() {
-		ModelePasserelle mp = new ModelePasserelle();
-		cp.setModelePasserelle(mp);
-		assertEquals(cp.getModelePasserelle(),mp);
-		
-	}
-
-	@Test
-	public void testGetModeleRRC() {
-		ModeleRRC mr = new ModeleRRC();
-		cp.setModeleRRC(mr);
-		assertEquals(cp.getModeleRRC(),mr);
-	}
-
-	@Test
-	public void testSetModeleRRC() {
-		ModeleRRC mr = new ModeleRRC();
-		cp.setModeleRRC(mr);
-		assertEquals(cp.getModeleRRC(),mr);
+	public void testGetSetModeleRRC() {
 	}
 
 }

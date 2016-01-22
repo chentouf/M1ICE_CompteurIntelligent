@@ -28,7 +28,7 @@ public class TestsVueLED {
 
 	@Test
 	public void testGetSetDisplay() {
-		vl.setDisplay("Test");
+		//vl.setDisplay("Test");
 		assertEquals(vl.getDisplay(), "Test");
 	}
 

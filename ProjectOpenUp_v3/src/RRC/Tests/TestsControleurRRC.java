@@ -33,33 +33,17 @@ public class TestsControleurRRC {
 	}
 
 	@Test
-	public void testGetModeleRRC() {
-		ModeleRRC mr = new ModeleRRC();
+	public void testGetSetModeleRRC() {
+		/*ModeleRRC mr = new ModeleRRC();
 		cr.setModeleRRC(mr);
-		assertEquals(cr.getModeleRRC(),mr);
+		assertEquals(cr.getModeleRRC(),mr);*/
 	}
 
 	@Test
-	public void testSetModeleRRC() {
-		ModeleRRC mr = new ModeleRRC();
-		cr.setModeleRRC(mr);
-		assertEquals(cr.getModeleRRC(),mr);
-	}
-
-	@Test
-	public void testGetVueRRC() {
+	public void testGetSetVueRRC() {
 		
 		VueRRC vr = new VueRRC();
 		cr.setVueRRC(vr);
 		assertEquals(cr.getVueRRC(), vr);
 	}
-
-	@Test
-	public void testSetVueRRC() {
-		
-		VueRRC vr = new VueRRC();
-		cr.setVueRRC(vr);
-		assertEquals(cr.getVueRRC(), vr);
-	}
-
 }
