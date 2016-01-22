@@ -2,6 +2,7 @@ package RRC;
 
 import java.io.IOException;
 
+import Compteur.Client;
 import Compteur.SimulationCompteur;
 import LCD.ControleurLCD;
 import Passerelle.ControleurPasserelle;
@@ -57,7 +58,7 @@ public class SimulationRRC implements Runnable {
 		t.start();
 		
 		for(int i = 0;i<3;i++){
-			tab[i] = new SimulationCompteur(""+i);
+			tab[i] = new SimulationCompteur(new Client(i,10));
 			
 			simuRRC.getSimulationPasserelle().getControleurPasserelle()	.getModelePasserelle()
 				.addListeCompteurs(tab[i].getControleur().getModeleCompteur());

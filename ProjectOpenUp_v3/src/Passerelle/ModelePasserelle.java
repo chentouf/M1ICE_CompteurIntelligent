@@ -146,7 +146,7 @@ public class ModelePasserelle {
     		l = new LinkedList<ModeleCompteurDate>();
     		i = 0;
     		for(ModeleCompteur m : elem.getValue()){
-    			if((i % m.getIntervalleReleve()) == 0)
+    			if((i % elem.getKey().getIntervalleReleve()) == 0)
     				l.add(new ModeleCompteurDate(m));
     			i++;    			
     		}
