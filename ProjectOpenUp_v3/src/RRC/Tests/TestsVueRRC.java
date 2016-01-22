@@ -1,4 +1,4 @@
-package Tests;
+package RRC.Tests;
 
 import static org.junit.Assert.*;
 
@@ -6,34 +6,31 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ControleurLEDTest {
+import RRC.VueRRC;
 
+public class TestsVueRRC {
+
+	VueRRC vr;
 	@Before
 	public void setUp() throws Exception {
+		vr = new VueRRC();
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		vr = null;
 	}
 
 	@Test
-	public void testControleurLED() {
-	}
+	public void testVueRRC() {}
 
 	@Test
-	public void testGetItsModeleLED() {
-	}
+	public void testMajVue() {}
 
 	@Test
-	public void testSetItsModeleLED() {
-	}
+	public void testGetDisplay() {}
 
 	@Test
-	public void testGetItsVueLED() {
-	}
-
-	@Test
-	public void testSetItsVueLED() {
-	}
+	public void testSetDisplay() {}
 
 }
