@@ -93,17 +93,15 @@ public class ModeleRRC {
     	//TODO :prendre en compte le fait que que la liste ne contiendra plus que les mesures autorisé
 		LinkedList<ModeleCompteurDate> l;
 
-		for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : map.entrySet()){			
+		for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : map.entrySet()){
+			//System.out.println("R - Compteur : "+entry.getKey().getId()+" :: "+entry.getKey().getHc()+" "+entry.getKey().getHp());
 			if( mesure.get(entry.getKey()) == null){
 				l = new LinkedList<>();
 				l.addAll(entry.getValue());
 				mesure.put(entry.getKey(),l);
-				
-				
 			}else{
 				mesure.get(entry.getKey()).addAll(entry.getValue());
 			}
-			//System.out.println("R - Compteur : "+entry.getKey().getId()+" :: "+entry.getKey().getHp()+" "+entry.getValue().getLast().getHp());
     	}
     }
 	
@@ -136,6 +134,10 @@ public class ModeleRRC {
     { 
     	for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : mesure.entrySet())
     	{
+    		System.out.println("Compteur : "+entry.getKey().getId()+" :: "+entry.getKey().getHp()+" "+entry.getValue().getLast().getHp());
+    		for(ModeleCompteurDate elem : entry.getValue()){
+    			System.out.println(elem.getDisplay());
+    		}
     		
     		/*File fichier = new File("facture"+entry.getKey().getId()+".txt"); 
     		fichier.createNewFile();

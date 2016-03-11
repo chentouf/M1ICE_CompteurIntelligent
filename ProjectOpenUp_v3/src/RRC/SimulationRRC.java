@@ -68,7 +68,7 @@ public class SimulationRRC implements Runnable {
 		}
 		
 		try {
-			Thread.sleep(4000);
+			Thread.sleep(15000);
 			
 			simuRRC.getControleurRRC().getModeleRRC().produireFacture();
 		} catch (InterruptedException e) {
