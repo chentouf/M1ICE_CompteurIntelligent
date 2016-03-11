@@ -47,7 +47,7 @@ public class ControleurPasserelle {
     
     protected int duree; 			// intervale de temps entre deux mesures 
     
-    protected VuePasserelle vuePasserelle;
+   // protected VuePasserelle vuePasserelle;
     
     // Constructors
     
@@ -60,7 +60,7 @@ public class ControleurPasserelle {
     	controleurLEDEtatConnectionCompteur = new ControleurLED() ;
     	controleurLEDEtatConnectionRRC = new ControleurLED();
     	
-    	vuePasserelle = new VuePasserelle(controleurLEDEtatConnectionCompteur.getVueLED(),controleurLEDEtatConnectionRRC.getVueLED(), controleurLCD.getVueLCD());
+    	//vuePasserelle = new VuePasserelle(controleurLEDEtatConnectionCompteur.getVueLED(),controleurLEDEtatConnectionRRC.getVueLED(), controleurLCD.getVueLCD());
     	this.duree = duree;
     	
     }
