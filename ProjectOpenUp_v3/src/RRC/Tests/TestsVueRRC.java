@@ -6,34 +6,34 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import RRC.VueRRC;
+
 public class TestsVueRRC {
+	VueRRC vrc;
 
 	@Before
 	public void setUp() throws Exception {
+		vrc = new VueRRC();
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		vrc = null;
 	}
 
 	@Test
 	public void testVueRRC() {
-		fail("Not yet implemented");
+		assertNotNull(vrc);
 	}
 
 	@Test
 	public void testMajVue() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
-	public void testGetDisplay() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetDisplay() {
-		fail("Not yet implemented");
+	public void testGetSetDisplay() {
+		
 	}
 
 }

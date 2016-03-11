@@ -6,34 +6,41 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import RRC.ModeleRRC;
+
 public class TestsModeleRRC {
 
+	ModeleRRC mrc;
 	@Before
 	public void setUp() throws Exception {
+		mrc = new ModeleRRC(1, 1, 2);
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		mrc = null;
 	}
 
 	@Test
 	public void testModeleRRC() {
-		fail("Not yet implemented");
+		assertNotNull(mrc);
+		
 	}
 
 	@Test
 	public void testGetDuree() {
-		fail("Not yet implemented");
+		assertEquals(mrc.getDuree(),2);
 	}
 
 	@Test
 	public void testGetPrixEnVigueurHc() {
-		fail("Not yet implemented");
+		assertEquals(mrc.getPrixEnVigueurHc(),1);
+		
 	}
 
 	@Test
 	public void testGetPrixEnVigeurHp() {
-		fail("Not yet implemented");
+		assertEquals(mrc.getPrixEnVigeurHp(),1);
 	}
 
 	@Test

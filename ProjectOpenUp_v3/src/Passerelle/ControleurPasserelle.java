@@ -42,7 +42,7 @@ public class ControleurPasserelle implements Observer{
     
     protected ModelePasserelle modelePasserelle;		//## link modelePasserelle 
     
-    protected VuePasserelle vuePasserelle;
+  //  protected VuePasserelle vuePasserelle;
     
     protected int duree; 			// intervale de temps entre deux mesures 
     
