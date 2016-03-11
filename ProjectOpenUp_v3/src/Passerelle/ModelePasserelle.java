@@ -137,6 +137,7 @@ public class ModelePasserelle {
     	for(Entry<ModeleCompteur,LinkedList<ModeleCompteurDate>> elem : listeCompteurs.entrySet()){
     		l = new LinkedList<ModeleCompteurDate>();
     		i = 0;
+//TODO :  résoudre probleme de concurrent je ne sais pas comment ..... 
     		
     		for(Iterator<ModeleCompteurDate> iter = elem.getValue().iterator();iter.hasNext();){
     			ModeleCompteurDate m = iter.next();
