@@ -144,7 +144,7 @@ public class ModelePasserelle {
     	
     	//System.out.println("relevé");
     	
-    	listeCompteurs.
+    	//listeCompteurs.
     	
     	for(Entry<ModeleCompteur,LinkedList<ModeleCompteurDate>> elem : listeCompteurs.entrySet()){
     		l = new LinkedList<ModeleCompteurDate>();
