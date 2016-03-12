@@ -24,6 +24,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.Observable;
 import java.util.Map.Entry;
 
 import Passerelle.ControleurPasserelle;
@@ -38,7 +39,7 @@ import Compteur.ModeleCompteurDate;
 
 
 //## class ModeleRRC 
-public class ModeleRRC {
+public class ModeleRRC extends Observable {
 
     protected int prixEnVigueurHc,prixEnVigueurHp,duree;		// à stocker prochainement
     protected Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> mesure;

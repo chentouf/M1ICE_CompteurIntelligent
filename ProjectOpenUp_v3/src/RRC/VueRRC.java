@@ -10,6 +10,18 @@
 
 package RRC;
 
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.util.Observable;
+import java.util.Observer;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+
+import Compteur.ModeleCompteur;
 
 //----------------------------------------------------------------------------
 // RRC/VueRRC.java                                                                  
@@ -19,37 +31,72 @@ package RRC;
 
 
 //## class VueRRC 
-public class VueRRC {
-    
-    protected String display;		//## attribute display 
-    
+public class VueRRC extends JFrame implements Observer {
     
     // Constructors
-    
+	JLabel lPrixhp = new JLabel("Prix en vigueur HP");
+	JLabel lPrixhc = new JLabel("Prix en vigeur HC");
+	JLabel lDuree = new JLabel("Durée entre les mesures");
+	JTextArea tPrixhp = new JTextArea();
+	JTextArea tPrixhc = new JTextArea();
+	JTextArea tDuree = new JTextArea();
+	
     //## operation VueRRC() 
     public  VueRRC() {
-        //#[ operation VueRRC() 
-        //#]
+        super();
+        build();
     }
     
-    /**
-     * @param d
-    */
-    //## operation majVue(String) 
-    public void majVue(final String d) {
-        //#[ operation majVue(String) 
-        //#]
+    public void build()
+    {
+    	this.setTitle("Simulation Compteur");
+        this.setSize(400, 100);
+        this.setVisible(true);
+    	setLocationRelativeTo(null); //On centre la fenêtre sur l'écran
+		setResizable(true); //On permet le redimensionnement
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //On dit à l'application de se fermer lors du clic sur la croix
+		setContentPane(buildContentPane());
     }
     
-    //## auto_generated 
-    public String getDisplay() {
-        return display;
+    private JPanel buildContentPane()
+    {
+    	JPanel panelPrincipal = new JPanel();
+    	panelPrincipal.setLayout(new BorderLayout());
+    	JPanel panelHaut = new JPanel();
+    	panelHaut.setLayout(new GridLayout(2,3));
+    	panelHaut.add(lPrixhp);
+    	panelHaut.add(lPrixhc);
+    	panelHaut.add(lDuree);
+    	panelHaut.add(tPrixhp);
+    	panelHaut.add(tPrixhc);
+    	panelHaut.add(tDuree);
+    	panelPrincipal.add(panelHaut,BorderLayout.CENTER);
+    	JPanel panelBas = new JPanel();
+    	panelBas.setLayout(new BorderLayout());
+    	JButton bModifier = new JButton("Modifier");
+    	panelBas.add(bModifier, BorderLayout.EAST);
+    	panelPrincipal.add(panelBas,BorderLayout.SOUTH);
+    	return panelPrincipal;
     }
-    
-    //## auto_generated 
-    public void setDisplay(String p_display) {
-        display = p_display;
-    }
+
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		ModeleRRC modele;
+
+		if(arg0 == null){
+			System.out.println("erreur");
+			return;
+		}
+		
+		if(arg0 instanceof ModeleRRC){
+			modele = (ModeleRRC)arg0;
+			tPrixhc.setText( ""+ modele.getPrixEnVigueurHc());
+			tPrixhp.setText(""+ modele.getPrixEnVigeurHp());
+			tDuree.setText(""+modele.getDuree());
+		}
+	}
     
 }
 /*********************************************************************

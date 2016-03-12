@@ -37,7 +37,6 @@ public class VueCompteur extends JFrame implements Observer {
 	protected String display;		//## attribute display 
 	
 	
-	
     
     // Constructors
 	JLabel Compteur = new JLabel("Numero Compteur");
@@ -97,7 +96,7 @@ public class VueCompteur extends JFrame implements Observer {
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
 		ModeleCompteur modele;
-		//System.out.println("aloo");
+
 		if(arg0 == null){
 			System.out.println("erreur");
 			return;
@@ -109,7 +108,6 @@ public class VueCompteur extends JFrame implements Observer {
 			idCompteur.setText(modele.getId());
 			valeurHP.setText(""+modele.getHp());
 			valeurHC.setText(""+modele.getHc());
-			//System.out.println(modele.getId()+" : "+modele.getHc()+" / "+modele.getHp());
 		}
 	}
     
