@@ -94,7 +94,7 @@ public class ModeleRRC {
 		LinkedList<ModeleCompteurDate> l;
 
 		for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : map.entrySet()){
-			//System.out.println("R - Compteur : "+entry.getKey().getId()+" :: "+entry.getKey().getHc()+" "+entry.getKey().getHp());
+			System.out.println("R - Compteur : "+entry.getKey().getId()+" :: "+entry.getKey().getHc()+" "+entry.getKey().getHp());
 			if( mesure.get(entry.getKey()) == null){
 				l = new LinkedList<>();
 				l.addAll(entry.getValue());
@@ -103,6 +103,16 @@ public class ModeleRRC {
 				mesure.get(entry.getKey()).addAll(entry.getValue());
 			}
     	}
+		
+		for(Entry<ModeleCompteur,LinkedList<ModeleCompteurDate>> elem : mesure.entrySet()){	    		
+
+			System.out.println("P - Compteur : "+elem.getKey().getId()+" :: "+elem.getKey().getHc()+" "+elem.getKey().getHp());
+			for(ModeleCompteurDate m : elem.getValue()){
+				
+				System.out.println(m.getDisplay());
+				
+			}
+		}
     }
 	
 	public void charger(Date d){

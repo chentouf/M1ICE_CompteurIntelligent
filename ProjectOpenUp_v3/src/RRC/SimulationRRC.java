@@ -67,7 +67,7 @@ public class SimulationRRC implements Runnable {
 			new Thread(tab[i]).start();
 		}
 		
-		try {
+		/*try {
 			Thread.sleep(15000);
 			
 			simuRRC.getControleurRRC().getModeleRRC().produireFacture();
@@ -78,7 +78,7 @@ public class SimulationRRC implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			
-		}
+		}*/
 		
 	}
 }
