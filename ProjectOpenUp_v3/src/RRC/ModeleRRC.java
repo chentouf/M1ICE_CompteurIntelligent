@@ -24,6 +24,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.Observable;
 import java.util.Map.Entry;
 
 import Passerelle.ControleurPasserelle;
@@ -38,7 +39,7 @@ import Compteur.ModeleCompteurDate;
 
 
 //## class ModeleRRC 
-public class ModeleRRC {
+public class ModeleRRC extends Observable{
 
     protected int prixEnVigueurHc,prixEnVigueurHp,duree;		// à stocker prochainement
     protected Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> mesure;
@@ -94,7 +95,7 @@ public class ModeleRRC {
 		LinkedList<ModeleCompteurDate> l;
 
 		for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : map.entrySet()){
-			//System.out.println("R - Compteur : "+entry.getKey().getId()+" :: "+entry.getKey().getHc()+" "+entry.getKey().getHp());
+			System.out.println("R - Compteur : "+entry.getKey().getId()+" :: "+entry.getKey().getHc()+" "+entry.getKey().getHp());
 			if( mesure.get(entry.getKey()) == null){
 				l = new LinkedList<>();
 				l.addAll(entry.getValue());
@@ -103,6 +104,16 @@ public class ModeleRRC {
 				mesure.get(entry.getKey()).addAll(entry.getValue());
 			}
     	}
+		
+		for(Entry<ModeleCompteur,LinkedList<ModeleCompteurDate>> elem : mesure.entrySet()){	    		
+
+			System.out.println("P - Compteur : "+elem.getKey().getId()+" :: "+elem.getKey().getHc()+" "+elem.getKey().getHp());
+			for(ModeleCompteurDate m : elem.getValue()){
+				
+				System.out.println(m.getDisplay());
+				
+			}
+		}
     }
 	
 	public void charger(Date d){
