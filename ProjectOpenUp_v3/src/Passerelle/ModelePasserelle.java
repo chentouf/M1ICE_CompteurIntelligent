@@ -156,7 +156,7 @@ public class ModelePasserelle {
         		releve.put(new ModeleCompteur(elem.getKey()),l);
         	}
         	
-        	/*for(Entry<ModeleCompteur,LinkedList<ModeleCompteurDate>> elem : releve.entrySet()){	    		
+        	for(Entry<ModeleCompteur,LinkedList<ModeleCompteurDate>> elem : releve.entrySet()){	    		
 
         		System.out.println("P - Compteur : "+elem.getKey().getId()+" :: "+elem.getKey().getHc()+" "+elem.getKey().getHp());
         		for(ModeleCompteurDate m : elem.getValue()){
@@ -164,7 +164,7 @@ public class ModelePasserelle {
         			System.out.println(m.getDisplay());
        			
         		}
-        	}*/
+        	}
     	}
     	
     		
