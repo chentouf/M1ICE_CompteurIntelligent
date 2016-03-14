@@ -91,25 +91,22 @@ public class ModeleRRC {
 
 	public void majMesure(Map<ModeleCompteur, LinkedList<ModeleCompteurDate>> map){
     	//TODO :prendre en compte le fait que que la liste ne contiendra plus que les mesures autorisé
-		ModeleCompteur modele;
-		String chaine;
+		LinkedList<ModeleCompteurDate> l;
+
 		for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : map.entrySet()){
-    		modele = entry.getValue().getFirst();
-			
-			
-			
+			//System.out.println("R - Compteur : "+entry.getKey().getId()+" :: "+entry.getKey().getHc()+" "+entry.getKey().getHp());
+			if( mesure.get(entry.getKey()) == null){
+				l = new LinkedList<>();
+				l.addAll(entry.getValue());
+				mesure.put(entry.getKey(),l);
+			}else{
+				mesure.get(entry.getKey()).addAll(entry.getValue());
+			}
     	}
-		
-		/*ModeleCompteur tmp;
-		while(map.hasNext()){
-			tmp = map.next();
-			mesureCourante.remove(tmp);
-			mesureCourante.add(tmp);			
-		}*/
     }
 	
 	public void charger(Date d){
-		
+		// TODO : Tester le chargement d'un fichier dans la prochaine itération
 	}
 	
 	public void enregistrer() {
@@ -137,16 +134,23 @@ public class ModeleRRC {
     { 
     	for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : mesure.entrySet())
     	{
-    		File fichier = new File("facture"+entry.getKey().getId()+".txt"); 
+    		System.out.println("Compteur : "+entry.getKey().getId()+" :: "+entry.getKey().getHp()+" "+entry.getValue().getLast().getHp());
+    		for(ModeleCompteurDate elem : entry.getValue()){
+    			System.out.println(elem.getDisplay());
+    		}
+    		
+    		/*File fichier = new File("facture"+entry.getKey().getId()+".txt"); 
     		fichier.createNewFile();
     		FileWriter fw = new FileWriter (fichier);
-    		float consoHc = (entry.getKey().getHc() - entry.getValue().getLast().getHc()) ;
-    		float consoHp = (entry.getKey().getHp() - entry.getValue().getLast().getHp()) ;
-    		fw.write(" FACTURE COMPTEUR "+entry.getKey().getId() + "\n");
-    		fw.write(" Consomation hc : " + consoHc + " au tarif de" + prixEnVigueurHc + "pour un total de " + consoHc * prixEnVigueurHc +  "\n" );
-    		fw.write(" Consomation hp : " + consoHp + " au tarif de" + prixEnVigueurHp + "pour un total de " + consoHp * prixEnVigueurHp +  "\n" );
+    		int consoHc = (entry.getKey().getHc() - entry.getValue().getLast().getHc()) ;
+    		int consoHp = (entry.getKey().getHp() - entry.getValue().getLast().getHp()) ;*/
+    		
+    		//System.out.println("Compteur : "+entry.getKey().getId()+" :: "+entry.getKey().getHp()+" "+entry.getValue().getLast().getHp());
+    		/*fw.write(" FACTURE COMPTEUR "+entry.getKey().getId() + "\n");
+    		fw.write(" Consomation hc : " + consoHc + " au tarif de " + prixEnVigueurHc + " pour un total de " + consoHc * prixEnVigueurHc +  "\n" );
+    		fw.write(" Consomation hp : " + consoHp + " au tarif de " + prixEnVigueurHp + " pour un total de " + consoHp * prixEnVigueurHp +  "\n" );
     		fw.write(" TOTAL FACTURE : " + consoHc * prixEnVigueurHc + consoHp * prixEnVigueurHp );
-    		fw.close();
+    		fw.close();*/
     	}
     	
     }

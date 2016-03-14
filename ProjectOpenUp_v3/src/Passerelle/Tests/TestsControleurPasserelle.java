@@ -17,8 +17,7 @@ public class TestsControleurPasserelle {
 
 	@Before
 	public void setUp() throws Exception {
-		cp = new ControleurPasserelle(1);
-		
+		cp = new ControleurPasserelle(1);		
 	}
 
 	@After
@@ -28,6 +27,7 @@ public class TestsControleurPasserelle {
 
 	@Test
 	public void testControleurPasserelleModeleLEDModelePasserelleModeleLEDModeleLCDModelePasserelle() {
+		assertNotNull(cp);
 	}
 
 	@Test

@@ -36,7 +36,7 @@ public class TestsModeleRRC {
 	}
 
 	@Test
-	public void testSetPrixEnVigueur() {}
+	public void testGetSetTabMesuresTraitees() {}
 
 	@Test
 	public void testGetTabMesuresTraitees() {}

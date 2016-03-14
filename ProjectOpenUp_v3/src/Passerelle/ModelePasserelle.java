@@ -12,14 +12,12 @@ package Passerelle;
 
 //## auto_generated
 import java.util.*;
-
-import org.omg.CORBA._PolicyStub;
-
-
-
+import java.util.Map.Entry;
 
 //## link controleurRRC 
 import RRC.ControleurRRC;
+import RRC.ModeleRRC;
+import Compteur.Client;
 //## link listeCompteurs 
 import Compteur.ModeleCompteur;
 import Compteur.ModeleCompteurDate;
@@ -36,7 +34,7 @@ public class ModelePasserelle {
 
     protected int idPasserelle;		//## attribute idPasserelle 
     
-    protected ControleurRRC controleurRRC;		//## link controleurRRC 
+    protected ModeleRRC modeleRRC;		//## link controleurRRC 
     
     protected Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> listeCompteurs = new HashMap<ModeleCompteur,LinkedList<ModeleCompteurDate>>();		//## link listeCompteurs 
     
@@ -54,10 +52,52 @@ public class ModelePasserelle {
     public  ModelePasserelle() {
     }
     
+  //## operation majSysteme() 
+    public void majSysteme() {
+        //#[ operation majSysteme() 
+        //#]*
+    	String chaine = new String();
+    	ModeleCompteur modele;
+    	ModeleCompteurDate modeleDate;
+    	
+    	for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : listeCompteurs.entrySet()){
+    		modele = entry.getKey();
+    		modeleDate = entry.getValue().getLast();
+    		
+    		entry.getValue().addLast(modele.getCompteurDate());
+    		
+			chaine = chaine.concat("\nCompteur "+modele.getId()+" : ");
+			
+			if(modele.isConnected())
+			{
+				chaine=chaine.concat(modele.getHc()+" / "+modele.getHp());
+			}
+			else
+			{
+				chaine=chaine.concat("COMPTEUR OFFLINE");
+				//modeleLEDEtatConnectionCompteur.setEtatAAfficher(0);; notifie les led
+			}
+			
+    	}
+    	//notification des observer
+    	//modeleLCD.setDonneesAAfficher(chaine); notifier le lcd
+    }
+    
+	public Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> getInfo(){
+		// TODO: traitement pour correspondre au exigences du client
+		return listeCompteurs;
+	}
+    
     //## operation envoyerinfoRCCPush() 
-    public void envoyerinfoRCCPush() {
+    public void envoyerinfoRCCPush(ModeleCompteur p_ModeleCompteur) {
         //#[ operation envoyerinfoRCCPush() 
         //#]
+    	LinkedList<ModeleCompteurDate> l = listeCompteurs.get(p_ModeleCompteur);
+    	
+    	if( l == null){
+    		System.out.println("erreur");
+    		return;
+    	}
     }
     
     //## operation majConsommation() 
@@ -66,7 +106,13 @@ public class ModelePasserelle {
         //#]
     }
     
-    //## auto_generated 
+    public ModeleRRC getModeleRRC() {
+		return modeleRRC;
+	}
+	public void setModeleRRC(ModeleRRC modeleRRC) {
+		this.modeleRRC = modeleRRC;
+	}		
+	//## auto_generated 
     public int getIdPasserelle() {
         return idPasserelle;
     }
@@ -77,33 +123,66 @@ public class ModelePasserelle {
     }
     
     //## auto_generated 
-    public ControleurRRC getControleurRRC() {
-        return controleurRRC;
-    }
-    
-    //## auto_generated 
-    public void setControleurRRC(ControleurRRC p_ControleurRRC) {
-        controleurRRC = p_ControleurRRC;
-    }
-    
-    //## auto_generated 
     public Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> getListeCompteurs() {
-        
         return listeCompteurs;
     }
     
-    //## auto_generated 
-    public void addListeCompteurs(ModeleCompteur p_ModeleCompteur) {
-        //listeCompteurs.add(p_ModeleCompteur.getId(),p_ModeleCompteur);
-    	LinkedList<ModeleCompteurDate> l = listeCompteurs.get(p_ModeleCompteur.getId());
+    public Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> getReleve(){
+    	Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> releve = new HashMap<>();
+    	LinkedList<ModeleCompteurDate> l;
+    	int i;
     	
-    	if( l != null)
-    		l.add(new ModeleCompteurDate(p_ModeleCompteur));
-    	else{
+    	//listeCompteurs.
+    	
+    	for(Entry<ModeleCompteur,LinkedList<ModeleCompteurDate>> elem : listeCompteurs.entrySet()){
     		l = new LinkedList<ModeleCompteurDate>();
-    		l.addFirst(new ModeleCompteurDate(p_ModeleCompteur));
-    		listeCompteurs.put(p_ModeleCompteur, l);
+    		i = 0;
+//TODO :  résoudre probleme de concurrent je ne sais pas comment ..... 
+    		
+    		for(Iterator<ModeleCompteurDate> iter = elem.getValue().iterator();iter.hasNext();){
+    			ModeleCompteurDate m = iter.next();
+    			
+    			if((i % elem.getKey().getIntervalleReleve()) == 0){
+    				l.addLast(new ModeleCompteurDate(m));
+    				//System.out.println("P - Compteur : "+ ts+" : "+elem.getKey().getHp()+" "+elem.getValue().getLast().getHp());
+    			}
+    			i++;    			
+    		}
+    		//System.out.println("P - Compteur : "+elem.getKey().getId()+" :: "+elem.getKey().getHc()+" "+elem.getValue().getLast().getHp());
+    		releve.put(new ModeleCompteur(elem.getKey()),l);
     	}
+    	
+    	/*for(Entry<ModeleCompteur,LinkedList<ModeleCompteurDate>> elem : releve.entrySet()){	    		
+
+    		System.out.println("P - Compteur : "+elem.getKey().getId()+" :: "+elem.getKey().getHc()+" "+elem.getKey().getHp());
+    		for(ModeleCompteurDate m : elem.getValue()){
+    			
+    			System.out.println(m.getDisplay());
+   			
+    		}
+    	}*/
+    		
+    	return releve;
+    }
+    
+    public LinkedList<ModeleCompteurDate> getReleveModeleCompteur(ModeleCompteur modeleCompteur){
+    	return listeCompteurs.get(modeleCompteur);
+    }
+    
+    //## auto_generated 
+    public void addListeCompteurs(ModeleCompteur modeleCompteur) {
+        //listeCompteurs.add(p_ModeleCompteur.getId(),p_ModeleCompteur);
+    	LinkedList<ModeleCompteurDate> l = listeCompteurs.get(modeleCompteur);
+ 
+    	
+    	if( l != null){
+    		System.out.println(modeleCompteur.toString()+"déjà existant");
+    		return;
+    	}
+    	
+    	l = new LinkedList<ModeleCompteurDate>();
+		l.addLast(modeleCompteur.getCompteurDate());
+		listeCompteurs.put(modeleCompteur, l);
     		
     }
     

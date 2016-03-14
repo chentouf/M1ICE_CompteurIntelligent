@@ -43,8 +43,6 @@ public class ControleurPasserelle {
     
     protected ModelePasserelle modelePasserelle;		//## link modelePasserelle 
     
-    protected ModeleRRC modeleRRC;		//## link modeleRRC 
-    
     protected int duree; 			// intervale de temps entre deux mesures 
     
    // protected VuePasserelle vuePasserelle;
@@ -125,16 +123,6 @@ public class ControleurPasserelle {
         modelePasserelle = p_ModelePasserelle;
     }
     
-    //## auto_generated 
-    public ModeleRRC getModeleRRC() {
-        return modeleRRC;
-    }
-    
-    //## auto_generated 
-    public void setModeleRRC(ModeleRRC p_ModeleRRC) {
-        modeleRRC = p_ModeleRRC;
-    }
-    
     public ControleurLED getControleurLEDEtatConnectionCompteur() {
 		return controleurLEDEtatConnectionCompteur;
 	}
@@ -149,11 +137,6 @@ public class ControleurPasserelle {
 
 	public void setControleurLEDEtatConnectionRRC(ControleurLED modeleLEDEtatConnectionRRC) {
 		this.controleurLEDEtatConnectionRRC = controleurLEDEtatConnectionRRC;
-	}
-	
-	public Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> getInfo(){
-		// TODO: traitement pour correspondre au exigences du client
-		return modelePasserelle.getListeCompteurs();
 	}
     
 }

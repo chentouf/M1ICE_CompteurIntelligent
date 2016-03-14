@@ -28,19 +28,17 @@ import Passerelle.ModelePasserelle;
 public class ModeleCompteur extends Observable{
 	
 	//ajout client plus durée défini par le client
-    
+    private static int ID = 0;
     protected int hc;		//## attribute hc 
     protected int hp;		//## attribute hp
     protected String id;
-    protected boolean etatConnection ;    
-    
+    protected boolean etatConnection ; 
     // Constructors
     
     //## operation ModeleCompteur() 
     public  ModeleCompteur() {
     	super();
-        //#[ operation ModeleCompteur() 
-        //#]
+    	id = new String(""+ModeleCompteur.incID());
     	hc = 0;
     	hp = 0;
     	etatConnection = true ;
@@ -48,10 +46,16 @@ public class ModeleCompteur extends Observable{
     
     public ModeleCompteur(ModeleCompteur copy){
     	super();
-    	
+    	id = copy.getId();
     	hc = copy.getHc();
     	hp = copy.getHp();
     	etatConnection = copy.isConnected();
+    }
+    
+    public static synchronized int incID(){
+    	
+    	ModeleCompteur.ID++;
+    	return ModeleCompteur.ID;
     }
     
     public String getId() {
@@ -96,6 +100,14 @@ public class ModeleCompteur extends Observable{
 	public void setConnection(boolean etatConnection) {
 		this.etatConnection = etatConnection;
 	}
+	
+	public ModeleCompteur copie(){
+		return new ModeleCompteur(this);
+	}
+	
+	public int getIntervalleReleve(){
+		return 0;
+	}
 
     @Override
     public boolean equals(Object o){
@@ -116,6 +128,11 @@ public class ModeleCompteur extends Observable{
     
     public ModeleCompteurDate getCompteurDate(){
     	return new ModeleCompteurDate(this);
+    }
+    
+    @Override
+    public String toString(){
+    	return "Compteur : "+this.id;
     }
 }
 /*********************************************************************
