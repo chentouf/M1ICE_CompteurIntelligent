@@ -54,33 +54,35 @@ public class ModelePasserelle {
     
   //## operation majSysteme() 
     public void majSysteme() {
-        //#[ operation majSysteme() 
-        //#]*
-    	String chaine = new String();
-    	ModeleCompteur modele;
-    	ModeleCompteurDate modeleDate;
-    	
-    	for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : listeCompteurs.entrySet()){
-    		modele = entry.getKey();
-    		modeleDate = entry.getValue().getLast();
-    		
-    		entry.getValue().addLast(modele.getCompteurDate());
-    		
-			chaine = chaine.concat("\nCompteur "+modele.getId()+" : ");
-			
-			if(modele.isConnected())
-			{
-				chaine=chaine.concat(modele.getHc()+" / "+modele.getHp());
-			}
-			else
-			{
-				chaine=chaine.concat("COMPTEUR OFFLINE");
-				//modeleLEDEtatConnectionCompteur.setEtatAAfficher(0);; notifie les led
-			}
-			
+    	synchronized(this){
+	        //#[ operation majSysteme() 
+	        //#]*
+	    	String chaine = new String();
+	    	ModeleCompteur modele;
+	    	ModeleCompteurDate modeleDate;
+	    	
+	    	for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : listeCompteurs.entrySet()){
+	    		modele = entry.getKey();
+	    		modeleDate = entry.getValue().getLast();
+	    		
+	    		entry.getValue().addLast(modele.getCompteurDate());
+	    		
+				chaine = chaine.concat("\nCompteur "+modele.getId()+" : ");
+				
+				if(modele.isConnected())
+				{
+					chaine=chaine.concat(modele.getHc()+" / "+modele.getHp());
+				}
+				else
+				{
+					chaine=chaine.concat("COMPTEUR OFFLINE");
+					//modeleLEDEtatConnectionCompteur.setEtatAAfficher(0);; notifie les led
+				}
+				
+	    	}
+	    	//notification des observer
+	    	//modeleLCD.setDonneesAAfficher(chaine); notifier le lcd
     	}
-    	//notification des observer
-    	//modeleLCD.setDonneesAAfficher(chaine); notifier le lcd
     }
     
 	public Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> getInfo(){
@@ -129,38 +131,42 @@ public class ModelePasserelle {
     
     public Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> getReleve(){
     	Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> releve = new HashMap<>();
-    	LinkedList<ModeleCompteurDate> l;
-    	int i;
     	
-    	//listeCompteurs.
-    	
-    	for(Entry<ModeleCompteur,LinkedList<ModeleCompteurDate>> elem : listeCompteurs.entrySet()){
-    		l = new LinkedList<ModeleCompteurDate>();
-    		i = 0;
-//TODO :  résoudre probleme de concurrent je ne sais pas comment ..... 
-    		
-    		for(Iterator<ModeleCompteurDate> iter = elem.getValue().iterator();iter.hasNext();){
-    			ModeleCompteurDate m = iter.next();
-    			
-    			if((i % elem.getKey().getIntervalleReleve()) == 0){
-    				l.addLast(new ModeleCompteurDate(m));
-    				//System.out.println("P - Compteur : "+ ts+" : "+elem.getKey().getHp()+" "+elem.getValue().getLast().getHp());
-    			}
-    			i++;    			
-    		}
-    		//System.out.println("P - Compteur : "+elem.getKey().getId()+" :: "+elem.getKey().getHc()+" "+elem.getValue().getLast().getHp());
-    		releve.put(new ModeleCompteur(elem.getKey()),l);
+    	synchronized(this){	
+        	LinkedList<ModeleCompteurDate> l;
+        	int i;
+        	
+        	//listeCompteurs.
+        	
+        	for(Entry<ModeleCompteur,LinkedList<ModeleCompteurDate>> elem : listeCompteurs.entrySet()){
+        		l = new LinkedList<ModeleCompteurDate>();
+        		i = 0;
+    //TODO :  résoudre probleme de concurrent je ne sais pas comment ..... 
+        		
+        		for(Iterator<ModeleCompteurDate> iter = elem.getValue().iterator();iter.hasNext();){
+        			ModeleCompteurDate m = iter.next();
+        			
+        			if((i % elem.getKey().getIntervalleReleve()) == 0){
+        				l.addLast(new ModeleCompteurDate(m));
+        				//System.out.println("P - Compteur : "+ ts+" : "+elem.getKey().getHp()+" "+elem.getValue().getLast().getHp());
+        			}
+        			i++;    			
+        		}
+        		//System.out.println("P - Compteur : "+elem.getKey().getId()+" :: "+elem.getKey().getHc()+" "+elem.getValue().getLast().getHp());
+        		releve.put(new ModeleCompteur(elem.getKey()),l);
+        	}
+        	
+        	/*for(Entry<ModeleCompteur,LinkedList<ModeleCompteurDate>> elem : releve.entrySet()){	    		
+
+        		System.out.println("P - Compteur : "+elem.getKey().getId()+" :: "+elem.getKey().getHc()+" "+elem.getKey().getHp());
+        		for(ModeleCompteurDate m : elem.getValue()){
+        			
+        			System.out.println(m.getDisplay());
+       			
+        		}
+        	}*/
     	}
     	
-    	/*for(Entry<ModeleCompteur,LinkedList<ModeleCompteurDate>> elem : releve.entrySet()){	    		
-
-    		System.out.println("P - Compteur : "+elem.getKey().getId()+" :: "+elem.getKey().getHc()+" "+elem.getKey().getHp());
-    		for(ModeleCompteurDate m : elem.getValue()){
-    			
-    			System.out.println(m.getDisplay());
-   			
-    		}
-    	}*/
     		
     	return releve;
     }
