@@ -30,6 +30,7 @@ public class TestsModeleRRC {
 	@Test
 	public void testGetDuree() {
 		assertEquals(mrc.getDuree(),2);
+		//test
 	}
 
 	@Test
