@@ -30,9 +30,6 @@ public class TestsModeleRRC {
 
 	@Test
 	public void testGetPrixEnVigueur() {
-		
-	/*	int prix = mr.getPrixEnVigueur();
-		assertEquals(mr.getPrixEnVigueur(),prix);*/
 	}
 
 	@Test
