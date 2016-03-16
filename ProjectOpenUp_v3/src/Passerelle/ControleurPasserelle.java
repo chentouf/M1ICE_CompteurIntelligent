@@ -64,38 +64,6 @@ public class ControleurPasserelle {
     	
     }
     
-    //## operation majSysteme() 
-    public void majSysteme() {
-        //#[ operation majSysteme() 
-        //#]*
-    	String chaine = new String();
-    	Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> data = modelePasserelle.getListeCompteurs();
-    	ModeleCompteur modele;
-    	ModeleCompteurDate modeleDate;
-    	
-    	for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : data.entrySet()){
-    		
-    		modele = entry.getKey();
-    		modeleDate = entry.getValue().getFirst();
-    		
-    		entry.getValue().addFirst(modele.getCompteurDate());
-    		
-			chaine = chaine.concat("\nCompteur "+modele.getId()+" : ");
-			
-			if(modele.isConnected())
-			{
-				chaine=chaine.concat(modele.getHc()+" / "+modele.getHp());
-			}
-			else
-			{
-				chaine=chaine.concat("COMPTEUR OFFLINE");
-				controleurLEDEtatConnectionCompteur.getModeleLED().setEtatAAfficher(0);;
-			}
-    	}
-    	
-    	controleurLCD.getModeleLCD().setDonneesAAfficher(chaine);
-    }
-    
     public int getDuree() {
 		return duree;
 	}

@@ -20,9 +20,9 @@ public class ModeleCompteurDate extends ModeleCompteur{
 		this.date = modele.date;
 	}
 	
-	public Date getDate() {
-		//return date;
-		return null;
+	public long getDate() {
+		return date;
+		//return null;
 	}
 
 	public void setDate(Date date) {
@@ -43,7 +43,7 @@ public class ModeleCompteurDate extends ModeleCompteur{
     }
 	
 	public String getDisplay(){
-		return "Compteur "+this.id+" : "+this.hc+" // "+this.hp+" au "+this.date;
+		return "Compteur "+this.id+" : "+this.hc+" // "+this.hp+" au "+new Date(this.date).toString();
 	}
 	
 }

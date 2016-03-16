@@ -10,7 +10,8 @@ import Passerelle.ControleurPasserelle;
 
 public class SimulationPasserelle implements Runnable {
 	
-	public ControleurPasserelle passerelle;
+
+	private ControleurPasserelle passerelle;
 	
 	public SimulationPasserelle(){
 		passerelle = new ControleurPasserelle(1);
@@ -20,8 +21,6 @@ public class SimulationPasserelle implements Runnable {
 		SimulationPasserelle simulation = new SimulationPasserelle();
 		SimulationCompteur[] tab = new SimulationCompteur[3];
 		ControleurLCD lcd = new ControleurLCD();
-		
-		simulation.passerelle.setControleurLCD(lcd);
 		
 		new Thread(simulation).start();
 		

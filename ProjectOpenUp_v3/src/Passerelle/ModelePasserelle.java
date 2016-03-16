@@ -162,23 +162,18 @@ public class ModelePasserelle {
         	LinkedList<ModeleCompteurDate> l;
         	int i;
         	
-        	//listeCompteurs.
-        	
         	for(Entry<ModeleCompteur,LinkedList<ModeleCompteurDate>> elem : listeCompteurs.entrySet()){
         		l = new LinkedList<ModeleCompteurDate>();
         		i = 0;
-    //TODO :  résoudre probleme de concurrent je ne sais pas comment ..... 
         		
         		for(Iterator<ModeleCompteurDate> iter = elem.getValue().iterator();iter.hasNext();){
         			ModeleCompteurDate m = iter.next();
         			
         			if((i % elem.getKey().getIntervalleReleve()) == 0){
         				l.addLast(new ModeleCompteurDate(m));
-        				//System.out.println("P - Compteur : "+ ts+" : "+elem.getKey().getHp()+" "+elem.getValue().getLast().getHp());
         			}
         			i++;    			
         		}
-        		//System.out.println("P - Compteur : "+elem.getKey().getId()+" :: "+elem.getKey().getHc()+" "+elem.getValue().getLast().getHp());
         		releve.put(new ModeleCompteur(elem.getKey()),l);
         	}
         	
