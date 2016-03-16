@@ -1,10 +1,17 @@
 package Passerelle;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import LCD.VueLCD;
 import LED.VueLED;
@@ -31,25 +38,52 @@ public class VuePasserelle extends JFrame {
 
     public void build()
     {
+    	JPanel main_panel = new JPanel();
+    	main_panel.setLayout(new GridLayout(1,2));
+    	JPanel titre_simulation_lcd = new JPanel();
+    	titre_simulation_lcd.add(new JLabel("Ecran LCD"));
+    	JPanel lcd = new JPanel();
+    	lcd.setLayout(new BoxLayout(lcd, BoxLayout.Y_AXIS));
+    	lcd.add(titre_simulation_lcd);
+    	lcd.add(buildContentPaneLCD());
+    	main_panel.add(buildContentPaneLED());
+    	main_panel.add(lcd);
     	this.setTitle("Simulation Passerelle");
-        this.setSize(500, 200);
+        this.setSize(870, 400);
         this.setVisible(true);
     	setLocationRelativeTo(null); //On centre la fenêtre sur l'écran
 		setResizable(true); //On permet le redimensionnement
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setContentPane(buildContentPane());
+		setContentPane(main_panel);
     }
     
-    private JPanel buildContentPane()
+    private JPanel buildContentPaneLED()
     {
     	JPanel panel = new JPanel();
-    	panel.setLayout(new GridLayout(1,2));
+    	panel.setLayout(new GridLayout(2,4));
+    	
+    	JPanel titre2 = new JPanel();
+    	titre2.add(new JLabel("Etat generale des connexions"));
+    	
+    	JPanel titre3 = new JPanel();
+    	titre3.add(new JLabel("Etat accees distant"));
+    	panel.add(titre2);
+    	panel.add(titre3);
     	vueLEDAccesDistant.setDisplay(Color.green);
     	vueLEDEtatConnection.setDisplay(Color.green);
     	panel.add(vueLEDAccesDistant);
     	panel.add(vueLEDEtatConnection);
-    	panel.add(vueLCD);
+
     	return panel;
+    }
+    
+    private JTextArea buildContentPaneLCD()
+    {
+    	JTextArea simulationLCD = new JTextArea(5, 10);
+
+    	simulationLCD.setPreferredSize(new Dimension(100, 100));
+
+    	return simulationLCD;
     }
     
 }

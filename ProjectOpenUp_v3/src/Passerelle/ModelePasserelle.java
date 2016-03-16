@@ -10,6 +10,7 @@
 
 package Passerelle;
 
+import java.awt.Color;
 //## auto_generated
 import java.util.*;
 import java.util.Map.Entry;
@@ -21,6 +22,7 @@ import Compteur.Client;
 //## link listeCompteurs 
 import Compteur.ModeleCompteur;
 import Compteur.ModeleCompteurDate;
+import LCD.ModeleLCD;
 
 //----------------------------------------------------------------------------
 // Passerelle/ModelePasserelle.java                                                                  
@@ -36,6 +38,11 @@ public class ModelePasserelle {
     
     protected ModeleRRC modeleRRC;		//## link controleurRRC 
     
+    protected VuePasserelle vuePasserelle;
+    
+    protected ModeleLCD modeleLCD;
+    
+    
     protected Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> listeCompteurs = new HashMap<ModeleCompteur,LinkedList<ModeleCompteurDate>>();		//## link listeCompteurs 
     
     // Constructors
@@ -44,9 +51,11 @@ public class ModelePasserelle {
      * @param cr
     */
     //## operation ModelePasserelle(ControleurRRC) 
-    public  ModelePasserelle(final ControleurRRC cr) {
+    public  ModelePasserelle(VuePasserelle vuePasserelle,ModeleLCD modeleLCD) {
         //#[ operation ModelePasserelle(ControleurRRC) 
         //#]
+    	this.vuePasserelle = vuePasserelle;
+    	this.modeleLCD = modeleLCD;
     }
     //## auto_generated 
     public  ModelePasserelle() {
@@ -60,6 +69,7 @@ public class ModelePasserelle {
 	    	String chaine = new String();
 	    	ModeleCompteur modele;
 	    	ModeleCompteurDate modeleDate;
+	    	boolean etat = true;
 	    	
 	    	for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : listeCompteurs.entrySet()){
 	    		modele = entry.getKey();
@@ -72,16 +82,32 @@ public class ModelePasserelle {
 				if(modele.isConnected())
 				{
 					chaine=chaine.concat(modele.getHc()+" / "+modele.getHp());
+					
+					
 				}
 				else
 				{
 					chaine=chaine.concat("COMPTEUR OFFLINE");
+					etat = false;
 					//modeleLEDEtatConnectionCompteur.setEtatAAfficher(0);; notifie les led
+					
+					
 				}
+				
+				if(etat){
+					vuePasserelle.vueLEDEtatConnection.setDisplay(Color.green);
+					//System.out.println("ok compteur marche");
+				}
+				else
+				{
+					vuePasserelle.vueLEDEtatConnection.setDisplay(Color.RED);
+				}
+					
 				
 	    	}
 	    	//notification des observer
-	    	//modeleLCD.setDonneesAAfficher(chaine); notifier le lcd
+	    	modeleLCD.setDonneesAAfficher(chaine);
+	    	vuePasserelle.vueLCD.append(chaine);//notifier le lcd
     	}
     }
     

@@ -15,6 +15,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 
 //----------------------------------------------------------------------------
@@ -25,7 +26,7 @@ import javax.swing.JPanel;
 
 
 //## class VueLCD 
-public class VueLCD extends JPanel implements Observer{
+public class VueLCD extends JTextArea implements Observer{
     
     /**
 	 * 
@@ -40,6 +41,7 @@ public class VueLCD extends JPanel implements Observer{
     public  VueLCD() {
         //#[ operation VueLCD() 
         //#]
+    	this.setVisible(true);
     }
     
     //## auto_generated 
@@ -60,6 +62,7 @@ public class VueLCD extends JPanel implements Observer{
 			modele = (ModeleLCD)o;
 			display = modele.getDonneesAAfficher();
 			System.out.println(display);
+			this.setText(display);
 		}
 	}
     

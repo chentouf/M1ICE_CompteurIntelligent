@@ -1,4 +1,4 @@
-package Passerelle;
+package LED;
 
 import java.util.Iterator;
 
@@ -7,13 +7,15 @@ import Compteur.ModeleCompteur;
 import Compteur.SimulationCompteur;
 import LCD.ControleurLCD;
 import Passerelle.ControleurPasserelle;
+import Passerelle.SimulationPasserelle;
 
-public class SimulationPasserelle implements Runnable {
+public class SimulationLED implements Runnable {
 	
-	public ControleurPasserelle passerelle;
+	private ControleurPasserelle passerelle;
 	
-	public SimulationPasserelle(){
+	public SimulationLED(){
 		passerelle = new ControleurPasserelle(1);
+		
 	}
 	
 	public static void main(String[] args){
@@ -33,6 +35,7 @@ public class SimulationPasserelle implements Runnable {
 			// test connection false
 			//tab[i].getControleur().getModeleCompteur().setConnection(false);
 			new Thread(tab[i]).start();
+			
 		}
 		
 		try {
@@ -42,7 +45,8 @@ public class SimulationPasserelle implements Runnable {
 			e.printStackTrace();
 		}
 		
-		simulation.passerelle.getModelePasserelle().removeListeCompteurs(tab[1].getControleur().getModeleCompteur());
+		tab[1].getControleur().getModeleCompteur().setConnection(false);
+		
 		
 		try {
 			Thread.sleep(10000);
@@ -50,7 +54,11 @@ public class SimulationPasserelle implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		simulation.passerelle.getModelePasserelle().addListeCompteurs(tab[1].getControleur().getModeleCompteur());
+		
+		tab[1].getControleur().getModeleCompteur().setConnection(true);
+		
+		
+		
 	}
 
 	@Override
@@ -71,3 +79,4 @@ public class SimulationPasserelle implements Runnable {
 		return passerelle;
 	}
 }
+

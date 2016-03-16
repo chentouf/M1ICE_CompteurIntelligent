@@ -52,13 +52,14 @@ public class ControleurPasserelle {
 
     //## auto_generated 
     public  ControleurPasserelle(int duree) {
-    	modelePasserelle = new ModelePasserelle();
+    	
     	
     	controleurLCD = new ControleurLCD();
     	controleurLEDEtatConnectionCompteur = new ControleurLED() ;
     	controleurLEDEtatConnectionRRC = new ControleurLED();
     	
     	vuePasserelle = new VuePasserelle(controleurLEDEtatConnectionCompteur.getVueLED(),controleurLEDEtatConnectionRRC.getVueLED(), controleurLCD.getVueLCD());
+    	modelePasserelle = new ModelePasserelle(vuePasserelle,controleurLCD.getModeleLCD());
     	this.duree = duree;
     	
     }
