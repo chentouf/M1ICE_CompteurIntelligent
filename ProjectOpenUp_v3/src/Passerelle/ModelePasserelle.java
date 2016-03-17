@@ -137,7 +137,9 @@ public class ModelePasserelle {
 		return modeleRRC;
 	}
 	public void setModeleRRC(ModeleRRC modeleRRC) {
+		vuePasserelle.vueLEDAccesDistant.setDisplay(Color.blue);
 		this.modeleRRC = modeleRRC;
+		vuePasserelle.vueLEDAccesDistant.setDisplay(Color.green);
 	}		
 	//## auto_generated 
     public int getIdPasserelle() {
@@ -160,7 +162,7 @@ public class ModelePasserelle {
     	synchronized(this){	
         	LinkedList<ModeleCompteurDate> l;
         	int i;
-        	
+        	vuePasserelle.vueLEDAccesDistant.setDisplay(Color.orange);
         	for(Entry<ModeleCompteur,LinkedList<ModeleCompteurDate>> elem : listeCompteurs.entrySet()){
         		l = new LinkedList<ModeleCompteurDate>();
         		i = 0;
@@ -185,6 +187,20 @@ public class ModelePasserelle {
        			
         		}
         	}*/
+        	new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					try {
+						Thread.currentThread().sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					vuePasserelle.vueLEDAccesDistant.setDisplay(Color.green);
+				}
+			}).start();
     	}
     	
     		

@@ -1,4 +1,10 @@
- FACTURE COMPTEUR 1
- Consomation hc : 1.0 au tarif de0pour un total de 0.0
- Consomation hp : 2.0 au tarif de8pour un total de 16.0
- TOTAL FACTURE : 0.016.0
+
+
+Relevé de la période :
+Compteur 1 : 0 // 0 au Thu Mar 17 16:56:16 CET 2016
+Compteur 1 : 10 // 18 au Thu Mar 17 16:56:25 CET 2016
+
+Consommation totale :
+hc : 10 au tarif de 7 pour un total de 70
+
+hp : 18 au tarif de 8 pour un total de 144

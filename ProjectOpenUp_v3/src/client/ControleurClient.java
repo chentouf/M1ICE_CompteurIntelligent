@@ -11,10 +11,24 @@ public class ControleurClient {
 	private SimulationRRC simuRRC;
 	
 	public void lancerRRC(){
-		SimulationRRC rc = new SimulationRRC();
-		rc.initialize();
+		simuRRC = new SimulationRRC();
+		this.c = new Client(0,10);
+		SimulationCompteur[] tab = new SimulationCompteur[3];
 		
-		new Thread(rc).start();
+		for(int i = 1;i<3;i++){
+			tab[i] = new SimulationCompteur(new Client(i,10));
+			
+			simuRRC.getSimulationPasserelle().passerelle.getModelePasserelle()
+				.addListeCompteurs(tab[i].getControleur().getModeleCompteur());
+			// test connection false
+			//tab[i].getControleur().getModeleCompteur().setConnection(false);
+			new Thread(tab[i]).start();
+		}
+		
+
+		simuRRC.initialize();
+		simuRRC.getSimulationPasserelle().initialize();
+		//simuRRC.getSimulationPasserelle().getControleurPasserelle().getVuePasserelle().setVisible(false);
 	}
 	
 	public void lancerClient(){
@@ -22,6 +36,7 @@ public class ControleurClient {
 		this.c = new Client(0,10);
 		SimulationCompteur simuc = new SimulationCompteur(c);
 		
+		simuRRC.getControleurRRC().getVueRRC().setVisible(false);
 		simuRRC.getSimulationPasserelle().getControleurPasserelle().getModelePasserelle().addListeCompteurs(simuc.getControleur().getModeleCompteur());
 		simuRRC.initialize();
 		simuRRC.getSimulationPasserelle().initialize();

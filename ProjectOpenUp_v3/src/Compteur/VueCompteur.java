@@ -10,11 +10,15 @@
 
 package Compteur;
 
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -35,7 +39,7 @@ public class VueCompteur extends JFrame implements Observer {
 	 */
 	private static final long serialVersionUID = 1L;
 	protected String display;		//## attribute display 
-	
+	private ModeleCompteur modele;
 	
 	
     
@@ -46,22 +50,40 @@ public class VueCompteur extends JFrame implements Observer {
 	JLabel idCompteur = new JLabel("");
 	JLabel valeurHP = new JLabel("");
 	JLabel valeurHC = new JLabel("");
+	JButton disconnect = new JButton("ON/OFF");
 	
     //## operation VueCompteur() 
-    public  VueCompteur() {
-    	super();
+	 public  VueCompteur() {
+		super();
+    }
+	    
+    public  VueCompteur(ModeleCompteur modele) {
+		super();
+		this.modele = modele;
 		build();
-       }
+    }
     
     public void build()
     {
     	this.setTitle("Simulation Compteur");
         this.setSize(400, 100);
         this.setVisible(true);
+        
+        disconnect.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e){
+        		modele.setConnection(
+        				!modele.getConnection());
+        	}
+		});
+        
+        
     	setLocationRelativeTo(null); //On centre la fenêtre sur l'écran
 		setResizable(true); //On permet le redimensionnement
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //On dit à l'application de se fermer lors du clic sur la croix
-		setContentPane(buildContentPane());
+		setLayout(new BorderLayout());
+		add(buildContentPane(),BorderLayout.CENTER);
+		add(disconnect,BorderLayout.SOUTH);
     }
     
     private JPanel buildContentPane()

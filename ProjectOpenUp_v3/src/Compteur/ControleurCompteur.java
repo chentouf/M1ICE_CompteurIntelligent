@@ -35,7 +35,7 @@ public class ControleurCompteur {
     public  ControleurCompteur(String id) {
 
     	this.modeleCompteur = new ModeleCompteur();
-    	this.vueCompteur = new VueCompteur();
+    	this.vueCompteur = new VueCompteur(modeleCompteur);
     	
     	modeleCompteur.setId(id);
     	this.modeleCompteur.addObserver(this.vueCompteur);
@@ -44,7 +44,7 @@ public class ControleurCompteur {
     
     public ControleurCompteur(ModeleCompteur modele){
     	this.modeleCompteur = modele;
-    	this.vueCompteur = new VueCompteur();
+    	this.vueCompteur = new VueCompteur(modele);
     	this.modeleCompteur.addObserver(this.vueCompteur);
     }
     

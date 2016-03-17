@@ -81,7 +81,8 @@ public class VueRRC extends JFrame{
     	JButton bModifier = new JButton("Modifier");
     	pBas.add(bModifier, BorderLayout.EAST);
     	bModifier.addMouseListener(new MouseAdapter() {
-    		public void mouseClick(MouseEvent e)
+    		@Override
+    		public void mouseClicked(MouseEvent e)
     		{
     			miseAJourParametrageRRC();
     			System.out.println("MODELE : "+ mRRC.getPrixEnVigeurHp() +" :: "+ mRRC.getPrixEnVigueurHc() +" :: "+mRRC.getDuree() );
@@ -138,20 +139,23 @@ public class VueRRC extends JFrame{
 	void miseAJourAffichageMesures() {
 		
 		Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> releve = mRRC.mesure;
-		
+		String chaine = new String("");
 		
     	for(Entry<ModeleCompteur,LinkedList<ModeleCompteurDate>> elem : releve.entrySet()){	    		
 
-		System.out.println("P - Compteur : "+elem.getKey().getId()+" :: "+elem.getKey().getHc()+" "+elem.getKey().getHp());
-		for(ModeleCompteurDate m : elem.getValue()){
-			
-			tMesures.setText(m.getDisplay());
-			System.out.println(m.getDisplay());
-			
+			//System.out.println("P - Compteur : "+elem.getKey().getId()+" :: "+elem.getKey().getHc()+" "+elem.getKey().getHp());
+    		chaine = chaine.concat("\nCompteur : "+elem.getKey().getId());
+			for(ModeleCompteurDate m : elem.getValue()){
+				
+				chaine = chaine.concat("\n"+m.getDisplay());
+				System.out.println(m.getDisplay());
+				
+			}
 		}
-	}
+    	tMesures.setText(chaine);
     
-	}}
+	}
+}
 /*********************************************************************
 	File Path	: DefaultComponent/DefaultConfig/RRC/VueRRC.java
 *********************************************************************/

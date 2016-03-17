@@ -151,8 +151,7 @@ public class ModeleRRC{
         		/*File fichier = new File("facture"+entry.getKey().getId()+".txt"); 
         		fichier.createNewFile();
         		FileWriter fw = new FileWriter (fichier);
-        		int consoHc = (entry.getKey().getHc() - entry.getValue().getLast().getHc()) ;
-        		int consoHp = (entry.getKey().getHp() - entry.getValue().getLast().getHp()) ;*/
+        		
         		
         		//System.out.println("Compteur : "+entry.getKey().getId()+" :: "+entry.getKey().getHp()+" "+entry.getValue().getLast().getHp());
         		/*fw.write(" FACTURE COMPTEUR "+entry.getKey().getId() + "\n");
@@ -167,34 +166,68 @@ public class ModeleRRC{
 
 	public void produireFacture(Client client, Date d1, Date d2) {
 		// TODO Auto-generated method stub
-		System.out.println("allo");
+		File fichier;
+		FileWriter fw;
+		int consoHc;
+		int consoHp;
+		ModeleCompteurDate debut = null;
+		ModeleCompteurDate fin = null;
+		
 		synchronized(this)
         {
-
-        	//TODO : ecrire dans le fichier
-        	/*if(mesure.containsKey(client)){
-        		LinkedList<ModeleCompteurDate> l = mesure.get(client);
-	    		System.out.println("Compteur : "+client.getId()+" client : "+client.getNom());
-	    		for(ModeleCompteurDate elem : l){
-	    			Date d = new Date(elem.getDate());
-	    			if(d.compareTo(d1) >= 0 && d.compareTo(d2) <= 0){
-	    				System.out.println(elem.getDisplay());
-	    			}
-	    		}
-        	}*/
-			for(Entry<ModeleCompteur,LinkedList<ModeleCompteurDate>> entry : mesure.entrySet()){
-				System.out.println("Compteur : "+client.getId()+" client : "+client.getNom());
-				for(ModeleCompteurDate elem : entry.getValue()){
-	    			Date d = new Date(elem.getDate());
-	    			
-	    			if(d1.compareTo(d) <= 0 && d.compareTo(d2) <= 0){
-	    				System.out.println(elem.getDisplay());
-	    			}
-	    			//System.out.println(elem.getDisplay());
-	    		}
+			try {
+				fichier = new File("facture"+client.getId()+".txt");
+				fichier.createNewFile();
+				fw = new FileWriter (fichier);
+				
+				for(Entry<ModeleCompteur,LinkedList<ModeleCompteurDate>> entry : mesure.entrySet()){
+					if(client.getId() == entry.getKey().getId()){					
+						fw.write("\n\nRelevé de la période :");
+						//System.out.println("Compteur : "+client.getId()+" client : "+client.getNom());
+						for(ModeleCompteurDate elem : entry.getValue()){
+			    			Date d = new Date(elem.getDate());
+			    			
+			    			if(d1.compareTo(d) <= 0 && d.compareTo(d2) <= 0){
+			    				if(debut == null && fin == null ){
+			    					debut = elem;
+			    					fin = elem;
+			    				}
+			    				
+			    				if(debut.getDate() > elem.getDate()){
+			    					debut = elem;
+			    				}
+			    				
+			    				if(fin.getDate() < elem.getDate())
+			    					fin = elem;
+			    				
+			    				//System.out.println(elem.getDisplay());
+			    				fw.write("\n"+elem.getDisplay());
+			    			}
+			    			
+			    			
+			    			//System.out.println(elem.getDisplay());
+			    		}
+						
+					}
+				}
+				
+				consoHc = (fin.getHc() - debut.getHc()) ;
+				consoHp = (fin.getHp() - debut.getHp()) ;
+				
+				fw.write("\n\nConsommation totale :");
+				fw.write("\nhc : " + consoHc + " au tarif de " + prixEnVigueurHc + " pour un total de " + consoHc * prixEnVigueurHc +  "\n" );
+        		fw.write("\nhp : " + consoHp + " au tarif de " + prixEnVigueurHp + " pour un total de " + consoHp * prixEnVigueurHp +  "\n" );
+				
+				fw.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+    		
+			
         }
 	}
+	
 }
 /*********************************************************************
 	File Path	: DefaultComponent/DefaultConfig/RRC/ModeleRRC.java

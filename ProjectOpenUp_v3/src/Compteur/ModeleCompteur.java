@@ -89,6 +89,10 @@ public class ModeleCompteur extends Observable{
         return hp;
     }
     
+    public boolean getConnection(){
+    	return etatConnection;
+    }
+    
     //## auto_generated 
     public void setHp(int p_hp) {
         hp = p_hp;
