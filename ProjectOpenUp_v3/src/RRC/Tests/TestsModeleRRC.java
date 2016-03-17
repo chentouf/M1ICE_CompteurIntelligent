@@ -24,49 +24,21 @@ public class TestsModeleRRC {
 	@Test
 	public void testModeleRRC() {
 		assertNotNull(mrc);
-		
 	}
 
 	@Test
 	public void testGetDuree() {
 		assertEquals(mrc.getDuree(),2);
-		//test
 	}
 
 	@Test
 	public void testGetPrixEnVigueurHc() {
 		assertEquals(mrc.getPrixEnVigueurHc(),1);
-		
 	}
 
 	@Test
 	public void testGetPrixEnVigeurHp() {
 		assertEquals(mrc.getPrixEnVigeurHp(),1);
-	}
-
-	@Test
-	public void testInitMesure() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testMajMesure() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testCharger() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testEnregistrer() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testProduireFacture() {
-		fail("Not yet implemented");
 	}
 
 }

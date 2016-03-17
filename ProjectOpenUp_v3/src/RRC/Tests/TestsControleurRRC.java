@@ -7,6 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import RRC.ControleurRRC;
+import RRC.ModeleRRC;
+import RRC.VueRRC;
 
 public class TestsControleurRRC {
 
@@ -27,13 +29,18 @@ public class TestsControleurRRC {
 	}
 
 	@Test
-	public void testGetModeleRRC() {
+	public void testSetGetModeleRRC() {
+		ModeleRRC p = new ModeleRRC(1, 1, 2);
+		cr.setModeleRRC(p);
+		assertEquals(p,cr.getModeleRRC());
 		
 	}
 
 	@Test
-	public void testGetVueRRC() {
+	public void testSetGetVueRRC() {
+		VueRRC a = new VueRRC();
+		cr.setVueRRC(a);
+		assertEquals(a,cr.getVueRRC());
 		
 	}
-
 }
