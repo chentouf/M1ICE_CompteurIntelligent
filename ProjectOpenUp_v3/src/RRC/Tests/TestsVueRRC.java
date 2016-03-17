@@ -33,7 +33,8 @@ public class TestsVueRRC {
 
 	@Test
 	public void testGetSetDisplay() {
-		
+		vrc.setDisplay("test");
+		assertEquals(vrc.getDisplay(),"test");
 	}
 
 }
