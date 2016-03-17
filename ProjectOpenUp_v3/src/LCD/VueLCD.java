@@ -10,10 +10,10 @@
 
 package LCD;
 
-import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 
@@ -32,7 +32,8 @@ public class VueLCD extends JPanel implements Observer{
 	 */
 	private static final long serialVersionUID = 1L;
 	protected String display;		//## attribute display 
-    
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     
     // Constructors
     
@@ -40,6 +41,8 @@ public class VueLCD extends JPanel implements Observer{
     public  VueLCD() {
         //#[ operation VueLCD() 
         //#]
+    	initComponents();
+    	this.setVisible(true);
     }
     
     //## auto_generated 
@@ -59,10 +62,24 @@ public class VueLCD extends JPanel implements Observer{
 		if(o instanceof ModeleLCD){
 			modele = (ModeleLCD)o;
 			display = modele.getDonneesAAfficher();
-			System.out.println(display);
+			jTextArea1.setText(display);
+			
 		}
 	}
-    
+                         
+    private void initComponents() {
+
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+
+        setLayout(new java.awt.BorderLayout());
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        add(jScrollPane1, java.awt.BorderLayout.CENTER);
+    }                        
 }
 /*********************************************************************
 	File Path	: DefaultComponent/DefaultConfig/LCD/VueLCD.java

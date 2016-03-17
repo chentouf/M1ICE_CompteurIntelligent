@@ -1,7 +1,9 @@
 package RRC;
 
 import java.io.IOException;
+import java.util.Date;
 
+import Compteur.Client;
 import Compteur.SimulationCompteur;
 import LCD.ControleurLCD;
 import Passerelle.ControleurPasserelle;
@@ -16,7 +18,7 @@ public class SimulationRRC implements Runnable {
 	public SimulationRRC(){
 		// TODO Auto-generated constructor stub
 		simuPasserelle = new SimulationPasserelle();
-		controleurRRC = new ControleurRRC(7,8,10);
+		controleurRRC = new ControleurRRC(7,8,3);
 	}
 	
 	@Override
@@ -33,7 +35,7 @@ public class SimulationRRC implements Runnable {
 			
 			ControleurPasserelle controleurP = simuPasserelle.getControleurPasserelle();
 			
-			controleurRRC.getModeleRRC().majMesure(controleurP.getModelePasserelle().getListeCompteurs());
+			controleurRRC.getModeleRRC().majMesure(controleurP.getModelePasserelle().getReleve()); // simulation de l'accès à la passerelle par le RRC
 		}
 	}	
 	
@@ -49,15 +51,24 @@ public class SimulationRRC implements Runnable {
 		SimulationRRC simuRRC = new SimulationRRC();
 		SimulationCompteur[] tab = new SimulationCompteur[3];
 		ControleurLCD lcd = new ControleurLCD();
-		
+		Date date = new Date();
+		Client clientTest = new Client(0,5);
 		Thread t = new Thread(simuRRC.getSimulationPasserelle());
 		
 		t.start();
 		t = new Thread(simuRRC);
 		t.start();
 		
-		for(int i = 0;i<3;i++){
-			tab[i] = new SimulationCompteur(""+i);
+		tab[0] = new SimulationCompteur(clientTest);
+		
+		simuRRC.getSimulationPasserelle().getControleurPasserelle()	.getModelePasserelle()
+			.addListeCompteurs(tab[0].getControleur().getModeleCompteur());
+		// test connection false
+		//tab[i].getControleur().getModeleCompteur().setConnection(false);
+		new Thread(tab[0]).start();
+		
+		for(int i = 1;i<3;i++){
+			tab[i] = new SimulationCompteur(new Client(i,10));
 			
 			simuRRC.getSimulationPasserelle().getControleurPasserelle()	.getModelePasserelle()
 				.addListeCompteurs(tab[i].getControleur().getModeleCompteur());
@@ -67,9 +78,9 @@ public class SimulationRRC implements Runnable {
 		}
 		
 		try {
-			Thread.sleep(simuRRC.getControleurRRC().getModeleRRC().getDuree()*1000);
+			Thread.sleep(15000);
 			
-			simuRRC.getControleurRRC().getModeleRRC().produireFacture();
+			simuRRC.getControleurRRC().getModeleRRC().produireFacture(clientTest,date);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -10,6 +10,8 @@
 
 package RRC;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 //## link itsControleurPasserelle 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,6 +29,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import Passerelle.ControleurPasserelle;
+import Compteur.Client;
 import Compteur.ModeleCompteur;
 import Compteur.ModeleCompteurDate;
 
@@ -90,17 +93,18 @@ public class ModeleRRC {
 	}
 
 	public void majMesure(Map<ModeleCompteur, LinkedList<ModeleCompteurDate>> map){
-    	//TODO :prendre en compte le fait que que la liste ne contiendra plus que les mesures autorisé
-		LinkedList<ModeleCompteurDate> l;
-		
-		for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : map.entrySet()){			
-			if( mesure.get(entry.getKey()) == null){
-				l = new LinkedList<>();
-				l.addAll(entry.getValue());
-				mesure.put(entry.getKey(),l);
+		synchronized(this){
+	    	//TODO :prendre en compte le fait que que la liste ne contiendra plus que les mesures autorisé
+			LinkedList<ModeleCompteurDate> l;
+	
+			for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : map.entrySet()){
+				//System.out.println("R - Compteur : "+entry.getKey().getId()+" :: "+entry.getKey().getHc()+" "+entry.getKey().getHp());
+				if( mesure.get(entry.getKey()) != null){
+					mesure.remove(entry.getKey());	
+				}else{
+					mesure.get(entry.getKey()).addAll(entry.getValue());
+				}
 				
-			}else{
-				mesure.get(entry.getKey()).addAll(entry.getValue());
 			}
     	}
     }
@@ -130,25 +134,37 @@ public class ModeleRRC {
 		}
 	}
     
-    public void produireFacture() throws IOException
-    { 
-    	System.out.println("alo2");
-    	for(Entry<ModeleCompteur, LinkedList<ModeleCompteurDate>> entry : mesure.entrySet())
-    	{
-    		System.out.println("alo");
-    		
-    		File fichier = new File("facture"+entry.getKey().getId()+".txt"); 
-    		fichier.createNewFile();
-    		FileWriter fw = new FileWriter (fichier);
-    		float consoHc = (entry.getKey().getHc() - entry.getValue().getLast().getHc()) ;
-    		float consoHp = (entry.getKey().getHp() - entry.getValue().getLast().getHp()) ;
-    		fw.write(" FACTURE COMPTEUR "+entry.getKey().getId() + "\n");
-    		fw.write(" Consomation hc : " + consoHc + " au tarif de" + prixEnVigueurHc + "pour un total de " + consoHc * prixEnVigueurHc +  "\n" );
-    		fw.write(" Consomation hp : " + consoHp + " au tarif de" + prixEnVigueurHp + "pour un total de " + consoHp * prixEnVigueurHp +  "\n" );
-    		fw.write(" TOTAL FACTURE : " + consoHc * prixEnVigueurHc + consoHp * prixEnVigueurHp );
-    		fw.close();
-    	}
-    	
+    public void produireFacture(Client client,Date date) throws IOException{
+    	synchronized(this)
+        { 
+        	
+        	if(mesure.containsKey(client)){
+        		LinkedList<ModeleCompteurDate> l = mesure.get(client);
+	    		System.out.println("Compteur : "+client.getId()+" client : "+client.getNom());
+	    		for(ModeleCompteurDate elem : l){
+	    			if(new Date(elem.getDate()).compareTo(date) >= 0){
+	    				System.out.println(elem.getDisplay());
+	    			}
+	    		}
+        	}
+        }
+        		
+        		
+        		/*File fichier = new File("facture"+entry.getKey().getId()+".txt"); 
+        		fichier.createNewFile();
+        		FileWriter fw = new FileWriter (fichier);
+        		int consoHc = (entry.getKey().getHc() - entry.getValue().getLast().getHc()) ;
+        		int consoHp = (entry.getKey().getHp() - entry.getValue().getLast().getHp()) ;*/
+        		
+        		//System.out.println("Compteur : "+entry.getKey().getId()+" :: "+entry.getKey().getHp()+" "+entry.getValue().getLast().getHp());
+        		/*fw.write(" FACTURE COMPTEUR "+entry.getKey().getId() + "\n");
+        		fw.write(" Consomation hc : " + consoHc + " au tarif de " + prixEnVigueurHc + " pour un total de " + consoHc * prixEnVigueurHc +  "\n" );
+        		fw.write(" Consomation hp : " + consoHp + " au tarif de " + prixEnVigueurHp + " pour un total de " + consoHp * prixEnVigueurHp +  "\n" );
+        		fw.write(" TOTAL FACTURE : " + consoHc * prixEnVigueurHc + consoHp * prixEnVigueurHp );
+        		fw.close();*/
+        	
+        	
+        
     }
 }
 /*********************************************************************

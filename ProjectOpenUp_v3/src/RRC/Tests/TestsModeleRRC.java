@@ -27,13 +27,7 @@ public class TestsModeleRRC {
 	public void testModeleRRC() {}
 
 	@Test
-	public void testProduireFacture() {}
-
-	@Test
-	public void testGetPrixEnVigueur() {
-		
-		int prix = mr.getPrixEnVigueur();
-		assertEquals(mr.getPrixEnVigueur(),prix);
+	public void testProduireFacture() {
 	}
 
 	@Test
@@ -56,4 +50,3 @@ public class TestsModeleRRC {
 	}
 
 }
-

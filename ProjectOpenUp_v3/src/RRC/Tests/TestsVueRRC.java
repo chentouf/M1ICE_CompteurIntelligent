@@ -31,17 +31,4 @@ public class TestsVueRRC {
 		
 	}
 
-	@Test
-	public void testGetDisplay() {
-		vr.setDisplay("Test");
-		assertEquals(vr.getDisplay(), "Test");
-	}
-
-	@Test
-	public void testSetDisplay() {
-		vr.setDisplay("Test");
-		assertEquals(vr.getDisplay(), "Test");
-		
-	}
-
 }

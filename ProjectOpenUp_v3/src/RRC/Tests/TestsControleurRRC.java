@@ -1,3 +1,4 @@
+
 package RRC.Tests;
 
 import static org.junit.Assert.*;
@@ -34,14 +35,14 @@ public class TestsControleurRRC {
 
 	@Test
 	public void testGetModeleRRC() {
-		ModeleRRC mr = new ModeleRRC();
+		ModeleRRC mr = new ModeleRRC(0, 0, 0);
 		cr.setModeleRRC(mr);
 		assertEquals(cr.getModeleRRC(),mr);
 	}
 
 	@Test
 	public void testSetModeleRRC() {
-		ModeleRRC mr = new ModeleRRC();
+		ModeleRRC mr = new ModeleRRC(0, 0, 0);
 		cr.setModeleRRC(mr);
 		assertEquals(cr.getModeleRRC(),mr);
 	}
@@ -63,4 +64,6 @@ public class TestsControleurRRC {
 	}
 
 }
+
+
 

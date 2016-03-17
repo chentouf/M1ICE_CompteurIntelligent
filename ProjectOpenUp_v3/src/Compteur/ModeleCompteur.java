@@ -50,7 +50,7 @@ public class ModeleCompteur extends Observable{
     
     public ModeleCompteur(ModeleCompteur copy){
     	super();
-    	
+    	id = copy.getId();
     	hc = copy.getHc();
     	hp = copy.getHp();
     	etatConnection = copy.isConnected();
@@ -92,6 +92,7 @@ public class ModeleCompteur extends Observable{
     //## auto_generated 
     public void setHp(int p_hp) {
         hp = p_hp;
+        setChanged();
         notifyObservers();
     }
     
@@ -105,6 +106,10 @@ public class ModeleCompteur extends Observable{
 	
 	public ModeleCompteur copie(){
 		return new ModeleCompteur(this);
+	}
+	
+	public int getIntervalleReleve(){
+		return 0;
 	}
 
     @Override
