@@ -1,3 +1,4 @@
+
 package RRC.Tests;
 
 import static org.junit.Assert.*;
@@ -30,10 +31,11 @@ public class TestsModeleRRC {
 
 	@Test
 	public void testGetPrixEnVigueur() {
+
 	}
 
 	@Test
-	public void testGetSetTabMesuresTraitees() {}
+	public void testSetPrixEnVigueur() {}
 
 	@Test
 	public void testGetTabMesuresTraitees() {}

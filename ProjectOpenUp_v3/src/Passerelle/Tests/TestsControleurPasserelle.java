@@ -17,7 +17,8 @@ public class TestsControleurPasserelle {
 
 	@Before
 	public void setUp() throws Exception {
-		cp = new ControleurPasserelle(1);		
+		cp = new ControleurPasserelle(1);
+		
 	}
 
 	@After
@@ -27,7 +28,6 @@ public class TestsControleurPasserelle {
 
 	@Test
 	public void testControleurPasserelleModeleLEDModelePasserelleModeleLEDModeleLCDModelePasserelle() {
-		assertNotNull(cp);
 	}
 
 	@Test
@@ -54,18 +54,21 @@ public class TestsControleurPasserelle {
 	}
 
 	@Test
-	public void testGetSetModeleLCD() {
-	}
-
-	@Test
-	public void testGetSetModelePasserelle() {
+	public void testGetModelePasserelle() {
 		ModelePasserelle mp = new ModelePasserelle();
 		cp.setModelePasserelle(mp);
 		assertEquals(cp.getModelePasserelle(),mp);
 	}
 
 	@Test
-	public void testGetSetModeleRRC() {
+	public void testSetModelePasserelle() {
+		ModelePasserelle mp = new ModelePasserelle();
+		cp.setModelePasserelle(mp);
+		assertEquals(cp.getModelePasserelle(),mp);
+		
 	}
 
 }
+
+
+

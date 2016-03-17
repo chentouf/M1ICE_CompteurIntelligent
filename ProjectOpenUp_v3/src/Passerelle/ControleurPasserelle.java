@@ -55,13 +55,12 @@ public class ControleurPasserelle {
 
     //## auto_generated 
     public  ControleurPasserelle(int duree) {
-    	modelePasserelle = new ModelePasserelle();
-    	
     	controleurLCD = new ControleurLCD();
     	controleurLEDEtatConnectionCompteur = new ControleurLED() ;
     	controleurLEDEtatConnectionRRC = new ControleurLED();
     	
     	vuePasserelle = new VuePasserelle(controleurLEDEtatConnectionCompteur.getVueLED(),controleurLEDEtatConnectionRRC.getVueLED(), controleurLCD.getVueLCD());
+    	modelePasserelle = new ModelePasserelle(vuePasserelle,controleurLCD.getModeleLCD());
     	this.duree = duree;
     	
     }
@@ -126,6 +125,7 @@ public class ControleurPasserelle {
         modelePasserelle = p_ModelePasserelle;
     }
     
+
     public ControleurLED getControleurLEDEtatConnectionCompteur() {
 		return controleurLEDEtatConnectionCompteur;
 	}
@@ -140,6 +140,11 @@ public class ControleurPasserelle {
 
 	public void setControleurLEDEtatConnectionRRC(ControleurLED modeleLEDEtatConnectionRRC) {
 		this.controleurLEDEtatConnectionRRC = controleurLEDEtatConnectionRRC;
+	}
+	
+	public Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> getInfo(){
+		// TODO: traitement pour correspondre au exigences du client
+		return modelePasserelle.getListeCompteurs();
 	}
     
 }

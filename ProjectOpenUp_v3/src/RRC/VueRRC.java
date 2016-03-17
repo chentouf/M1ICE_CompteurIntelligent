@@ -16,6 +16,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -27,6 +31,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import Compteur.ModeleCompteur;
+import Compteur.ModeleCompteurDate;
 
 //----------------------------------------------------------------------------
 // RRC/VueRRC.java                                                                  
@@ -36,14 +41,16 @@ import Compteur.ModeleCompteur;
 
 
 //## class VueRRC 
+
 public class VueRRC extends JFrame{
 	
 	ModeleRRC mRRC ;
-    
+
 
     public JTextField tPrixHP = new JTextField() ;
     public JTextField tPrixHC = new JTextField() ;
     public JTextField tDuree = new JTextField() ;
+    public JTextArea tMesures = new JTextArea();
     
     public JPanel buildContentPane()
     {
@@ -51,15 +58,18 @@ public class VueRRC extends JFrame{
         JLabel lPrixHC  = new JLabel("Prix HC :");
         JLabel lDuree = new JLabel("Duree entre les mesures :");
         
-    	JPanel pPrincipal = new JPanel();
+        JPanel pPrincipal = new JPanel();
+        pPrincipal.setLayout(new GridLayout(2,1));
+        
+    	JPanel pParametrage = new JPanel();
     	JPanel pHaut = new JPanel();
     	JPanel pBas = new JPanel();
-    	
-    	pPrincipal.setLayout(new BorderLayout());
+    	    	
+    	pParametrage.setLayout(new BorderLayout());
     	pHaut.setLayout(new GridLayout(3,2));
     	pBas.setLayout(new BorderLayout());
     	
-    	miseAJourAffichage();
+    	miseAJourParametrage();
     	
     	pHaut.add(lPrixHP);
     	pHaut.add(tPrixHP);
@@ -73,13 +83,22 @@ public class VueRRC extends JFrame{
     	bModifier.addMouseListener(new MouseAdapter() {
     		public void mouseClick(MouseEvent e)
     		{
-    			miseAJourRRC();
+    			miseAJourParametrageRRC();
     			System.out.println("MODELE : "+ mRRC.getPrixEnVigeurHp() +" :: "+ mRRC.getPrixEnVigueurHc() +" :: "+mRRC.getDuree() );
     		}
 		});
     	
-    	pPrincipal.add(pHaut, BorderLayout.CENTER);
-    	pPrincipal.add(pBas, BorderLayout.SOUTH);
+    	pParametrage.add(pHaut, BorderLayout.CENTER);
+    	pParametrage.add(pBas, BorderLayout.SOUTH);
+    	
+    	JPanel pAffichage = new JPanel();
+    	pAffichage.setLayout(new BorderLayout());
+    	JLabel lTitreAffichage = new JLabel("Mesures des compteurs reçues");
+    	pAffichage.add(lTitreAffichage, BorderLayout.NORTH);
+    	pAffichage.add(tMesures, BorderLayout.CENTER);
+    	
+    	pPrincipal.add(pParametrage);
+    	pPrincipal.add(pAffichage);
     	
     	pPrincipal.setVisible(true);
     	
@@ -89,7 +108,7 @@ public class VueRRC extends JFrame{
     public void build()
     {
     	this.setTitle("Paramatrage RRC");
-        this.setSize(400, 150);
+        this.setSize(400, 300);
         this.add(buildContentPane());
         this.setVisible(true);
     	setLocationRelativeTo(null); 
@@ -103,21 +122,36 @@ public class VueRRC extends JFrame{
 		build();
     }
 
-	private void miseAJourAffichage() {
+	private void miseAJourParametrage() {
     	tPrixHP.setText(""+mRRC.getPrixEnVigeurHp());
     	tPrixHC.setText(""+mRRC.getPrixEnVigueurHc());
     	tDuree.setText(""+mRRC.duree);
 	}
 	
-	private void miseAJourRRC()
+	private void miseAJourParametrageRRC()
 	{
 		mRRC.setPrixEnVigeurHp((Integer.parseInt(tPrixHP.getText()))); 
 		mRRC.setPrixEnVigueurHc((Integer.parseInt(tPrixHC.getText()))); 
 		mRRC.setDuree(((Integer.parseInt(tDuree.getText())))); 
 	}
     
+	void miseAJourAffichageMesures() {
+		
+		Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> releve = mRRC.mesure;
+		
+		
+    	for(Entry<ModeleCompteur,LinkedList<ModeleCompteurDate>> elem : releve.entrySet()){	    		
+
+		System.out.println("P - Compteur : "+elem.getKey().getId()+" :: "+elem.getKey().getHc()+" "+elem.getKey().getHp());
+		for(ModeleCompteurDate m : elem.getValue()){
+			
+			tMesures.setText(m.getDisplay());
+			System.out.println(m.getDisplay());
+			
+		}
+	}
     
-}
+	}}
 /*********************************************************************
 	File Path	: DefaultComponent/DefaultConfig/RRC/VueRRC.java
 *********************************************************************/

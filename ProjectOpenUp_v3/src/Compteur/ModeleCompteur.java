@@ -1,4 +1,8 @@
 /*********************************************************************
+	File Path	: DefaultComponent/DefaultConfig/Compteur/ModeleCompteur.java
+*********************************************************************/
+
+/*********************************************************************
 	Rhapsody	: 8.1.3
 	Login		: S219
 	Component	: DefaultComponent
@@ -82,7 +86,6 @@ public class ModeleCompteur extends Observable{
     
     //## auto_generated 
     public int getHp() {
-    	
         return hp;
     }
     
@@ -132,7 +135,7 @@ public class ModeleCompteur extends Observable{
     
     @Override
     public String toString(){
-    	return "Compteur : "+this.id;
+    	return "Compteur : "+id;
     }
 }
 /*********************************************************************

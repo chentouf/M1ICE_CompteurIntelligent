@@ -36,6 +36,7 @@ public class SimulationRRC implements Runnable {
 			ControleurPasserelle controleurP = simuPasserelle.getControleurPasserelle();
 			
 			controleurRRC.getModeleRRC().majMesure(controleurP.getModelePasserelle().getReleve()); // simulation de l'accès à la passerelle par le RRC
+			controleurRRC.getVueRRC().miseAJourAffichageMesures();
 		}
 	}	
 	

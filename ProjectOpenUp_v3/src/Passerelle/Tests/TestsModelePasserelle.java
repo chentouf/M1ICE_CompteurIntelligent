@@ -54,7 +54,6 @@ public class TestsModelePasserelle {
 
 	}
 
-
 	@Test
 	public void testGetListeCompteurs() {
 
