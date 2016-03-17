@@ -101,8 +101,6 @@ public class SimulationCompteur implements Runnable {
 			controleur.getModeleCompteur().setHc(controleur.getModeleCompteur().getHc()+1);
 			controleur.getModeleCompteur().setHp(controleur.getModeleCompteur().getHp()+2);
 			
-			//System.out.println(controleur.getVueCompteur().getDisplay());
-			
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -110,6 +108,10 @@ public class SimulationCompteur implements Runnable {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public void initialize(){
+		new Thread(this).start();
 	}
 	
 	public String getDisplay(){

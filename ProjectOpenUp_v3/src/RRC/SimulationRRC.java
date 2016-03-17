@@ -14,7 +14,9 @@ public class SimulationRRC implements Runnable {
 	
 	SimulationPasserelle simuPasserelle;
 	ControleurRRC controleurRRC;
-
+	SimulationCompteur clientTest;
+	SimulationCompteur[] tab;
+	
 	public SimulationRRC(){
 		// TODO Auto-generated constructor stub
 		simuPasserelle = new SimulationPasserelle();
@@ -25,7 +27,6 @@ public class SimulationRRC implements Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 		while(true){
-			
 			try {
 				Thread.sleep(controleurRRC.getModeleRRC().getDuree()*1000); // intervalle de temps entre deux relevé côté RRC
 			} catch (InterruptedException e) {
@@ -47,41 +48,33 @@ public class SimulationRRC implements Runnable {
 		return controleurRRC;
 	}
 	
+	public SimulationCompteur getClientTest() {
+		return clientTest;
+	}
+
+	public SimulationCompteur[] getTab() {
+		return tab;
+	}
+
+	public void setTab(SimulationCompteur[] tab) {
+		this.tab = tab;
+	}
+
 	public void initialize(){
-		SimulationRRC simuRRC = new SimulationRRC();
-		SimulationCompteur[] tab = new SimulationCompteur[3];
-		ControleurLCD lcd = new ControleurLCD();
-		Date date = new Date();
-		Client clientTest = new Client(0,5);
-		Thread t = new Thread(simuRRC.getSimulationPasserelle());
-		
-		t.start();
-		t = new Thread(simuRRC);
-		t.start();
-		
-		tab[0] = new SimulationCompteur(clientTest);
-		
-		simuRRC.getSimulationPasserelle().getControleurPasserelle()	.getModelePasserelle()
-			.addListeCompteurs(tab[0].getControleur().getModeleCompteur());
-		// test connection false
-		//tab[i].getControleur().getModeleCompteur().setConnection(false);
-		new Thread(tab[0]).start();
-		
-		for(int i = 1;i<3;i++){
-			tab[i] = new SimulationCompteur(new Client(i,10));
-			
-			simuRRC.getSimulationPasserelle().getControleurPasserelle()	.getModelePasserelle()
-				.addListeCompteurs(tab[i].getControleur().getModeleCompteur());
-			// test connection false
-			//tab[i].getControleur().getModeleCompteur().setConnection(false);
-			new Thread(tab[i]).start();
-		}
+		//ControleurLCD lcd = new ControleurLCD();	
+		new Thread(this).start();
 	}
 	
 	public static void main(String[] args){
 		SimulationRRC simuRRC = new SimulationRRC();
 		
-		simuRRC.initialize();
+		for(int i = 0;i<simuRRC.getTab().length-1;i++){
+			
+			simuRRC.getSimulationPasserelle().getControleurPasserelle()	.getModelePasserelle()
+				.addListeCompteurs(simuRRC.getTab()[i].getControleur().getModeleCompteur());
+
+			new Thread(simuRRC.getTab()[i]).start();
+		}
 		
 		new Thread(simuRRC).start();
 		

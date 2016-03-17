@@ -73,6 +73,14 @@ public class ControleurPasserelle {
 		this.duree = duree;
 	}
 
+	public VuePasserelle getVuePasserelle() {
+		return vuePasserelle;
+	}
+
+	public void setVuePasserelle(VuePasserelle vuePasserelle) {
+		this.vuePasserelle = vuePasserelle;
+	}
+
 	//## auto_generated 
     public ControleurLCD getControleurLCD() {
         return controleurLCD;
