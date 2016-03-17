@@ -9,8 +9,7 @@ import org.junit.Test;
 import LED.ModeleLED;
 
 public class TestsModeleLED {
-	ModeleLED ml;
-
+	private ModeleLED ml;
 	@Before
 	public void setUp() throws Exception {
 		ml = new ModeleLED();

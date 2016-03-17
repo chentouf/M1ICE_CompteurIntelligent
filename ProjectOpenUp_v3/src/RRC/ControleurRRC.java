@@ -35,7 +35,6 @@ import Passerelle.ControleurPasserelle;
 public class ControleurRRC {
     
     protected ModeleRRC modeleRRC;		//## link modeleRRC 
-    
     protected VueRRC vueRRC;		//## link vueRRC 
     // Constructors
     
@@ -48,7 +47,7 @@ public class ControleurRRC {
         //#[ operation ControleurRRC(VueRRC,ModeleRRC) 
         //#]
     	modeleRRC = new ModeleRRC(prixEnVigeurHc,prixEnVigeurHp,duree);
-    	vueRRC = new VueRRC();
+    	vueRRC = new VueRRC(modeleRRC);
     }
    
 

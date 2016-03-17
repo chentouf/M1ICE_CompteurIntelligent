@@ -30,6 +30,9 @@ public class SimulationCompteur implements Runnable {
 		while(true){
 			controleur.getModeleCompteur().setHc(controleur.getModeleCompteur().getHc()+1);
 			controleur.getModeleCompteur().setHp(controleur.getModeleCompteur().getHp()+2);
+			
+			//System.out.println(controleur.getVueCompteur().getDisplay());
+			
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {

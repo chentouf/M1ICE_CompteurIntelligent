@@ -10,8 +10,14 @@
 
 package Compteur;
 
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 
 //----------------------------------------------------------------------------
@@ -22,18 +28,54 @@ import java.util.Observer;
 
 
 //## class VueCompteur 
-public class VueCompteur implements Observer {
+public class VueCompteur extends JFrame implements Observer {
     
-    protected String display;		//## attribute display 
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected String display;		//## attribute display 
+	
+	
+	
     
     // Constructors
-    
+	JLabel Compteur = new JLabel("Numero Compteur");
+	JLabel hp = new JLabel("HP");
+	JLabel hc = new JLabel("HC");
+	JLabel idCompteur = new JLabel("");
+	JLabel valeurHP = new JLabel("");
+	JLabel valeurHC = new JLabel("");
+	
     //## operation VueCompteur() 
     public  VueCompteur() {
-        //#[ operation VueCompteur() 
-        //#]
+    	super();
+		build();
+       }
+    
+    public void build()
+    {
+    	this.setTitle("Simulation Compteur");
+        this.setSize(400, 100);
+        this.setVisible(true);
+    	setLocationRelativeTo(null); //On centre la fenêtre sur l'écran
+		setResizable(true); //On permet le redimensionnement
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //On dit à l'application de se fermer lors du clic sur la croix
+		setContentPane(buildContentPane());
     }
     
+    private JPanel buildContentPane()
+    {
+    	JPanel panel = new JPanel();
+    	panel.setLayout(new GridLayout(2,3));
+    	panel.add(Compteur);
+    	panel.add(hp);
+    	panel.add(hc);
+    	panel.add(idCompteur);
+    	panel.add(valeurHP);
+    	panel.add(valeurHC);
+    	return panel;
+    }
     //## operation majVue() 
     public void majVue() {
         //#[ operation majVue()
@@ -55,7 +97,7 @@ public class VueCompteur implements Observer {
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
 		ModeleCompteur modele;
-		
+		//System.out.println("aloo");
 		if(arg0 == null){
 			System.out.println("erreur");
 			return;
@@ -64,6 +106,10 @@ public class VueCompteur implements Observer {
 		if(arg0 instanceof ModeleCompteur){
 			modele = (ModeleCompteur)arg0;
 			display = new String(modele.getId()+" : "+modele.getHc()+" / "+modele.getHp());
+			idCompteur.setText(modele.getId());
+			valeurHP.setText(""+modele.getHp());
+			valeurHC.setText(""+modele.getHc());
+			//System.out.println(modele.getId()+" : "+modele.getHc()+" / "+modele.getHp());
 		}
 	}
     

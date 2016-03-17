@@ -82,12 +82,14 @@ public class ModeleCompteur extends Observable{
     
     //## auto_generated 
     public int getHp() {
+    	
         return hp;
     }
     
     //## auto_generated 
     public void setHp(int p_hp) {
         hp = p_hp;
+        setChanged();
         notifyObservers();
     }
     

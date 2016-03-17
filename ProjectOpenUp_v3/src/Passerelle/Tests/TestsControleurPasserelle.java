@@ -6,7 +6,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import LCD.ModeleLCD;
 import Passerelle.ControleurPasserelle;
+import Passerelle.ModelePasserelle;
+import RRC.ModeleRRC;
 
 public class TestsControleurPasserelle {
 	
@@ -55,9 +58,14 @@ public class TestsControleurPasserelle {
 	}
 
 	@Test
-	public void testGetSetModelePasserelle() {}
+	public void testGetSetModelePasserelle() {
+		ModelePasserelle mp = new ModelePasserelle();
+		cp.setModelePasserelle(mp);
+		assertEquals(cp.getModelePasserelle(),mp);
+	}
 
 	@Test
-	public void testGetSetModeleRRC() {}
+	public void testGetSetModeleRRC() {
+	}
 
 }

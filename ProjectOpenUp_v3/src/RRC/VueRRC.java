@@ -12,13 +12,19 @@ package RRC;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import Compteur.ModeleCompteur;
 
@@ -30,59 +36,84 @@ import Compteur.ModeleCompteur;
 
 
 //## class VueRRC 
-public class VueRRC implements Observer{
+public class VueRRC extends JFrame{
+	
+	ModeleRRC mRRC ;
     
 
-    public JTextArea tPrixHP ;
-    public JTextArea tPrixHC ;
-    public JTextArea tDuree ;
+    public JTextField tPrixHP = new JTextField() ;
+    public JTextField tPrixHC = new JTextField() ;
+    public JTextField tDuree = new JTextField() ;
     
-    public JPanel createJPane()
+    public JPanel buildContentPane()
     {
         JLabel lPrixHP = new JLabel("Prix HP :");
         JLabel lPrixHC  = new JLabel("Prix HC :");
         JLabel lDuree = new JLabel("Duree entre les mesures :");
+        
     	JPanel pPrincipal = new JPanel();
     	JPanel pHaut = new JPanel();
     	JPanel pBas = new JPanel();
+    	
     	pPrincipal.setLayout(new BorderLayout());
-    	pHaut.setLayout(new GridLayout(2,3));
+    	pHaut.setLayout(new GridLayout(3,2));
     	pBas.setLayout(new BorderLayout());
+    	
+    	miseAJourAffichage();
+    	
     	pHaut.add(lPrixHP);
     	pHaut.add(tPrixHP);
     	pHaut.add(lPrixHC);
     	pHaut.add(tPrixHC);
     	pHaut.add(lDuree);
     	pHaut.add(tDuree);
+    	
     	JButton bModifier = new JButton("Modifier");
     	pBas.add(bModifier, BorderLayout.EAST);
+    	bModifier.addMouseListener(new MouseAdapter() {
+    		public void mouseClick(MouseEvent e)
+    		{
+    			miseAJourRRC();
+    			System.out.println("MODELE : "+ mRRC.getPrixEnVigeurHp() +" :: "+ mRRC.getPrixEnVigueurHc() +" :: "+mRRC.getDuree() );
+    		}
+		});
+    	
     	pPrincipal.add(pHaut, BorderLayout.CENTER);
     	pPrincipal.add(pBas, BorderLayout.SOUTH);
     	
+    	pPrincipal.setVisible(true);
+    	
 		return pPrincipal;
+    }
+    
+    public void build()
+    {
+    	this.setTitle("Paramatrage RRC");
+        this.setSize(400, 150);
+        this.add(buildContentPane());
+        this.setVisible(true);
+    	setLocationRelativeTo(null); 
+		setResizable(true); 
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
     }
 	
     //## operation VueRRC() 
-    public  VueRRC() {
-
+    public  VueRRC(ModeleRRC m) {
+		mRRC = m ;
+		build();
     }
 
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		ModeleRRC modele;
-		
-		if(arg0 == null){
-			System.out.println("erreur");
-			return;
-		}
-		
-		if(arg0 instanceof ModeleCompteur){
-			modele = (ModeleRRC)arg0;
-			tPrixHP.setText(""+modele.prixEnVigueurHp);
-			tPrixHC.setText(""+modele.prixEnVigueurHc);
-			tDuree.setText(""+modele.duree);
-		}
+	private void miseAJourAffichage() {
+    	tPrixHP.setText(""+mRRC.getPrixEnVigeurHp());
+    	tPrixHC.setText(""+mRRC.getPrixEnVigueurHc());
+    	tDuree.setText(""+mRRC.duree);
+	}
+	
+	private void miseAJourRRC()
+	{
+		mRRC.setPrixEnVigeurHp((Integer.parseInt(tPrixHP.getText()))); 
+		mRRC.setPrixEnVigueurHc((Integer.parseInt(tPrixHC.getText()))); 
+		mRRC.setDuree(((Integer.parseInt(tDuree.getText())))); 
 	}
     
     

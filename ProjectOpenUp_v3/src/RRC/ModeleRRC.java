@@ -42,7 +42,7 @@ import Compteur.ModeleCompteurDate;
 
 
 //## class ModeleRRC 
-public class ModeleRRC extends Observable{
+public class ModeleRRC{
 
     protected int prixEnVigueurHc,prixEnVigueurHp,duree;		// à stocker prochainement
     protected Map<ModeleCompteur,LinkedList<ModeleCompteurDate>> mesure;
@@ -54,7 +54,7 @@ public class ModeleRRC extends Observable{
         //#[ operation ModeleRRC() 
         //#]
     	this.prixEnVigueurHp = prixEnVigeurHp;
-    	this.prixEnVigueurHc = prixEnVigueurHc;
+    	this.prixEnVigueurHc = prixEnVigeurHc;
     	
     	this.mesure = new HashMap<ModeleCompteur,LinkedList<ModeleCompteurDate>>();
     	this.duree = duree;

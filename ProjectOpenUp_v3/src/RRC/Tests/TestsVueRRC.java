@@ -13,7 +13,7 @@ public class TestsVueRRC {
 	VueRRC vr;
 	@Before
 	public void setUp() throws Exception {
-		vr = new VueRRC();
+		vr = new VueRRC(null);
 	}
 
 	@After
@@ -22,15 +22,14 @@ public class TestsVueRRC {
 	}
 
 	@Test
-	public void testVueRRC() {}
+	public void testVueRRC() {
+		
+	}
 
 	@Test
-	public void testMajVue() {}
+	public void testMajVue() {
+		
+	}
 
-	@Test
-	public void testGetDisplay() {}
-
-	@Test
-	public void testSetDisplay() {}
 
 }
