@@ -12,7 +12,7 @@ public class SimulationPasserelle implements Runnable {
 		passerelle = new ControleurPasserelle(1);
 	}
 	
-	public static void main(String[] args){
+	public void initialize(){
 		SimulationPasserelle simulation = new SimulationPasserelle();
 		SimulationCompteur[] tab = new SimulationCompteur[3];
 		
@@ -44,6 +44,14 @@ public class SimulationPasserelle implements Runnable {
 			e.printStackTrace();
 		}
 		simulation.passerelle.getModelePasserelle().addListeCompteurs(tab[1].getControleur().getModeleCompteur());
+	}
+	
+	public static void main(String[] args){
+		SimulationPasserelle pa = new SimulationPasserelle();
+		
+		pa.initialize();
+		
+		new Thread(pa).start();
 	}
 
 	@Override

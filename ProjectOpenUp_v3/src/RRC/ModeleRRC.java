@@ -102,7 +102,7 @@ public class ModeleRRC {
 				if( mesure.get(entry.getKey()) != null){
 					mesure.remove(entry.getKey());	
 				}else{
-					mesure.get(entry.getKey()).addAll(entry.getValue());
+					mesure.put(entry.getKey(),entry.getValue());
 				}
 				
 			}
