@@ -48,7 +48,7 @@ public class SimulationRRC implements Runnable {
 		return controleurRRC;
 	}
 	
-	public static void main(String[] args){
+	public void initialize(){
 		SimulationRRC simuRRC = new SimulationRRC();
 		SimulationCompteur[] tab = new SimulationCompteur[3];
 		ControleurLCD lcd = new ControleurLCD();
@@ -77,19 +77,14 @@ public class SimulationRRC implements Runnable {
 			//tab[i].getControleur().getModeleCompteur().setConnection(false);
 			new Thread(tab[i]).start();
 		}
+	}
+	
+	public static void main(String[] args){
+		SimulationRRC simuRRC = new SimulationRRC();
 		
-		try {
-			Thread.sleep(15000);
-			
-			simuRRC.getControleurRRC().getModeleRRC().produireFacture(clientTest,date);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			
-		}
+		simuRRC.initialize();
+		
+		new Thread(simuRRC).start();
 		
 	}
 }
