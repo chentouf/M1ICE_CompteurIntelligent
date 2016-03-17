@@ -101,9 +101,9 @@ public class ModeleRRC{
 				//System.out.println("R - Compteur : "+entry.getKey().getId()+" :: "+entry.getKey().getHc()+" "+entry.getKey().getHp());
 				if( mesure.get(entry.getKey()) != null){
 					mesure.remove(entry.getKey());	
-				}else{
-					mesure.put(entry.getKey(),entry.getValue());
 				}
+				
+				mesure.put(entry.getKey(),entry.getValue());
 			}
     	}
     }
@@ -164,6 +164,37 @@ public class ModeleRRC{
         	
         
     }
+
+	public void produireFacture(Client client, Date d1, Date d2) {
+		// TODO Auto-generated method stub
+		System.out.println("allo");
+		synchronized(this)
+        {
+
+        	//TODO : ecrire dans le fichier
+        	/*if(mesure.containsKey(client)){
+        		LinkedList<ModeleCompteurDate> l = mesure.get(client);
+	    		System.out.println("Compteur : "+client.getId()+" client : "+client.getNom());
+	    		for(ModeleCompteurDate elem : l){
+	    			Date d = new Date(elem.getDate());
+	    			if(d.compareTo(d1) >= 0 && d.compareTo(d2) <= 0){
+	    				System.out.println(elem.getDisplay());
+	    			}
+	    		}
+        	}*/
+			for(Entry<ModeleCompteur,LinkedList<ModeleCompteurDate>> entry : mesure.entrySet()){
+				System.out.println("Compteur : "+client.getId()+" client : "+client.getNom());
+				for(ModeleCompteurDate elem : entry.getValue()){
+	    			Date d = new Date(elem.getDate());
+	    			
+	    			if(d1.compareTo(d) <= 0 && d.compareTo(d2) <= 0){
+	    				System.out.println(elem.getDisplay());
+	    			}
+	    			//System.out.println(elem.getDisplay());
+	    		}
+			}
+        }
+	}
 }
 /*********************************************************************
 	File Path	: DefaultComponent/DefaultConfig/RRC/ModeleRRC.java
