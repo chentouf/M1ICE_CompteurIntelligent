@@ -28,6 +28,7 @@ public class SimulationRRC implements Runnable {
 			
 			try {
 				Thread.sleep(controleurRRC.getModeleRRC().getDuree()*1000); // intervalle de temps entre deux relevé côté RRC
+				System.out.println(controleurRRC.getModeleRRC().getDuree());
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -104,7 +104,6 @@ public class ModeleRRC{
 				}else{
 					mesure.put(entry.getKey(),entry.getValue());
 				}
-				
 			}
     	}
     }
@@ -137,7 +136,6 @@ public class ModeleRRC{
     public void produireFacture(Client client,Date date) throws IOException{
     	synchronized(this)
         { 
-        	
         	if(mesure.containsKey(client)){
         		LinkedList<ModeleCompteurDate> l = mesure.get(client);
 	    		System.out.println("Compteur : "+client.getId()+" client : "+client.getNom());
