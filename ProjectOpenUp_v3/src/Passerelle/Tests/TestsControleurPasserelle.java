@@ -6,54 +6,42 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+
 import LCD.ModeleLCD;
 import Passerelle.ControleurPasserelle;
 import Passerelle.ModelePasserelle;
 import RRC.ModeleRRC;
 
-public class TestsControleurPasserelle {
-	
-	ControleurPasserelle cp;
 
+public class TestsControleurPasserelle {
+
+	private ControleurPasserelle cp;
 	@Before
 	public void setUp() throws Exception {
+
 		cp = new ControleurPasserelle(1);
 		
+
 	}
 
 	@After
 	public void tearDown() throws Exception {
+
 		cp = null;
 	}
 
 	@Test
-	public void testControleurPasserelleModeleLEDModelePasserelleModeleLEDModeleLCDModelePasserelle() {
-	}
-
-	@Test
 	public void testControleurPasserelle() {
+		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testMajSysteme() {}
-
-	@Test
-	public void testGetListeModeleLED() {
+	public void testGetSetDuree() {
+		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testAddListeModeleLED() {
-	}
 
-	@Test
-	public void testRemoveListeModeleLED() {
-	}
-
-	@Test
-	public void testClearListeModeleLED() {
-	}
-
-	@Test
 	public void testGetModelePasserelle() {
 		ModelePasserelle mp = new ModelePasserelle();
 		cp.setModelePasserelle(mp);

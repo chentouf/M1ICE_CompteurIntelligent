@@ -14,11 +14,11 @@ import RRC.VueRRC;
 
 public class TestsControleurRRC {
 
-	ControleurRRC cr;
+	private ControleurRRC cr;
+
 	@Before
 	public void setUp() throws Exception {
-
-		cr = new ControleurRRC(1,2,30);
+		ControleurRRC cr = new ControleurRRC(0,0,0);
 	}
 
 	@After
@@ -26,11 +26,8 @@ public class TestsControleurRRC {
 	}
 
 	@Test
-	public void testControleurRRCVueRRCModeleRRC() {
-	}
-
-	@Test
 	public void testControleurRRC() {
+		fail("Not yet implemented");
 	}
 
 	@Test
@@ -41,6 +38,7 @@ public class TestsControleurRRC {
 	}
 
 	@Test
+
 	public void testSetModeleRRC() {
 		ModeleRRC mr = new ModeleRRC(0, 0, 0);
 		cr.setModeleRRC(mr);
@@ -61,6 +59,7 @@ public class TestsControleurRRC {
 		VueRRC vr = new VueRRC(null);
 		cr.setVueRRC(vr);
 		assertEquals(cr.getVueRRC(), vr);
+
 	}
 
 }
