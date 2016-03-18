@@ -3,6 +3,7 @@ package client;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -28,7 +29,8 @@ public class VueClientClient extends JFrame {
     }
                                                
     private void initComponents() {
-
+    	
+    	Calendar cal = Calendar.getInstance();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -67,8 +69,11 @@ public class VueClientClient extends JFrame {
         jPanel2.add(jLabel5, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_START);
-        jDate1.setText("17/03/2016");
-        jDate2.setText("18/03/2016");
+
+        cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH)+1);
+        jDate1.setText(new SimpleDateFormat("dd/MM/yyy").format(new Date()));
+        jDate2.setText(new SimpleDateFormat("dd/MM/yyy").format(cal.getTime()));
+        
         pack();
     }                     
                       

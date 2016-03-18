@@ -63,10 +63,10 @@ public class VuePasserelle extends JFrame {
     	panel.setLayout(new GridLayout(2,4));
     	
     	JPanel titre2 = new JPanel();
-    	titre2.add(new JLabel("Etat generale des connexions"));
+    	titre2.add(new JLabel("Accès distant"));
     	
     	JPanel titre3 = new JPanel();
-    	titre3.add(new JLabel("Etat accees distant"));
+    	titre3.add(new JLabel("Etat général des connexions"));
     	panel.add(titre2);
     	panel.add(titre3);
     	vueLEDAccesDistant.setDisplay(Color.green);

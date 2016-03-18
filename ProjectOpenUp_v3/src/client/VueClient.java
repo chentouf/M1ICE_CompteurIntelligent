@@ -118,7 +118,17 @@ public class VueClient extends javax.swing.JFrame {
     			return false;
     		}
     		if(login.equals("admin")){
+    			new ControleurClient().lancerAdmin();
+    			return false;
+    		}
+    		
+    		if(login.equals("rrc")){
     			new ControleurClient().lancerRRC();
+    			return false;
+    		}
+    		
+    		if(login.equals("ope")){
+    			new ControleurClient().lancerOpe();
     			return false;
     		}
     		return true;

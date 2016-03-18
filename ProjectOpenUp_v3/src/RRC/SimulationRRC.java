@@ -73,13 +73,12 @@ public class SimulationRRC implements Runnable {
 		SimulationCompteur[] tab = new SimulationCompteur[3];
 		
 		for(int i = 1;i<3;i++){
-			tab[i] = new SimulationCompteur(new Client(i,10));
+			tab[i] = new SimulationCompteur(new Client(10));
 			
 			simuRRC.getSimulationPasserelle().passerelle.getModelePasserelle()
 				.addListeCompteurs(tab[i].getControleur().getModeleCompteur());
 			// test connection false
 			//tab[i].getControleur().getModeleCompteur().setConnection(false);
-			new Thread(tab[i]).start();
 		}
 		
 		new Thread(simuRRC.getSimulationPasserelle()).start();

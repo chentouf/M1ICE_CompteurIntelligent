@@ -40,12 +40,12 @@ public class SimulationPasserelle implements Runnable {
 		SimulationPasserelle pa = new SimulationPasserelle();
 		
 		SimulationCompteur[] tab = new SimulationCompteur[3];
-		Client c = new Client(0,10);
+		Client c = new Client(10);
 		
 		
 		tab[0] = new SimulationCompteur(c);
 		for(int i = 1;i<3;i++){
-			tab[i] = new SimulationCompteur(new Client(i,10));
+			tab[i] = new SimulationCompteur(new Client(10));
 			
 			pa.passerelle.getModelePasserelle()
 				.addListeCompteurs(tab[i].getControleur().getModeleCompteur());

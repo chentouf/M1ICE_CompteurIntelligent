@@ -8,6 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import LCD.ControleurLCD;
 import LCD.ModeleLCD;
 import LCD.VueLCD;
 
@@ -17,7 +18,7 @@ public class TestsVueLCD {
 
 	@Before
 	public void setUp() throws Exception {
-		vl = new VueLCD();
+		vl = new ControleurLCD().getVueLCD();
 	}
 
 	@After

@@ -35,7 +35,7 @@ public class ControleurLCD {
     //## auto_generated 
     public  ControleurLCD() {
     	this.modeleLCD = new ModeleLCD();
-    	this.vueLCD = new VueLCD();
+    	this.vueLCD = new VueLCD(this);
     	
     	modeleLCD.addObserver(vueLCD);
     }
@@ -59,6 +59,15 @@ public class ControleurLCD {
     public void setVueLCD(VueLCD p_VueLCD) {
         vueLCD = p_VueLCD;
     }
+    
+    public void ajouterCompteur(){
+    	
+    }
+
+	public void supprimerCompteur(int parseInt) {
+		// TODO Auto-generated method stub
+		
+	}
     
 }
 /*********************************************************************

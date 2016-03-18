@@ -36,12 +36,5 @@ public class TestsControleurLCD {
 		assertEquals(cl.getModeleLCD(),ml);
 	}	
 
-	@Test
-	public void testGetSetVueLCD() {
-		VueLCD vl = new VueLCD();
-		cl.setVueLCD(vl);
-		assertEquals(cl.getVueLCD(), vl);		
-	}
-
 }
 

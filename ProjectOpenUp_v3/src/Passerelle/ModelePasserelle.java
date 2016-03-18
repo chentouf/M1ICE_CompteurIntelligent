@@ -75,7 +75,8 @@ public class ModelePasserelle {
 	    		modele = entry.getKey();
 	    		modeleDate = entry.getValue().getLast();
 	    		
-	    		entry.getValue().addLast(modele.getCompteurDate());
+	    		if(entry.getKey().isConnected())
+	    			entry.getValue().addLast(modele.getCompteurDate());
 	    		
 				chaine = chaine.concat("\nCompteur "+modele.getId()+" : ");
 				
@@ -214,18 +215,19 @@ public class ModelePasserelle {
     //## auto_generated 
     public void addListeCompteurs(ModeleCompteur modeleCompteur) {
         //listeCompteurs.add(p_ModeleCompteur.getId(),p_ModeleCompteur);
-    	LinkedList<ModeleCompteurDate> l = listeCompteurs.get(modeleCompteur);
- 
-    	
-    	if( l != null){
-    		System.out.println(modeleCompteur.toString()+"déjà existant");
-    		return;
-    	}
-    	
-    	l = new LinkedList<ModeleCompteurDate>();
-		l.addLast(modeleCompteur.getCompteurDate());
-		listeCompteurs.put(modeleCompteur, l);
-    		
+    	synchronized(this){
+    		LinkedList<ModeleCompteurDate> l = listeCompteurs.get(modeleCompteur);
+    		 
+        	
+        	if( l != null){
+        		System.out.println(modeleCompteur.toString()+"déjà existant");
+        		return;
+        	}
+        	
+        	l = new LinkedList<ModeleCompteurDate>();
+    		l.addLast(modeleCompteur.getCompteurDate());
+    		listeCompteurs.put(modeleCompteur, l);
+    	}	
     }
     
     //## auto_generated 
@@ -237,6 +239,20 @@ public class ModelePasserelle {
     public void clearListeCompteurs() {
         listeCompteurs.clear();
     }
+	public void removeListeCompteurs(int id) {
+		// TODO Auto-generated method stub
+		ModeleCompteur modele = null;
+		synchronized(this){
+			for(Entry<ModeleCompteur,LinkedList<ModeleCompteurDate>> elem : listeCompteurs.entrySet()){
+        		if(elem.getKey().getId() == id)
+        			modele = elem.getKey();
+        	}
+			if(modele != null){
+				modele.stop();
+				listeCompteurs.remove(modele);
+			}
+		}
+	}
     
 }
 /*********************************************************************

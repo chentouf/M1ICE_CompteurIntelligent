@@ -16,7 +16,7 @@ public class TestControleurCompteur {
 	private ControleurCompteur cc;
 	@Before
 	public void setUp() throws Exception {
-		this.cc = new ControleurCompteur("45");
+		this.cc = new ControleurCompteur(45);
 	}
 
 	@After
@@ -26,7 +26,7 @@ public class TestControleurCompteur {
 
 	@Test
 	public void testControleurCompteurString() {
-		assertEquals(cc.getModeleCompteur().getId() , "45");
+		assertEquals(cc.getModeleCompteur().getId() , 45);
 	}
 
 	@Test

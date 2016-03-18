@@ -17,8 +17,10 @@ package Passerelle;
 import java.util.*;
 import java.util.Map.Entry;
 
+import Compteur.Client;
 import Compteur.ModeleCompteur;
 import Compteur.ModeleCompteurDate;
+import Compteur.SimulationCompteur;
 import LCD.ControleurLCD;
 //## link modeleLCD 
 import LCD.ModeleLCD;
@@ -55,7 +57,20 @@ public class ControleurPasserelle {
 
     //## auto_generated 
     public  ControleurPasserelle(int duree) {
-    	controleurLCD = new ControleurLCD();
+    	controleurLCD = new ControleurLCD(){
+    		@Override
+    		public void ajouterCompteur(){
+    			SimulationCompteur simu = new SimulationCompteur(new Client(10));
+    			new Thread(simu).start();
+    			modelePasserelle.addListeCompteurs(simu.getControleur().getModeleCompteur());
+    		}
+    		
+    		@Override
+    		public void supprimerCompteur(int id){
+    			modelePasserelle.removeListeCompteurs(id);
+    		}
+    	};
+    	
     	controleurLEDEtatConnectionCompteur = new ControleurLED() ;
     	controleurLEDEtatConnectionRRC = new ControleurLED();
     	

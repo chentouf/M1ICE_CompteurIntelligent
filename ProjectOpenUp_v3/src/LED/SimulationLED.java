@@ -28,7 +28,7 @@ public class SimulationLED implements Runnable {
 		new Thread(simulation).start();
 		
 		for(int i = 0;i<3;i++){
-			tab[i] = new SimulationCompteur(new Client(i,10));
+			tab[i] = new SimulationCompteur(new Client(10));
 			
 			simulation.passerelle.getModelePasserelle()
 				.addListeCompteurs(tab[i].getControleur().getModeleCompteur());

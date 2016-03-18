@@ -9,10 +9,22 @@ public class Client extends ModeleCompteur{
 	private String ville ;
 	private int intervalleReleve ;
 	
+	public Client(String nm, String p, String a, int cp, String v, int ir)
+	{
+		super();
+		numClient = super.getId();
+		nom = nm ;
+		prenom = p ;
+		adresse = a ;
+		codePostal = cp ;
+		ville = v ;
+		intervalleReleve = ir ;
+	}
+	
 	public Client(int nc, String nm, String p, String a, int cp, String v, int ir)
 	{
 		super();
-		numClient = nc ;
+		numClient = nc;
 		nom = nm ;
 		prenom = p ;
 		adresse = a ;
@@ -44,10 +56,22 @@ public class Client extends ModeleCompteur{
 		intervalleReleve = copy.intervalleReleve ;
 	}
 	
-	public Client(int nc, int ir)
+	public Client(int ir)
 	{
 		super();
-		numClient = nc ;
+		numClient = super.getId() ;
+		nom = "Dupont" ;
+		prenom = "Martin" ;
+		adresse = "36 Place du Capitole";
+		codePostal = 31000  ;
+		ville = "Toulouse" ;
+		intervalleReleve = ir ;
+	}
+	
+	public Client(int id,int ir)
+	{
+		super();
+		numClient = id;
 		nom = "Dupont" ;
 		prenom = "Martin" ;
 		adresse = "36 Place du Capitole";

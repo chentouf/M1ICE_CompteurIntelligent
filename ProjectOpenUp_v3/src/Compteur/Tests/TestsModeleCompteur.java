@@ -42,8 +42,8 @@ public class TestsModeleCompteur {
 	@Test
 	public void testGetSetId()
 	{
-		mc.setId("ID50");
-		assertEquals(mc.getId(), "ID50");
+		mc.setId(50);
+		assertEquals(mc.getId(), 50);
 	}
 	
 	@Test

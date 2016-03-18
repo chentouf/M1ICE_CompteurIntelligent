@@ -40,7 +40,7 @@ public class VueCompteur extends JFrame implements Observer {
 	private static final long serialVersionUID = 1L;
 	protected String display;		//## attribute display 
 	private ModeleCompteur modele;
-	
+	public static boolean affich = true;
 	
     
     // Constructors
@@ -67,7 +67,7 @@ public class VueCompteur extends JFrame implements Observer {
     {
     	this.setTitle("Simulation Compteur");
         this.setSize(400, 100);
-        this.setVisible(true);
+        this.setVisible(affich);
         
         disconnect.addMouseListener(new MouseAdapter() {
         	@Override
@@ -128,7 +128,7 @@ public class VueCompteur extends JFrame implements Observer {
 		if(arg0 instanceof ModeleCompteur){
 			modele = (ModeleCompteur)arg0;
 			display = new String(modele.getId()+" : "+modele.getHc()+" / "+modele.getHp());
-			idCompteur.setText(modele.getId());
+			idCompteur.setText(""+modele.getId());
 			valeurHP.setText(""+modele.getHp());
 			valeurHC.setText(""+modele.getHc());
 			//System.out.println(modele.getId()+" : "+modele.getHc()+" / "+modele.getHp());

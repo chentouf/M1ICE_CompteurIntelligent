@@ -32,12 +32,13 @@ public class ControleurCompteur {
      * @param vueCompteur
     */
     //## operation ControleurCompteur(ModeleCompteur,VueCompteur) 
-    public  ControleurCompteur(String id) {
+    public  ControleurCompteur(int id) {
 
     	this.modeleCompteur = new ModeleCompteur();
     	this.vueCompteur = new VueCompteur(modeleCompteur);
     	
     	modeleCompteur.setId(id);
+    	
     	this.modeleCompteur.addObserver(this.vueCompteur);
     	
     }
@@ -46,6 +47,7 @@ public class ControleurCompteur {
     	this.modeleCompteur = modele;
     	this.vueCompteur = new VueCompteur(modele);
     	this.modeleCompteur.addObserver(this.vueCompteur);
+    	this.modeleCompteur.setControleur(this);
     }
     
     //## auto_generated 
@@ -71,6 +73,11 @@ public class ControleurCompteur {
     public void setVueCompteur(VueCompteur p_VueCompteur) {
         vueCompteur = p_VueCompteur;
     }
+
+	public void stop() {
+		// TODO Auto-generated method stub
+		
+	}
     
 }
 /*********************************************************************

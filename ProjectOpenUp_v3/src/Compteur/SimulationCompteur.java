@@ -78,15 +78,35 @@ import javax.swing.Timer;
 public class SimulationCompteur implements Runnable {
 	
 	private ControleurCompteur controleur;
-	
-	public SimulationCompteur(String id) {
+	private Thread t;
+	public SimulationCompteur(int id) {
 		// TODO Auto-generated constructor stub
 		
-		controleur = new ControleurCompteur(id);
+		controleur = new ControleurCompteur(id){
+			@Override
+			public void stop(){
+				this.vueCompteur.setVisible(false);
+				t.interrupt();
+			}
+		};
+		
+		t = new Thread(this);
+		
+		t.start();
 	}
 	
 	public SimulationCompteur(ModeleCompteur modele){
-		controleur = new ControleurCompteur(modele);
+		controleur = new ControleurCompteur(modele){
+			@Override
+			public void stop(){
+				this.vueCompteur.setVisible(false);
+				t.interrupt();
+			}
+		};
+		
+		t = new Thread(this);
+		
+		t.start();
 	}
 
 	public ControleurCompteur getControleur() {
@@ -96,8 +116,8 @@ public class SimulationCompteur implements Runnable {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		
-		while(true){
+		boolean fini = false;
+		while(!fini){
 			controleur.getModeleCompteur().setHc(controleur.getModeleCompteur().getHc()+1);
 			controleur.getModeleCompteur().setHp(controleur.getModeleCompteur().getHp()+2);
 			
@@ -105,15 +125,12 @@ public class SimulationCompteur implements Runnable {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				fini = true;
+				//e.printStackTrace();
 			}
 		}
 	}
-	
-	public void initialize(){
-		new Thread(this).start();
-	}
-	
+
 	public String getDisplay(){
 
 		
@@ -124,7 +141,7 @@ public class SimulationCompteur implements Runnable {
 		SimulationCompteur[] tab = new SimulationCompteur[3];
 		for(int i=0;i<3;i++){
 			
-			tab[i] = new SimulationCompteur(""+i);
+			tab[i] = new SimulationCompteur(i);
 			new Thread(tab[i]).start();
 		}
 		

@@ -18,7 +18,7 @@ public class TestsSimulationCompteur {
 
 	@Before
 	public void setUp() throws Exception {
-		sc = new SimulationCompteur("Compteur 1");
+		sc = new SimulationCompteur(1);
 	}
 
 	@After

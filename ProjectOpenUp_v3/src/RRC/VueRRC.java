@@ -27,6 +27,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -51,13 +52,16 @@ public class VueRRC extends JFrame{
     public JTextField tPrixHC = new JTextField() ;
     public JTextField tDuree = new JTextField() ;
     public JTextArea tMesures = new JTextArea();
+
+
+	private JScrollPane jScrollPane1;
     
     public JPanel buildContentPane()
     {
         JLabel lPrixHP = new JLabel("Prix HP :");
         JLabel lPrixHC  = new JLabel("Prix HC :");
         JLabel lDuree = new JLabel("Duree entre les mesures :");
-        
+        jScrollPane1 = new javax.swing.JScrollPane();
         JPanel pPrincipal = new JPanel();
         pPrincipal.setLayout(new GridLayout(2,1));
         
@@ -68,7 +72,7 @@ public class VueRRC extends JFrame{
     	pParametrage.setLayout(new BorderLayout());
     	pHaut.setLayout(new GridLayout(3,2));
     	pBas.setLayout(new BorderLayout());
-    	
+    	jScrollPane1.setViewportView(tMesures);
     	miseAJourParametrage();
     	
     	pHaut.add(lPrixHP);
@@ -96,7 +100,7 @@ public class VueRRC extends JFrame{
     	pAffichage.setLayout(new BorderLayout());
     	JLabel lTitreAffichage = new JLabel("Mesures des compteurs reçues");
     	pAffichage.add(lTitreAffichage, BorderLayout.NORTH);
-    	pAffichage.add(tMesures, BorderLayout.CENTER);
+    	pAffichage.add(jScrollPane1, BorderLayout.CENTER);
     	
     	pPrincipal.add(pParametrage);
     	pPrincipal.add(pAffichage);

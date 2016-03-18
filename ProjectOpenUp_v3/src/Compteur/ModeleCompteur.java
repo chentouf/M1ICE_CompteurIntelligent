@@ -35,14 +35,14 @@ public class ModeleCompteur extends Observable{
     private static int ID = 0;
     protected int hc;		//## attribute hc 
     protected int hp;		//## attribute hp
-    protected String id;
-    protected boolean etatConnection ; 
-    // Constructors
+    protected int id;
+    protected boolean etatConnection ;
+	private ControleurCompteur controleur;
     
     //## operation ModeleCompteur() 
     public  ModeleCompteur() {
     	super();
-    	id = new String(""+ModeleCompteur.incID());
+    	id = ModeleCompteur.incID();
     	hc = 0;
     	hp = 0;
     	etatConnection = true ;
@@ -62,11 +62,11 @@ public class ModeleCompteur extends Observable{
     	return ModeleCompteur.ID;
     }
     
-    public String getId() {
+    public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
         
@@ -130,7 +130,7 @@ public class ModeleCompteur extends Observable{
     
     @Override
     public int hashCode(){
-    	return id.hashCode();
+    	return id*13;
     }
     
     public ModeleCompteurDate getCompteurDate(){
@@ -141,6 +141,16 @@ public class ModeleCompteur extends Observable{
     public String toString(){
     	return "Compteur : "+id;
     }
+
+	public void setControleur(ControleurCompteur controleurCompteur) {
+		// TODO Auto-generated method stub
+		this.controleur = controleurCompteur;
+	}
+	
+	public void stop(){
+		controleur.stop();
+	}
+	
 }
 /*********************************************************************
 	File Path	: DefaultComponent/DefaultConfig/Compteur/ModeleCompteur.java
